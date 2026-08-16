@@ -42,7 +42,7 @@ def resolve_cohort(
                 if c.court_establishment == case.court_establishment
                 and c.case_type == case.case_type
                 and c.act_section_bucket == case.act_section_bucket
-                and c.filing_year_bucket == y_bucket
+                and str(c.filing_year_bucket) == str(y_bucket)
                 and c.current_stage == case.current_stage
             ),
             None,

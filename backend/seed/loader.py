@@ -65,7 +65,7 @@ def _load_cohort_stats(db: Session, stats: list[dict]) -> None:
             court_establishment=row["court_establishment"],
             case_type=row["case_type"],
             act_section_bucket=row["act_section_bucket"],
-            filing_year_bucket=row["filing_year_bucket"],
+            filing_year_bucket=str(row["filing_year_bucket"]),
             current_stage=row["current_stage"],
             cohort_size=row["cohort_size"],
             median_age_days=row["median_age_days"],
@@ -237,17 +237,13 @@ def load_seed_data(db: Session, seed_file: Path = SEED_FILE) -> dict:
         with open(seed_file, encoding="utf-8") as f:
             data = json.load(f)
 
-    # Clear existing data (leave users alone)
-    if db.bind and db.bind.dialect.name == "postgresql":
-        from sqlalchemy import text
-        db.execute(text("TRUNCATE TABLE case_events, cases, cohort_stats, aggregate_context CASCADE;"))
-        db.commit()
-    else:
-        db.query(CaseEvent).delete()
-        db.query(Case).delete()
-        db.query(CohortStat).delete()
-        db.query(AggregateContext).delete()
-        db.commit()
+    # Clear existing data with immediate commit and expire all cached ORM objects
+    db.query(CaseEvent).delete(synchronize_session=False)
+    db.query(Case).delete(synchronize_session=False)
+    db.query(CohortStat).delete(synchronize_session=False)
+    db.query(AggregateContext).delete(synchronize_session=False)
+    db.commit()
+    db.expire_all()
 
     # Load aggregate context
     _load_aggregate_context(db, data.get("aggregate_context", []))
@@ -266,9 +262,7 @@ def load_seed_data(db: Session, seed_file: Path = SEED_FILE) -> dict:
         db.add_all(case_objs)
         db.flush()
 
-    db.commit()
-
-    # Run triage engine across all loaded cases
+    # Run triage engine across all loaded cases before committing
     from triage import run_triage_all
     triage_res = run_triage_all(db)
 
