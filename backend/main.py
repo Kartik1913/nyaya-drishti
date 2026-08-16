@@ -94,9 +94,15 @@ app = FastAPI(
 )
 
 # Configure CORS for Vite React frontend
+_cors_origins_env = os.getenv("CORS_ORIGINS")
+if _cors_origins_env and _cors_origins_env.strip():
+    _allowed_origins = [origin.strip() for origin in _cors_origins_env.split(",") if origin.strip()]
+else:
+    _allowed_origins = ["http://localhost:5173", "http://127.0.0.1:5173"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=_allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

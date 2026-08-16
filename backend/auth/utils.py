@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 load_dotenv()
 
-# ── Security: JWT_SECRET must be explicitly set ─────────────────────────────
+# ── Security: JWT_SECRET / SECRET_KEY must be explicitly set ─────────────────────────────
 _APP_ENV = os.getenv("APP_ENV", "development").lower()
-_JWT_SECRET_RAW = os.getenv("JWT_SECRET")
+_JWT_SECRET_RAW = os.getenv("SECRET_KEY") or os.getenv("JWT_SECRET")
 
 _DEV_FALLBACK = "dev_jwt_secret_nyaya_drishti_sih_2024_prototype_key_32bytes"
 
