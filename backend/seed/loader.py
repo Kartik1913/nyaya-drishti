@@ -60,36 +60,25 @@ def _load_aggregate_context(db: Session, records: list[dict]) -> None:
 
 
 def _load_cohort_stats(db: Session, stats: list[dict]) -> None:
-    for row in stats:
-        existing = db.query(CohortStat).filter(
-            CohortStat.court_establishment == row["court_establishment"],
-            CohortStat.case_type == row["case_type"],
-            CohortStat.act_section_bucket == row["act_section_bucket"],
-            CohortStat.filing_year_bucket == row["filing_year_bucket"],
-            CohortStat.current_stage == row["current_stage"],
-        ).first()
-        if existing:
-            existing.cohort_size = row["cohort_size"]
-            existing.median_age_days = row["median_age_days"]
-            existing.p75_age_days = row.get("p75_age_days")
-            existing.p90_age_days = row.get("p90_age_days")
-            existing.median_days_in_stage = row["median_days_in_stage"]
-        else:
-            db.add(CohortStat(
-                court_establishment=row["court_establishment"],
-                case_type=row["case_type"],
-                act_section_bucket=row["act_section_bucket"],
-                filing_year_bucket=row["filing_year_bucket"],
-                current_stage=row["current_stage"],
-                cohort_size=row["cohort_size"],
-                median_age_days=row["median_age_days"],
-                p75_age_days=row.get("p75_age_days"),
-                p90_age_days=row.get("p90_age_days"),
-                median_days_in_stage=row["median_days_in_stage"],
-            ))
+    cohort_objs = [
+        CohortStat(
+            court_establishment=row["court_establishment"],
+            case_type=row["case_type"],
+            act_section_bucket=row["act_section_bucket"],
+            filing_year_bucket=row["filing_year_bucket"],
+            current_stage=row["current_stage"],
+            cohort_size=row["cohort_size"],
+            median_age_days=row["median_age_days"],
+            p75_age_days=row.get("p75_age_days"),
+            p90_age_days=row.get("p90_age_days"),
+            median_days_in_stage=row["median_days_in_stage"],
+        )
+        for row in stats
+    ]
+    db.add_all(cohort_objs)
 
 
-def _load_case(db: Session, c: dict[str, Any]) -> None:
+def _build_case_object(c: dict[str, Any]) -> Case:
     events = c.get("events", [])
     stage_entered_at = _derive_stage_entered_at(events)
 
@@ -101,7 +90,19 @@ def _load_case(db: Session, c: dict[str, Any]) -> None:
         )
     resolved_stage_entered = stage_entered_at or json_stage_entered
 
-    case = Case(
+    event_objs = [
+        CaseEvent(
+            event_date=date.fromisoformat(ev["event_date"]),
+            event_type=ev["event_type"],
+            is_substantive=ev.get("is_substantive", False),
+            new_stage=ev.get("new_stage"),
+            description=ev.get("description"),
+            data_label=ev.get("data_label", "SYNTHETIC"),
+        )
+        for ev in events
+    ]
+
+    return Case(
         synthetic_cnr=c["synthetic_cnr"],
         state=c["state"],
         district=c["district"],
@@ -124,20 +125,11 @@ def _load_case(db: Session, c: dict[str, Any]) -> None:
         is_demo_stalled=c.get("is_demo_stalled", False),
         is_demo_progressing=c.get("is_demo_progressing", False),
         data_label=c.get("data_label", "SYNTHETIC"),
+        events=event_objs,
     )
-    db.add(case)
-    db.flush()
 
-    for ev in events:
-        db.add(CaseEvent(
-            case_id=case.id,
-            event_date=date.fromisoformat(ev["event_date"]),
-            event_type=ev["event_type"],
-            is_substantive=ev.get("is_substantive", False),
-            new_stage=ev.get("new_stage"),
-            description=ev.get("description"),
-            data_label=ev.get("data_label", "SYNTHETIC"),
-        ))
+
+def verify_database_state(db: Session) -> dict: ...
 
 
 def verify_database_state(db: Session) -> dict:
@@ -246,11 +238,16 @@ def load_seed_data(db: Session, seed_file: Path = SEED_FILE) -> dict:
             data = json.load(f)
 
     # Clear existing data (leave users alone)
-    db.query(CaseEvent).delete()
-    db.query(Case).delete()
-    db.query(CohortStat).delete()
-    db.query(AggregateContext).delete()
-    db.commit()
+    if db.bind and db.bind.dialect.name == "postgresql":
+        from sqlalchemy import text
+        db.execute(text("TRUNCATE TABLE case_events, cases, cohort_stats, aggregate_context CASCADE;"))
+        db.commit()
+    else:
+        db.query(CaseEvent).delete()
+        db.query(Case).delete()
+        db.query(CohortStat).delete()
+        db.query(AggregateContext).delete()
+        db.commit()
 
     # Load aggregate context
     _load_aggregate_context(db, data.get("aggregate_context", []))
@@ -260,9 +257,14 @@ def load_seed_data(db: Session, seed_file: Path = SEED_FILE) -> dict:
     _load_cohort_stats(db, data.get("cohort_stats", []))
     db.flush()
 
-    # Load cases + events
-    for case_dict in data.get("cases", []):
-        _load_case(db, case_dict)
+    # Load cases + events in batches of 100
+    raw_cases = data.get("cases", [])
+    batch_size = 100
+    for i in range(0, len(raw_cases), batch_size):
+        chunk = raw_cases[i : i + batch_size]
+        case_objs = [_build_case_object(c) for c in chunk]
+        db.add_all(case_objs)
+        db.flush()
 
     db.commit()
 

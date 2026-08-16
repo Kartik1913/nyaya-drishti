@@ -16,9 +16,9 @@ Updates database records in place.
 from __future__ import annotations
 import json
 from typing import List, Dict, Any
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
-from models import Case
+from models import Case, CohortStat
 from triage.cohort import resolve_cohort
 from triage.stall_detector import detect_stall_metrics
 from triage.bottleneck import classify_bottleneck
@@ -27,13 +27,20 @@ from triage.evidence import build_evidence_bundle
 from triage.templates import generate_explanation
 
 
-def run_triage_for_case(db: Session, case: Case) -> Dict[str, Any]:
+def run_triage_for_case(
+    db: Session,
+    case: Case,
+    all_cohorts: Optional[list[CohortStat]] = None,
+    all_cases: Optional[list[Case]] = None,
+) -> Dict[str, Any]:
     """
     Runs Layers 1-6 for a single case and updates its fields.
     Returns the evidence bundle dict.
     """
     # Layer 1: Cohort & Confidence
-    cohort, confidence_level, age_percentile = resolve_cohort(db, case)
+    cohort, confidence_level, age_percentile = resolve_cohort(
+        db, case, all_cohorts=all_cohorts, all_cases=all_cases
+    )
 
     # Layer 2: Stall Metrics
     stall_metrics = detect_stall_metrics(db, case, cohort)
@@ -84,10 +91,11 @@ def run_triage_all(db: Session) -> Dict[str, Any]:
     """
     Runs triage for all cases in the database.
     """
-    cases = db.query(Case).all()
+    cases = db.query(Case).options(joinedload(Case.events)).all()
+    all_cohorts = db.query(CohortStat).all()
     results = []
     for case in cases:
-        ev = run_triage_for_case(db, case)
+        ev = run_triage_for_case(db, case, all_cohorts=all_cohorts, all_cases=cases)
         results.append(ev)
 
     db.commit()

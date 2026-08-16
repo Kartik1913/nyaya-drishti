@@ -29,10 +29,8 @@ def detect_stall_metrics(db: Session, case: Case, cohort: CohortStat | None) -> 
     if days_in_stage < 0:
         days_in_stage = 0
 
-    # Query all events for case, ordered by event_date ascending, id ascending
-    events = db.query(CaseEvent).filter(CaseEvent.case_id == case.id).order_by(
-        CaseEvent.event_date.asc(), CaseEvent.id.asc()
-    ).all()
+    # Use in-memory events list attached to the case model
+    events = sorted(case.events, key=lambda e: (e.event_date, e.id or 0))
 
     # 2. days_since_substantive_event
     substantive_events = [e for e in events if e.is_substantive]
