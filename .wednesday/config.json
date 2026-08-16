@@ -1,0 +1,6 @@
+{
+  "pr_scripts": {
+    "coverage": true,
+    "sonar": false
+  }
+}

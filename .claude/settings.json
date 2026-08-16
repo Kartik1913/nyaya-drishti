@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ ! -f .wednesday/graph.db ]; then exit 0; fi\nwednesday-skills analyze --incremental --silent 2>/dev/null\ntrue"
+          }
+        ]
+      }
+    ]
+  }
+}

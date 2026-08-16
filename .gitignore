@@ -1,0 +1,30 @@
+# ─── Python / Backend ──────────────────────────────────────────
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+*.db
+*.db-journal
+
+# ─── Node / Frontend ───────────────────────────────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# ─── OS / Editor ───────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# ─── Test / coverage ───────────────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+
+# ─── Logs ──────────────────────────────────────────────────────
+*.log
+audit.log
