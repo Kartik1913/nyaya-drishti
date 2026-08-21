@@ -43,7 +43,7 @@ Nyaya-Drishti evaluates cases across a **6-Layer Deterministic Triage Engine** t
 - Python 3.10+
 - Node.js 18+ and npm
 
-### 1. Backend Setup
+### 1. Local Backend Setup
 ```bash
 cd backend
 
@@ -56,13 +56,13 @@ source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
-# (or pip install fastapi uvicorn sqlalchemy pydantic python-jose passlib bcrypt python-multipart pytest httpx)
 
 # Environment variables (backend/.env)
 # APP_ENV=development
 # ADMIN_PASSWORD=admin123
 # REGISTRY_PASSWORD=registry123
 # SECRET_KEY=nyaya-drishti-dev-secret-key-32chars-min
+# DATABASE_URL=sqlite:///nyaya.db (optional fallback)
 
 # Generate seed data and run initial triage
 python -m seed.generator
@@ -72,7 +72,7 @@ python -m seed.loader
 uvicorn main:app --reload --port 8000
 ```
 
-### 2. Frontend Setup
+### 2. Local Frontend Setup
 ```bash
 cd frontend
 
@@ -82,6 +82,43 @@ npm install
 # Launch frontend development server (runs at http://localhost:5173)
 npm run dev
 ```
+
+---
+
+## 🌐 Production Cloud Deployment Configuration
+
+Nyaya-Drishti is pre-configured to deploy across Vercel, Render, and Supabase.
+
+### 1. Database (Supabase PostgreSQL)
+* Host a PostgreSQL instance on Supabase.
+* Set the `DATABASE_URL` environment variable on Render to your Supabase connection string.
+
+### 2. Backend (Render API Service)
+* **Runtime**: Python 3.12.8
+* **Build Command**: `pip install -r requirements.txt`
+* **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+* **Required Environment Variables**:
+  - `APP_ENV`: `production`
+  - `DATABASE_URL`: `postgresql://<user>:<password>@<host>:<port>/postgres`
+  - `SECRET_KEY`: `[Your Long Secure JWT Secret]`
+  - `ADMIN_PASSWORD`: `[Your Production Admin Password]`
+  - `REGISTRY_PASSWORD`: `[Your Production Registry Staff Password]`
+  - `CORS_ORIGINS`: `https://nyaya-drishti-phi.vercel.app` (comma-separated list of allowed origins)
+
+### 3. Frontend (Vercel SPA Web App)
+* **Build Command**: `npm run build`
+* **Output Directory**: `dist`
+* **Environment Variables**:
+  - `VITE_API_URL`: `https://nyaya-drishti-qjrd.onrender.com`
+* **Client-Side Routing**:
+  The React Single-Page Application relies on client-side routing. The frontend contains a `vercel.json` file directing Vercel to route all sub-paths back to `index.html` to prevent `404: NOT_FOUND` errors on page reloads:
+  ```json
+  {
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
+  }
+  ```
 
 ---
 
@@ -106,12 +143,12 @@ To reset the database to the deterministic baseline demo state (1,000 cases, Alp
 - **UI / API Method**:
   - Log in with `admin` account and click the **"Reseed Demo DB"** button in the header navbar, or call:
   ```bash
-  curl -X POST http://localhost:8000/admin/reseed -H "Authorization: Bearer <ADMIN_JWT_TOKEN>"
+  curl -X POST https://nyaya-drishti-qjrd.onrender.com/admin/reseed -H "Authorization: Bearer <ADMIN_JWT_TOKEN>"
   ```
 
 ---
 
-## 🔑 Default Credentials (from `backend/.env`)
+## 🔑 Default Credentials (from environment files)
 
 | Role | Username | Password | Permissions |
 | :--- | :--- | :--- | :--- |
@@ -125,7 +162,7 @@ To reset the database to the deterministic baseline demo state (1,000 cases, Alp
 ## ⏱️ 90-Second Demo Script
 
 1. **Login (`0:00 – 0:15`)**:
-   - Navigate to `http://localhost:5173/login`. Note the non-dismissible disclaimer.
+   - Navigate to the deployed frontend url. Note the non-dismissible disclaimer.
    - Click the **"Admin Staff"** quick-fill button and sign in.
 2. **Dashboard Overview (`0:15 – 0:35`)**:
    - Observe the 4 macro context cards tagged `[Source: NJDG]` / `[Source: DATA_GOV_IN]`.
