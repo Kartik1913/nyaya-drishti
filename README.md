@@ -6,6 +6,9 @@
 
 ## 🏛️ Project Overview
 
+* **Live Frontend App**: [https://nyaya-drishti-phi.vercel.app](https://nyaya-drishti-phi.vercel.app)
+* **Live Backend API**: [https://nyaya-drishti-qjrd.onrender.com](https://nyaya-drishti-qjrd.onrender.com)
+
 **Nyaya-Drishti** (*"Drishti"* meaning insight/sight) is an AI-based administrative triage system designed for district courts. In the current judicial system, pending cases sit in a homogeneous first-in-first-out queue where a case requiring substantive judicial deliberation looks identical to one stalled on a simple procedural bottleneck (such as an unserved summons).
 
 Nyaya-Drishti evaluates cases across a **6-Layer Deterministic Triage Engine** to calculate an administrative actionability score ($0\text{–}100$), pinpointing registry-actionable bottlenecks without relying on uninterpretable black-box ML or LLM hallucinations.
