@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
-import { Scale, Lock, User, AlertCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Lock, User, AlertCircle, ArrowRight, ShieldCheck } from 'lucide-react';
 import DisclaimerBanner from '../components/DisclaimerBanner';
+import logo from '../assets/logo.jpg';
 
 const Login = () => {
   const [username, setUsername] = useState('admin');
@@ -44,8 +45,8 @@ const Login = () => {
 
             {/* Header */}
             <div className="text-center mb-8">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 mx-auto flex items-center justify-center shadow-lg shadow-indigo-500/30 mb-4">
-                <Scale className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 rounded-2xl overflow-hidden mx-auto flex items-center justify-center shadow-lg shadow-indigo-500/30 mb-4">
+                <img src={logo} alt="Logo" className="w-full h-full object-cover" />
               </div>
               <h1 className="text-2xl font-black tracking-tight text-slate-100">
                 Nyaya-Drishti
