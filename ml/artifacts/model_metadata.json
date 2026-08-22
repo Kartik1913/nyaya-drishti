@@ -1,0 +1,61 @@
+{
+  "target_col": "structural_stall_label",
+  "selected_model": "XGBoost_Weighted",
+  "recommended_threshold": 0.4,
+  "scale_pos_weight": 1.564102564102564,
+  "random_seed": 42,
+  "num_features": 10,
+  "feature_list": [
+    "state",
+    "district",
+    "court_establishment",
+    "case_type",
+    "tier",
+    "filing_year",
+    "case_age_days",
+    "current_stage",
+    "adjournment_count",
+    "judge_change_count"
+  ],
+  "temporal_validation": {
+    "train_size": 5117,
+    "test_size": 4883,
+    "acc": 0.8097481056727421,
+    "prec": 0.8619084561675717,
+    "rec": 0.5966702470461869,
+    "f1": 0.7051729609647731,
+    "auc": 0.8279580530273052
+  },
+  "sample_case_explanations": [
+    {
+      "cnr": "SYN/OT/CS/2024/000005",
+      "probability": 0.9994,
+      "predicted_stall": 1,
+      "explanation": "Structural stall probability of 99.9% (Risk: HIGH). Key driving risk factors: judge_change_count (+6.95), adjournment_count (+0.67), current_stage_Summons / Appearance (+0.18)."
+    },
+    {
+      "cnr": "SYN/OT/CS/2021/000007",
+      "probability": 0.2997,
+      "predicted_stall": 0,
+      "explanation": "Structural stall probability of 30.0% (Risk: LOW). Key driving risk factors: current_stage_Evidence / Argument (+0.43), case_type_CS (+0.12), current_stage_Pleadings / Issues (+0.04)."
+    },
+    {
+      "cnr": "SYN/MH/BA/2022/000012",
+      "probability": 0.4104,
+      "predicted_stall": 1,
+      "explanation": "Structural stall probability of 41.0% (Risk: HIGH). Key driving risk factors: adjournment_count (+0.26), judge_change_count (+0.10), current_stage_Pleadings / Issues (+0.07)."
+    },
+    {
+      "cnr": "SYN/OT/CS/2022/000021",
+      "probability": 0.1341,
+      "predicted_stall": 0,
+      "explanation": "Structural stall probability of 13.4% (Risk: LOW). Key driving risk factors: current_stage_Summons / Appearance (+0.09), current_stage_Pleadings / Issues (+0.04), current_stage_Filing / Registration (+0.02)."
+    },
+    {
+      "cnr": "SYN/KL/BA/2022/000025",
+      "probability": 0.1387,
+      "predicted_stall": 0,
+      "explanation": "Structural stall probability of 13.9% (Risk: LOW). Key driving risk factors: court_establishment_KERALA_DC_05 (+0.07), current_stage_Filing / Registration (+0.02), district_Thane (+0.02)."
+    }
+  ]
+}
