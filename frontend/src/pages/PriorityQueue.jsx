@@ -1,30 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { getPriorityQueueApi } from '../api/endpoints';
-import ScoreBadge from '../components/ScoreBadge';
-import BottleneckTag from '../components/BottleneckTag';
-import ConfidenceBadge from '../components/ConfidenceBadge';
-import DataLabelBadge from '../components/DataLabelBadge';
-import { 
-  ListOrdered, 
-  Search, 
-  Filter, 
-  ChevronLeft, 
-  ChevronRight, 
-  ArrowUpRight, 
-  AlertCircle, 
-  Star,
-  RefreshCw
-} from 'lucide-react';
+import React, { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
+import Icon from "../components/Icon.jsx";
+import Switch from "../components/Switch.jsx";
+import Badge from "../components/Badge.jsx";
+import ScoreBadge from "../components/ScoreBadge.jsx";
+import BottleneckTag from "../components/BottleneckTag.jsx";
+import ConfidenceBadge from "../components/ConfidenceBadge.jsx";
+import AiNotice from "../components/AiNotice.jsx";
+import UserActions from "../components/UserActions.jsx";
+import AppFooter from "../components/AppFooter.jsx";
+import { getPriorityQueueApi } from "../api/endpoints.js";
 
-const PriorityQueue = () => {
+
+export default function PriorityQueue() {
   const [cases, setCases] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
-  const [bottleneckFilter, setBottleneckFilter] = useState('');
-  const [confidenceFilter, setConfidenceFilter] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [bottleneckFilter, setBottleneckFilter] = useState("");
+  const [confidenceFilter, setConfidenceFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [lokAdalatOnly, setLokAdalatOnly] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -40,8 +36,8 @@ const PriorityQueue = () => {
       setCases(data.cases || []);
       setTotal(data.total || 0);
     } catch (err) {
-      console.error('Failed to fetch priority queue:', err);
-      setError('Unable to load priority queue. Please check connection to the backend.');
+      console.error("Failed to fetch priority queue:", err);
+      setError("Unable to load priority queue. Please check connection to the backend.");
     } finally {
       setLoading(false);
     }
@@ -53,294 +49,323 @@ const PriorityQueue = () => {
 
   const totalPages = Math.ceil(total / limit) || 1;
 
-  const filteredCases = cases.filter((c) => {
-    if (!searchQuery) return true;
-    const query = searchQuery.toLowerCase();
-    return (
-      c.synthetic_cnr?.toLowerCase().includes(query) ||
-      c.current_stage?.toLowerCase().includes(query) ||
-      c.case_type?.toLowerCase().includes(query)
-    );
-  });
+  // Filter cases dynamically based on search query & Lok Adalat switch
+  const filteredCases = useMemo(() => {
+    return cases.filter((c) => {
+      // Search
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        const matchesSearch =
+          c.synthetic_cnr?.toLowerCase().includes(query) ||
+          c.current_stage?.toLowerCase().includes(query) ||
+          c.case_type?.toLowerCase().includes(query);
+        if (!matchesSearch) return false;
+      }
+      // Lok Adalat (Compoundable Acts)
+      if (lokAdalatOnly) {
+        const type = c.case_type || "";
+        const isEligible =
+          type.includes("138") ||
+          type.includes("Negotiable") ||
+          type.includes("Motor") ||
+          type.includes("NI Act");
+        if (!isEligible) return false;
+      }
+      return true;
+    });
+  }, [cases, searchQuery, lokAdalatOnly]);
 
   return (
-    <div className="space-y-6 pb-12">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <ListOrdered className="w-6 h-6 text-indigo-400" />
-            <h1 className="text-2xl font-black tracking-tight text-slate-100">
-              Administrative Priority Queue
-            </h1>
-            <DataLabelBadge type="SYNTHETIC" />
+    <>
+      {/* Top App Bar */}
+      <header className="sticky top-0 flex justify-between items-center px-gutter h-16 bg-surface border-b border-outline-variant z-20">
+        <div className="flex items-center gap-4">
+          <AiNotice text="Administrative Triage View Only" />
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="relative hidden sm:block">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search cases..."
+              className="border border-outline-variant rounded-DEFAULT pl-10 pr-4 py-2 text-body-sm focus:border-secondary focus:ring-1 focus:ring-secondary w-64 bg-surface-container-lowest outline-none"
+            />
+            <Icon
+              name="search"
+              className="absolute left-3 top-2 text-on-surface-variant"
+            />
           </div>
-          <p className="text-xs text-slate-400">
-            Cases ranked strictly by 6-layer administrative stall score (0–100). Higher scores indicate urgent registry follow-up.
-          </p>
+          <UserActions />
         </div>
+      </header>
 
-        <div className="flex items-center gap-2 text-xs font-mono text-slate-400 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
-          <span>Total Triaged Cases:</span>
-          <span className="font-bold text-slate-200">{total}</span>
-        </div>
-      </div>
-
-      {/* Filter and Search Bar */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="relative w-full md:w-80">
-          <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
-          <input
-            type="text"
-            placeholder="Search by CNR or stage..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-800 border border-slate-700/80 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
-          />
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <Filter className="w-3.5 h-3.5" />
-            <span>Bottleneck:</span>
-          </div>
-          <select
-            value={bottleneckFilter}
-            onChange={(e) => {
-              setBottleneckFilter(e.target.value);
-              setPage(1);
-            }}
-            className="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
-          >
-            <option value="">All Bottlenecks</option>
-            <option value="SUMMONS_DELAY">Summons Delay</option>
-            <option value="JUDGE_CHANGE">Bench Change</option>
-            <option value="WITNESS_DELAY">Witness Delay</option>
-            <option value="REPEATED_ADJOURNMENT">Repeated Adjournment</option>
-            <option value="PROCEDURAL_INACTIVITY">Procedural Inactivity</option>
-            <option value="UNKNOWN">Normal Progression</option>
-          </select>
-
-          <div className="flex items-center gap-1.5 text-xs text-slate-400 ml-2">
-            <span>Confidence:</span>
-          </div>
-          <select
-            value={confidenceFilter}
-            onChange={(e) => {
-              setConfidenceFilter(e.target.value);
-              setPage(1);
-            }}
-            className="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
-          >
-            <option value="">All Confidence</option>
-            <option value="HIGH">High Confidence</option>
-            <option value="LOW">Low Confidence</option>
-          </select>
-
-          <button
-            onClick={fetchQueue}
-            title="Refresh Queue"
-            className="p-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-slate-300 transition cursor-pointer"
-          >
-            <RefreshCw className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-
-      {error && (
-        <div className="p-4 bg-rose-950/80 border border-rose-500/40 rounded-xl text-rose-300 text-xs flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          <span>{error}</span>
-        </div>
-      )}
-
-      {/* Table */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-950/60 border-b border-slate-800 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                <th className="py-3.5 px-4 w-12 text-center">Rank</th>
-                <th className="py-3.5 px-4">Case CNR & Type</th>
-                <th className="py-3.5 px-4">Current Stage</th>
-                <th className="py-3.5 px-4 text-center">Days in Stage</th>
-                <th className="py-3.5 px-4 text-center">Inactivity</th>
-                <th className="py-3.5 px-4 text-center">Adjournments</th>
-                <th className="py-3.5 px-4">Bottleneck</th>
-                <th className="py-3.5 px-4">Confidence</th>
-                <th className="py-3.5 px-4 text-center">Score</th>
-                <th className="py-3.5 px-4 text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800/60 text-xs">
-              {loading ? (
-                <tr>
-                  <td colSpan={10} className="py-12 text-center text-slate-400">
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="w-6 h-6 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                      <span>Loading priority queue rows...</span>
-                    </div>
-                  </td>
-                </tr>
-              ) : filteredCases.length === 0 ? (
-                <tr>
-                  <td colSpan={10} className="py-12 text-center text-slate-400">
-                    No cases match the current filter criteria.
-                  </td>
-                </tr>
-              ) : (
-                filteredCases.map((c, idx) => {
-                  const rank = (page - 1) * limit + idx + 1;
-                  const isAlpha = c.is_demo_stalled;
-                  const isBeta = c.is_demo_progressing;
-
-                  return (
-                    <tr
-                      key={c.id}
-                      className={`hover:bg-slate-800/40 transition-colors ${
-                        isAlpha ? 'bg-rose-950/20 border-l-4 border-rose-500' : ''
-                      } ${isBeta ? 'bg-emerald-950/10 border-l-4 border-emerald-500' : ''}`}
-                    >
-                      <td className="py-3 px-4 font-mono font-bold text-center text-slate-400">
-                        {isAlpha ? (
-                          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 font-bold">
-                            1
-                          </span>
-                        ) : (
-                          `#${rank}`
-                        )}
-                      </td>
-
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-2">
-                          <Link
-                            to={`/cases/${c.id}`}
-                            className="font-mono font-bold text-indigo-300 hover:text-indigo-200 transition flex items-center gap-1"
-                          >
-                            {c.synthetic_cnr}
-                          </Link>
-                          {isAlpha && (
-                            <span className="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[10px] font-bold tracking-wide">
-                              ALPHA (DEMO)
-                            </span>
-                          )}
-                          {isBeta && (
-                            <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold tracking-wide">
-                              BETA (DEMO)
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-[10px] text-slate-400 mt-0.5">
-                          {c.case_type} &bull; {c.court_establishment}
-                        </div>
-                      </td>
-
-                      <td className="py-3 px-4 text-slate-200 font-medium">
-                        {c.current_stage}
-                      </td>
-
-                      <td className="py-3 px-4 text-center font-mono">
-                        <div className="text-slate-200 font-semibold">{c.days_in_current_stage ?? '-'}d</div>
-                        {c.stage_deviation_ratio && (
-                          <div className="text-[10px] text-slate-400">
-                            {c.stage_deviation_ratio.toFixed(1)}x cohort
-                          </div>
-                        )}
-                      </td>
-
-                      <td className="py-3 px-4 text-center font-mono">
-                        <span className={c.days_since_substantive_event > 180 ? 'text-rose-400 font-bold' : 'text-slate-300'}>
-                          {c.days_since_substantive_event ?? '-'}d
-                        </span>
-                      </td>
-
-                      <td className="py-3 px-4 text-center font-mono">
-                        <span className={c.adjournment_streak >= 4 ? 'text-rose-400 font-bold' : 'text-slate-300'}>
-                          {c.adjournment_streak ?? 0} streak
-                        </span>
-                        <div className="text-[10px] text-slate-400">
-                          {c.adjournment_count ?? 0} total
-                        </div>
-                      </td>
-
-                      <td className="py-3 px-4">
-                        <BottleneckTag type={c.bottleneck_type} />
-                      </td>
-
-                      <td className="py-3 px-4">
-                        <ConfidenceBadge confidence={c.triage_confidence} />
-                      </td>
-
-                      <td className="py-3 px-4 text-center">
-                        <ScoreBadge score={c.triage_score} />
-                      </td>
-
-                      <td className="py-3 px-4 text-center">
-                        <Link
-                          to={`/cases/${c.id}`}
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600/80 text-slate-300 hover:text-white border border-slate-700 hover:border-indigo-500 text-xs font-medium transition cursor-pointer"
-                        >
-                          <span>Review</span>
-                          <ArrowUpRight className="w-3 h-3" />
-                        </Link>
-                      </td>
-                    </tr>
-                  );
-                })
-              )}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination Bar */}
-        <div className="bg-slate-950/60 border-t border-slate-800 px-6 py-3.5 flex items-center justify-between text-xs text-slate-400">
+      {/* Page Content */}
+      <main className="flex-1 p-margin-mobile md:p-margin-desktop">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4 mb-stack-lg">
           <div>
-            Showing <span className="font-semibold text-slate-200">{(page - 1) * limit + 1}</span> to{' '}
-            <span className="font-semibold text-slate-200">{Math.min(page * limit, total)}</span> of{' '}
-            <span className="font-semibold text-slate-200">{total}</span> cases
+            <h2 className="text-headline-lg font-headline-lg text-on-surface">
+              Triage Priority Queue
+            </h2>
+            <p className="text-body-sm font-body-sm text-on-surface-variant mt-1">
+              Pune District Court - ranked by 6-layer administrative stall score.
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-label-md font-label-md text-on-surface-variant">
+              Filter: Lok Adalat Eligible (Compoundable Acts)
+            </span>
+            <Switch
+              checked={lokAdalatOnly}
+              onChange={setLokAdalatOnly}
+              label="Filter to Lok Adalat eligible cases"
+            />
+          </div>
+        </div>
+
+        {/* Filters bar */}
+        <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 mb-gutter flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="relative w-full md:w-80 sm:hidden">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search cases..."
+              className="border border-outline-variant rounded-DEFAULT pl-10 pr-4 py-2 text-body-sm focus:border-secondary w-full bg-surface-container-lowest outline-none"
+            />
+            <Icon
+              name="search"
+              className="absolute left-3 top-2 text-on-surface-variant"
+            />
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5">
-              <span>Per page:</span>
+          <div className="flex flex-wrap items-center gap-4 w-full justify-end">
+            <div className="flex items-center gap-2">
+              <span className="text-label-md font-label-md text-on-surface-variant">Bottleneck:</span>
               <select
-                value={limit}
+                value={bottleneckFilter}
                 onChange={(e) => {
-                  setLimit(Number(e.target.value));
+                  setBottleneckFilter(e.target.value);
                   setPage(1);
                 }}
-                className="bg-slate-800 border border-slate-700 rounded px-2 py-1 text-xs text-slate-200"
+                className="bg-surface-container-lowest border border-outline-variant rounded px-2 py-1 text-body-sm outline-none focus:border-secondary"
               >
-                <option value={10}>10</option>
-                <option value={20}>20</option>
-                <option value={50}>50</option>
+                <option value="">All Bottlenecks</option>
+                <option value="SUMMONS_DELAY">Summons Delay</option>
+                <option value="JUDGE_CHANGE">Bench Change</option>
+                <option value="WITNESS_DELAY">Witness Delay</option>
+                <option value="REPEATED_ADJOURNMENT">Repeated Adjournment</option>
+                <option value="PROCEDURAL_INACTIVITY">Procedural Inactivity</option>
+                <option value="UNKNOWN">Normal Progression</option>
               </select>
             </div>
 
-            <div className="flex items-center gap-1">
-              <button
-                disabled={page <= 1}
-                onClick={() => setPage((p) => p - 1)}
-                className="p-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 disabled:opacity-40 disabled:pointer-events-none transition cursor-pointer"
+            <div className="flex items-center gap-2">
+              <span className="text-label-md font-label-md text-on-surface-variant">Confidence:</span>
+              <select
+                value={confidenceFilter}
+                onChange={(e) => {
+                  setConfidenceFilter(e.target.value);
+                  setPage(1);
+                }}
+                className="bg-surface-container-lowest border border-outline-variant rounded px-2 py-1 text-body-sm outline-none focus:border-secondary"
               >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <span className="px-3 font-mono text-slate-200">
-                {page} / {totalPages}
-              </span>
-              <button
-                disabled={page >= totalPages}
-                onClick={() => setPage((p) => p + 1)}
-                className="p-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 disabled:opacity-40 disabled:pointer-events-none transition cursor-pointer"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+                <option value="">All Confidence</option>
+                <option value="HIGH">High Confidence</option>
+                <option value="LOW">Low Confidence</option>
+              </select>
+            </div>
+
+            <button
+              onClick={fetchQueue}
+              className="p-1.5 hover:bg-surface border border-outline-variant rounded transition-colors cursor-pointer"
+              title="Refresh Queue"
+            >
+              <Icon name="refresh" />
+            </button>
+          </div>
+        </div>
+
+        {error && (
+          <div className="p-4 bg-error/5 border border-error/20 rounded text-error text-body-sm flex items-center gap-3 mb-gutter">
+            <Icon name="error" />
+            <span>{error}</span>
+          </div>
+        )}
+
+        {/* Priority Queue Table */}
+        <div className="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-outline-variant">
+              <thead className="bg-surface-container-low">
+                <tr>
+                  <th scope="col" className="px-6 py-4 text-center text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Rank</th>
+                  <th scope="col" className="px-6 py-4 text-left text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">CNR Number</th>
+                  <th scope="col" className="px-6 py-4 text-left text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Case Type</th>
+                  <th scope="col" className="px-6 py-4 text-left text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Current Stage</th>
+                  <th scope="col" className="px-6 py-4 text-center text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Days in Stage</th>
+                  <th scope="col" className="px-6 py-4 text-center text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Inactivity</th>
+                  <th scope="col" className="px-6 py-4 text-left text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Stall Signature</th>
+                  <th scope="col" className="px-6 py-4 text-left text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Confidence</th>
+                  <th scope="col" className="px-6 py-4 text-center text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Triage Score</th>
+                  <th scope="col" className="px-6 py-4 text-center text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Action</th>
+                </tr>
+              </thead>
+              <tbody className="bg-surface-container-lowest divide-y divide-outline-variant text-body-sm font-body-sm">
+                {loading ? (
+                  <tr>
+                    <td colSpan={10} className="px-6 py-12 text-center text-on-surface-variant">
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                        <span>Loading priority queue rows...</span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : filteredCases.length === 0 ? (
+                  <tr>
+                    <td colSpan={10} className="px-6 py-8 text-center text-on-surface-variant">
+                      No cases match the current search and filters.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredCases.map((c, i) => {
+                    const rank = (page - 1) * limit + i + 1;
+                    const isAlpha = c.is_demo_stalled;
+                    const isBeta = c.is_demo_progressing;
+
+                    return (
+                      <tr
+                        key={c.id}
+                        className={`hover:bg-surface transition-colors ${
+                          isAlpha ? "bg-rose-50 border-l-4 border-error" : ""
+                        } ${isBeta ? "bg-emerald-50 border-l-4 border-emerald-500" : ""}`}
+                      >
+                        <td className="px-6 py-4 whitespace-nowrap text-center font-mono font-bold text-on-surface-variant">
+                          {isAlpha ? (
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-error/10 text-error border border-error/20 font-bold">
+                              1
+                            </span>
+                          ) : (
+                            `#${rank}`
+                          )}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-on-surface font-medium">
+                          <div className="flex items-center gap-2">
+                            <Link
+                              to={`/cases/${c.id}`}
+                              className="font-mono font-bold text-secondary hover:underline"
+                            >
+                              {c.synthetic_cnr}
+                            </Link>
+                            {isAlpha && (
+                              <Badge className="bg-error/10 text-error border border-error/20">
+                                ALPHA (DEMO)
+                              </Badge>
+                            )}
+                            {isBeta && (
+                              <Badge className="bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                BETA (DEMO)
+                              </Badge>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-on-surface-variant">
+                          {c.case_type}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-on-surface-variant">
+                          {c.current_stage}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-center font-mono text-on-surface-variant">
+                          <div className="font-semibold">{c.days_in_current_stage ?? "-"}d</div>
+                          {c.stage_deviation_ratio && (
+                            <div className="text-[10px]">
+                              {c.stage_deviation_ratio.toFixed(1)}x cohort
+                            </div>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-center font-mono text-on-surface-variant">
+                          {c.days_since_substantive_event ?? "-"}d
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <BottleneckTag type={c.bottleneck_type} />
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <ConfidenceBadge confidence={c.triage_confidence} />
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-center">
+                          <ScoreBadge score={c.triage_score} />
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-center">
+                          <Link
+                            to={`/cases/${c.id}`}
+                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-surface hover:bg-primary hover:text-on-primary border border-outline-variant text-label-md font-label-md transition-all"
+                          >
+                            <span>Review</span>
+                            <Icon name="arrow_outward" size="14px" />
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Pagination */}
+        <div className="flex items-center justify-between border-t border-outline-variant bg-surface-container-lowest px-4 py-3 sm:px-6 mt-4 rounded-lg border">
+          <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between text-body-sm font-body-sm text-on-surface-variant">
+            <p>
+              Showing <span className="font-medium text-on-surface">{(page - 1) * limit + 1}</span> to{" "}
+              <span className="font-medium text-on-surface">{Math.min(page * limit, total)}</span> of{" "}
+              <span className="font-medium text-on-surface">{total}</span> results
+            </p>
+            
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span>Per page:</span>
+                <select
+                  value={limit}
+                  onChange={(e) => {
+                    setLimit(Number(e.target.value));
+                    setPage(1);
+                  }}
+                  className="bg-surface-container-lowest border border-outline-variant rounded px-2 py-1 outline-none"
+                >
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={50}>50</option>
+                </select>
+              </div>
+
+              <nav aria-label="Pagination" className="isolate inline-flex -space-x-px rounded-md shadow-sm">
+                <button
+                  disabled={page <= 1}
+                  onClick={() => setPage((p) => p - 1)}
+                  className="relative inline-flex items-center rounded-l-md px-2 py-2 text-on-surface-variant ring-1 ring-inset ring-outline-variant hover:bg-surface disabled:opacity-40"
+                >
+                  <span className="sr-only">Previous</span>
+                  <Icon name="chevron_left" size="20px" />
+                </button>
+                <span className="relative inline-flex items-center px-4 py-2 text-on-surface font-semibold">
+                  {page} / {totalPages}
+                </span>
+                <button
+                  disabled={page >= totalPages}
+                  onClick={() => setPage((p) => p + 1)}
+                  className="relative inline-flex items-center rounded-r-md px-2 py-2 text-on-surface-variant ring-1 ring-inset ring-outline-variant hover:bg-surface disabled:opacity-40"
+                >
+                  <span className="sr-only">Next</span>
+                  <Icon name="chevron_right" size="20px" />
+                </button>
+              </nav>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-};
+      </main>
 
-export default PriorityQueue;
+      <AppFooter />
+    </>
+  );
+}
