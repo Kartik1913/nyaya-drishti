@@ -1,0 +1,501 @@
+case_cnr,event_date,event_type,stage,purpose,adjournment_flag,substantive_flag,judge_ref,synthetic_event_note,data_label
+SYN/PUN/CS/2021/000001,2021-03-16,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2021-04-09,SUMMONS_ISSUED,Summons / Appearance,Summons issued,0,0,SYN-BENCH-01,Synthetic summons issued,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-02-22,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-03-29,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-05-03,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-06-07,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-07-12,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2025-11-02,HEARING,Summons / Appearance,Service report awaited,0,0,SYN-BENCH-01,Synthetic non-substantive event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-02-26,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-02,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-04-21,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-10,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-01-25,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-02,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000001,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2021-05-18,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2022-01-09,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2022-09-06,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2023-05-04,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2023-12-30,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2024-08-26,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2025-04-23,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2026-07-26,HEARING,Summons / Appearance,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/PUN/CS/2021/000002,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2024-12-31,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2025-02-22,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2025-04-17,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2025-06-10,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2025-08-03,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2025-09-26,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2025-11-19,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2026-01-12,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2026-03-07,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2026-04-30,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2026-04-06,HEARING,Pleadings / Issues,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2026-01-15,JUDGE_CHANGE,Pleadings / Issues,Bench/Judge change,0,0,SYN-BENCH-01,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2024/000003,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2022-09-16,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2023-02-13,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2023-07-23,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2023-12-30,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2024-06-07,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2024-11-14,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2025-04-23,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2025-09-30,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2026-08-01,HEARING,Summons / Appearance,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2025-11-23,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-08,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000004,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2024-04-13,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2024-05-02,SUMMONS_ISSUED,Summons / Appearance,Summons issued,0,0,SYN-BENCH-01,Synthetic summons issued,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2026-03-29,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2026-05-03,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2026-06-07,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2026-07-12,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2026-03-03,HEARING,Summons / Appearance,Service report awaited,0,0,SYN-BENCH-01,Synthetic non-substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2026-03-08,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-11,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2026-05-18,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-03,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2025-12-13,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-02,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2024/000005,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2020-10-10,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2021-03-30,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2021-09-25,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2022-03-22,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2022-09-17,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2023-03-14,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2023-09-09,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2024-03-06,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2024-08-31,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2025-02-26,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2025-08-23,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2026-08-06,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/MH/CS/2020/000006,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2021-09-01,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2022-04-02,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2022-11-16,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2023-07-02,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2024-02-15,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2024-09-30,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2025-05-16,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2026-08-12,HEARING,Evidence / Argument,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000007,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000008,2023-02-12,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000008,2023-09-01,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000008,2024-04-04,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000008,2024-11-06,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000008,2025-06-10,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000008,2026-08-16,HEARING,Summons / Appearance,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000008,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000009,2020-07-31,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000009,2025-10-22,WITNESS_EXAM,Evidence / Argument,Witness examination,0,1,SYN-BENCH-01,Synthetic witness event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000009,2025-11-21,WITNESS_EXAM,Evidence / Argument,Witness examination,0,1,SYN-BENCH-01,Synthetic witness event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000009,2025-12-21,WITNESS_EXAM,Evidence / Argument,Witness examination,0,1,SYN-BENCH-01,Synthetic witness event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000009,2026-07-12,ADJOURNMENT,Evidence / Argument,Adjourned for evidence,1,0,SYN-BENCH-01,Synthetic evidence adjournment,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000009,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2022-07-18,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2022-11-17,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2023-04-03,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2023-08-18,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2024-01-01,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2024-05-17,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2024-10-01,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2025-02-15,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2025-07-01,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2025-11-15,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2026-08-08,HEARING,Final Arguments / Judgment,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2022/000010,2026-08-15,STAGE_SNAPSHOT,Final Arguments / Judgment,Final Arguments / Judgment,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2021-12-22,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2022-06-15,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2022-12-22,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2023-07-01,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2024-01-07,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2024-07-15,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2025-01-22,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2025-07-31,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2026-03-06,HEARING,Summons / Appearance,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2025-10-28,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-05,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2026-06-14,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-11,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2021/000011,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2022-04-12,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2022-10-20,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2023-05-07,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2023-11-23,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2024-06-09,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2024-12-25,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2025-07-13,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2026-04-16,HEARING,Final Arguments / Judgment,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2026-04-05,JUDGE_CHANGE,Final Arguments / Judgment,Bench/Judge change,0,0,SYN-BENCH-03,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2022/000012,2026-08-15,STAGE_SNAPSHOT,Final Arguments / Judgment,Final Arguments / Judgment,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2024-02-09,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2024-05-21,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2024-08-31,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2024-12-11,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2025-03-23,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2025-07-03,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2025-10-13,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2026-01-23,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2026-07-12,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2024/000013,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2021/000014,2021-06-28,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2021/000014,2022-06-26,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2021/000014,2023-07-09,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2021/000014,2024-07-21,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2021/000014,2026-07-25,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2021/000014,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2020/000015,2020-03-18,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2020/000015,2021-04-11,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2020/000015,2022-05-07,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2020/000015,2023-06-01,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2020/000015,2024-06-26,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2020/000015,2026-07-10,HEARING,Evidence / Argument,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2020/000015,2026-03-10,JUDGE_CHANGE,Evidence / Argument,Bench/Judge change,0,0,SYN-BENCH-04,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2020/000015,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000016,2024-01-30,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000016,2024-07-23,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000016,2025-01-27,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000016,2025-08-04,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000016,2026-06-30,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000016,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2022/000017,2022-08-10,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2022/000017,2023-05-29,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2022/000017,2024-03-18,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2022/000017,2025-01-05,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2022/000017,2026-08-02,HEARING,Summons / Appearance,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2022/000017,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2021-07-26,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2021-12-17,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2022-05-21,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2022-10-23,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2023-03-27,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2023-08-28,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2024-01-30,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2024-07-03,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2024-12-05,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2025-05-08,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2025-10-10,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2026-05-01,HEARING,Evidence / Argument,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2026-02-11,JUDGE_CHANGE,Evidence / Argument,Bench/Judge change,0,0,SYN-BENCH-11,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2026-03-06,JUDGE_CHANGE,Evidence / Argument,Bench/Judge change,0,0,SYN-BENCH-05,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/KL/MACA/2021/000018,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2021-03-10,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2021-08-10,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2022-01-24,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2022-07-09,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2022-12-23,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2023-06-07,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2023-11-21,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2024-05-05,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2024-10-19,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2025-04-03,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2025-09-17,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2026-08-04,HEARING,Evidence / Argument,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2021/000019,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2022-02-03,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2022-09-24,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2023-05-19,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2024-01-11,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2024-09-04,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2025-04-29,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2026-01-31,HEARING,Summons / Appearance,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2026-01-13,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-12,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2026-04-14,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-04,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000020,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000021,2022-02-20,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000021,2022-11-15,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000021,2023-08-16,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000021,2024-05-16,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000021,2025-02-14,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000021,2026-07-19,HEARING,Summons / Appearance,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2022/000021,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2024-04-13,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2024-05-13,SUMMONS_ISSUED,Summons / Appearance,Summons issued,0,0,SYN-BENCH-01,Synthetic summons issued,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2026-02-22,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2026-03-29,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2026-05-03,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2026-06-07,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2026-07-12,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2026-04-22,HEARING,Summons / Appearance,Service report awaited,0,0,SYN-BENCH-01,Synthetic non-substantive event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2024/000022,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2020-12-06,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2021-06-19,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2022-01-14,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2022-08-11,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2023-03-09,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2023-10-04,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2024-04-30,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2024-11-26,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2025-06-23,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2026-07-22,HEARING,Evidence / Argument,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000023,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2025-01-01,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2025-02-06,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2025-03-29,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2025-05-18,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2025-07-08,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2025-08-27,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2025-10-17,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2025-12-06,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2026-01-26,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2026-03-17,ORDER,Summons / Appearance,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2026-05-07,ADJOURNMENT,Summons / Appearance,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2026-05-27,HEARING,Summons / Appearance,Hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2026-04-29,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-12,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2026-03-24,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-04,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000024,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/KL/BA/2022/000025,2022-02-06,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/KL/BA/2022/000025,2022-12-31,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/BA/2022/000025,2023-11-27,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/BA/2022/000025,2024-10-23,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/BA/2022/000025,2026-07-22,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/KL/BA/2022/000025,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2020-01-16,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2020-10-04,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2021-06-29,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2022-03-24,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2022-12-16,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2023-09-10,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2024-06-04,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2025-02-26,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2025-09-10,HEARING,Evidence / Argument,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2026-02-20,JUDGE_CHANGE,Evidence / Argument,Bench/Judge change,0,0,SYN-BENCH-10,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2026-06-24,JUDGE_CHANGE,Evidence / Argument,Bench/Judge change,0,0,SYN-BENCH-09,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/MH/BA/2020/000026,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2023-07-08,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2023-08-04,SUMMONS_ISSUED,Summons / Appearance,Summons issued,0,0,SYN-BENCH-01,Synthetic summons issued,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2026-02-22,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2026-03-29,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2026-05-03,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2026-06-07,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2026-07-12,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2026-01-19,HEARING,Summons / Appearance,Service report awaited,0,0,SYN-BENCH-01,Synthetic non-substantive event,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2025-11-10,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-09,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2026-03-15,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-12,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/AP/CRL_A/2023/000027,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/MACA/2023/000028,2023-11-14,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/MACA/2023/000028,2024-04-24,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/MACA/2023/000028,2024-10-10,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/MACA/2023/000028,2025-03-28,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/MACA/2023/000028,2025-09-12,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/MACA/2023/000028,2026-07-08,HEARING,Final Arguments / Judgment,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/MACA/2023/000028,2026-08-15,STAGE_SNAPSHOT,Final Arguments / Judgment,Final Arguments / Judgment,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2024-04-26,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2024-07-14,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2024-10-07,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2024-12-31,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2025-03-25,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2025-06-18,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2025-09-11,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2025-12-04,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2026-02-27,HEARING,Evidence / Argument,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2026-01-24,HEARING,Evidence / Argument,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2024/000029,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2024-02-16,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2024-04-25,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2024-07-11,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2024-09-25,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2024-12-11,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2025-02-25,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2025-05-13,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2025-07-29,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2025-10-13,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2025-12-29,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2026-03-15,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2026-07-27,HEARING,Summons / Appearance,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2024/000030,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/MH/WP_C/2020/000031,2020-01-27,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/MH/WP_C/2020/000031,2020-12-25,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/WP_C/2020/000031,2021-12-03,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/WP_C/2020/000031,2022-11-11,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/WP_C/2020/000031,2023-10-21,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/WP_C/2020/000031,2024-09-28,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/MH/WP_C/2020/000031,2026-07-21,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/MH/WP_C/2020/000031,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2023-04-11,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2023-08-31,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2024-02-01,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2024-07-05,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2024-12-06,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2025-05-09,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2025-10-11,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2026-08-07,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/UP/WP_C/2023/000032,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2022-11-10,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2023-03-22,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2023-08-07,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2023-12-23,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2024-05-09,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2024-09-24,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2025-02-09,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2025-06-27,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2025-11-12,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2026-07-16,HEARING,Summons / Appearance,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2022/000033,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2023-12-02,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2024-02-08,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2024-05-02,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2024-07-24,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2024-10-16,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2025-01-07,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2025-04-01,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2025-06-24,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2025-09-15,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2025-12-08,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2026-03-01,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2026-07-22,HEARING,Evidence / Argument,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/DL/CS/2023/000034,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2023-05-20,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2023-09-02,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2023-12-31,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2024-04-29,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2024-08-27,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2024-12-25,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2025-04-23,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2025-08-21,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2025-12-19,HEARING,Evidence / Argument,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2026-07-16,HEARING,Evidence / Argument,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000035,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2021-12-07,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2022-05-23,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2022-11-11,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2023-05-02,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2023-10-20,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2024-04-09,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2024-09-28,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2025-03-18,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2025-09-06,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2026-03-05,HEARING,Summons / Appearance,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2026-05-03,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-01,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2026-05-08,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-11,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2026-06-09,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-11,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/KL/WP_C/2021/000036,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2020-05-06,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2020-11-10,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2021-05-20,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2021-11-28,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2022-06-07,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2022-12-15,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2023-06-25,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2024-01-02,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2024-07-11,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2025-01-19,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2025-07-29,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2026-07-14,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000037,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2022-11-02,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2023-03-18,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2023-08-04,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2023-12-20,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2024-05-07,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2024-09-22,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2025-02-08,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2025-06-26,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2025-11-12,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2026-06-26,HEARING,Evidence / Argument,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/UP/CS/2022/000038,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2024-06-15,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2024-09-07,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2024-12-04,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2025-03-03,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2025-05-30,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2025-08-27,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2025-11-23,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2026-02-20,ORDER,Final Arguments / Judgment,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2026-04-07,HEARING,Final Arguments / Judgment,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2026-07-24,JUDGE_CHANGE,Final Arguments / Judgment,Bench/Judge change,0,0,SYN-BENCH-12,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2024/000039,2026-08-15,STAGE_SNAPSHOT,Final Arguments / Judgment,Final Arguments / Judgment,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2023-04-12,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2023-08-30,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2024-02-01,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2024-07-04,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2024-12-06,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2025-05-09,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2025-10-11,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2026-07-31,HEARING,Evidence / Argument,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/UP/CRL_A/2023/000040,2026-08-15,STAGE_SNAPSHOT,Evidence / Argument,Evidence / Argument,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2022-08-29,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2023-02-16,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2023-08-17,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2024-02-16,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2024-08-16,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2025-02-14,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2025-08-16,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2026-07-27,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/UP/BA/2022/000041,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2023-06-01,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2023-08-23,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2023-11-30,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2024-03-08,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2024-06-15,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2024-09-22,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2024-12-30,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2025-04-08,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2025-07-16,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2025-10-23,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2026-01-30,STAGE_TRANSITION,Summons / Appearance,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2026-03-21,HEARING,Summons / Appearance,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2025-10-30,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-02,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CRL_A/2023/000042,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2021-07-22,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2021-08-19,SUMMONS_ISSUED,Summons / Appearance,Summons issued,0,0,SYN-BENCH-01,Synthetic summons issued,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-01-18,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-02-22,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-03-29,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-05-03,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-06-07,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-07-12,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-04-20,HEARING,Summons / Appearance,Service report awaited,0,0,SYN-BENCH-01,Synthetic non-substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-04-04,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-07,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/CS/2021/000043,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2024/000044,2025-01-03,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2024/000044,2025-03-18,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2024/000044,2025-06-12,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2024/000044,2025-09-06,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2024/000044,2025-12-01,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2024/000044,2026-02-25,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2024/000044,2025-12-19,HEARING,Pleadings / Issues,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/KL/CRL_A/2024/000044,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2024-09-29,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2024-11-30,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2025-02-07,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2025-04-17,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2025-06-26,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2025-09-03,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2025-11-11,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2026-01-20,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2026-03-30,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2026-07-16,HEARING,Pleadings / Issues,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2026-01-24,JUDGE_CHANGE,Pleadings / Issues,Bench/Judge change,0,0,SYN-BENCH-09,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2024/000045,2026-08-15,STAGE_SNAPSHOT,Pleadings / Issues,Pleadings / Issues,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2020-03-06,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2020-11-14,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2021-08-04,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2022-04-23,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2023-01-11,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2023-09-30,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2024-06-19,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2025-03-08,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2026-01-16,HEARING,Summons / Appearance,Hearing,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/AP/BA/2020/000046,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2019-03-29,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2019-12-15,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2020-09-11,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2021-06-08,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2022-03-06,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2022-12-02,STAGE_TRANSITION,Pleadings / Issues,Stage transition,0,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2023-08-29,HEARING,Pleadings / Issues,Regular hearing,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2024-05-26,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2025-02-20,ORDER,Pleadings / Issues,Order passed,0,1,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2026-08-09,HEARING,Summons / Appearance,Substantive hearing,0,1,SYN-BENCH-01,Synthetic recent substantive event,SYNTHETIC_AUGMENTED
+SYN/DL/BA/2019/000047,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2021-09-09,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2021-10-01,SUMMONS_ISSUED,Summons / Appearance,Summons issued,0,0,SYN-BENCH-01,Synthetic summons issued,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-01-18,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-02-22,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-03-29,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-05-03,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-06-07,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-07-12,ADJOURNMENT,Summons / Appearance,Adjourned for service report,1,0,SYN-BENCH-01,Synthetic administrative adjournment,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-04-09,HEARING,Summons / Appearance,Service report awaited,0,0,SYN-BENCH-01,Synthetic non-substantive event,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-02-02,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-11,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-01-03,JUDGE_CHANGE,Summons / Appearance,Bench/Judge change,0,0,SYN-BENCH-12,Synthetic judge change,SYNTHETIC_AUGMENTED
+SYN/OT/BA/2021/000048,2026-08-15,STAGE_SNAPSHOT,Summons / Appearance,Summons / Appearance,0,0,SYN-BENCH-01,Synthetic current stage snapshot,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2022/000049,2022-03-08,REGISTRATION,Filing / Registration,Registration,0,0,SYN-BENCH-01,Synthetic registration event,SYNTHETIC_AUGMENTED
+SYN/OT/WP_C/2022/000049,2023-01-26,ADJOURNMENT,Pleadings / Issues,Adjourned,1,0,SYN-BENCH-01,Synthetic event,SYNTHETIC_AUGMENTED

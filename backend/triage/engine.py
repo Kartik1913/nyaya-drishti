@@ -25,6 +25,7 @@ from triage.bottleneck import classify_bottleneck
 from triage.scorer import compute_triage_score
 from triage.evidence import build_evidence_bundle
 from triage.templates import generate_explanation
+from ml.service import predict_stall_risk
 
 
 def run_triage_for_case(
@@ -45,6 +46,9 @@ def run_triage_for_case(
     # Layer 2: Stall Metrics
     stall_metrics = detect_stall_metrics(db, case, cohort)
 
+    # Supporting ML Risk Signal (Zero impact on deterministic score weights)
+    ml_result = predict_stall_risk(case, stall_metrics)
+
     # Layer 3: Bottleneck Classification
     bottleneck_type, actionability_level = classify_bottleneck(case, stall_metrics)
 
@@ -53,11 +57,13 @@ def run_triage_for_case(
         stall_metrics, actionability_level, confidence_level, age_percentile
     )
 
-    # Layer 5: Evidence Bundle
+    # Layer 5: Evidence Bundle (includes supporting ML signal)
     evidence_bundle = build_evidence_bundle(
         case, cohort, stall_metrics, bottleneck_type, actionability_level,
-        confidence_level, age_percentile, triage_score, components
+        confidence_level, age_percentile, triage_score, components,
+        ml_result=ml_result
     )
+
 
     # Layer 6: Template Explanation
     explanation = generate_explanation(evidence_bundle)

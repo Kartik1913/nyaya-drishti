@@ -22,10 +22,11 @@ def build_evidence_bundle(
     confidence_level: str,
     age_percentile: float | None,
     triage_score: float,
-    components: Dict[str, float]
+    components: Dict[str, float],
+    ml_result: Dict[str, Any] | None = None
 ) -> Dict[str, Any]:
     """
-    Returns a dict containing 15+ traceable fields.
+    Returns a dict containing 15+ traceable fields including supporting ML signals.
     """
     bundle = {
         "synthetic_cnr": case.synthetic_cnr,
@@ -56,6 +57,10 @@ def build_evidence_bundle(
         "triage_score": triage_score,
 
         "component_scores": components,
+
+        "ml_stall_probability": ml_result.get("structural_stall_probability") if ml_result else None,
+        "ml_stall_risk_level": ml_result.get("ml_stall_risk_level", "UNKNOWN") if ml_result else "UNKNOWN",
     }
 
     return bundle
+

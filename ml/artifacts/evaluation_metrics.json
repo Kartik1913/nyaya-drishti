@@ -1,0 +1,86 @@
+{
+  "selected_model": "XGBoost",
+  "random_seed": 42,
+  "train_test_split": "80/20",
+  "num_features": 10,
+  "feature_list": [
+    "state",
+    "district",
+    "court_establishment",
+    "case_type",
+    "tier",
+    "filing_year",
+    "case_age_days",
+    "current_stage",
+    "adjournment_count",
+    "judge_change_count"
+  ],
+  "results": {
+    "LogisticRegression": {
+      "train_acc": 0.8045,
+      "test_acc": 0.7895,
+      "train_prec": 0.7918229557389347,
+      "test_prec": 0.7691154422788605,
+      "train_rec": 0.6766025641025641,
+      "test_rec": 0.6576923076923077,
+      "train_f1": 0.7296923608710681,
+      "test_f1": 0.7090532135452661,
+      "train_auc": 0.859239176124422,
+      "test_auc": 0.8437662883564523,
+      "conf_matrix": [
+        [
+          1066,
+          154
+        ],
+        [
+          267,
+          513
+        ]
+      ]
+    },
+    "RandomForest": {
+      "train_acc": 1.0,
+      "test_acc": 0.8165,
+      "train_prec": 1.0,
+      "test_prec": 0.8566493955094991,
+      "train_rec": 1.0,
+      "test_rec": 0.6358974358974359,
+      "train_f1": 1.0,
+      "test_f1": 0.7299484915378955,
+      "train_auc": 1.0,
+      "test_auc": 0.8441897856242119,
+      "conf_matrix": [
+        [
+          1137,
+          83
+        ],
+        [
+          284,
+          496
+        ]
+      ]
+    },
+    "XGBoost": {
+      "train_acc": 0.84575,
+      "test_acc": 0.8225,
+      "train_prec": 0.9168877099911583,
+      "test_prec": 0.8828828828828829,
+      "train_rec": 0.6647435897435897,
+      "test_rec": 0.6282051282051282,
+      "train_f1": 0.7707172054998142,
+      "test_f1": 0.7340823970037453,
+      "train_auc": 0.9125221009352669,
+      "test_auc": 0.8507986548970156,
+      "conf_matrix": [
+        [
+          1155,
+          65
+        ],
+        [
+          290,
+          490
+        ]
+      ]
+    }
+  }
+}
