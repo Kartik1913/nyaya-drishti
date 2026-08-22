@@ -38,36 +38,50 @@ def generate_explanation(evidence: Dict[str, Any]) -> str:
         ratio_str = " (cohort median unavailable)"
 
     if bottleneck == "SUMMONS_DELAY":
-        return (
+        base_text = (
             f"Case has been in stage '{stage}' for {days_in_stage} days{ratio_str}. "
             f"Summons was issued with no return of service recorded over {days_inactive} days, resulting in {streak} consecutive adjournments. "
             f"High administrative actionability to request service status report from registry process server.{conf_warning}"
         )
     elif bottleneck == "WITNESS_DELAY":
-        return (
+        base_text = (
             f"Case has been in stage '{stage}' for {days_in_stage} days with {days_inactive} days since the last substantive hearing. "
             f"Witness examination stalled. Medium administrative actionability to issue witness summons or schedule witness batching.{conf_warning}"
         )
     elif bottleneck == "REPEATED_ADJOURNMENT":
-        return (
+        base_text = (
             f"Case exhibits {streak} consecutive administrative adjournments without substantive progress over {days_inactive} days in stage '{stage}'. "
             f"High administrative actionability to list case for mandatory hearing before presiding officer.{conf_warning}"
         )
     elif bottleneck == "JUDGE_CHANGE":
         # Note: UI renders JUDGE_CHANGE as "Bench Change"
-        return (
+        base_text = (
             f"Bench change recorded within the last 365 days. Procedural inactivity is {days_inactive} days in stage '{stage}'. "
             f"Medium administrative actionability to re-list case before the new bench.{conf_warning}"
         )
     elif bottleneck == "PROCEDURAL_INACTIVITY":
-        return (
+        base_text = (
             f"No substantive event recorded for {days_inactive} days in stage '{stage}'{ratio_str}. "
             f"Medium administrative actionability for registry follow-up.{conf_warning}"
         )
     else:
         # UNKNOWN / Progressing
-        return (
+        base_text = (
             f"Case exhibits normal progression for its cohort. "
             f"Currently in stage '{stage}' for {days_in_stage} days with substantive activity {days_inactive} days ago. "
             f"Low administrative actionability.{conf_warning}"
         )
+
+    # Append ML supporting signal if inference produced a valid result
+    ml_prob = evidence.get("ml_stall_probability")
+    ml_level = evidence.get("ml_stall_risk_level")
+    if ml_prob is not None and ml_level in ("HIGH", "LOW"):
+        ml_note = (
+            f" ML structural-stall assessment: {ml_level} ({ml_prob:.1%}), "
+            "based on historical patterns in case-stage, adjournment and bench-change features. "
+            "This is an administrative triage signal and does not predict judicial outcome."
+        )
+        return f"{base_text}{ml_note}"
+
+    return base_text
+
