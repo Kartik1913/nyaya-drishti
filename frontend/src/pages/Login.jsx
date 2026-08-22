@@ -1,27 +1,28 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
-import { Lock, User, AlertCircle, ArrowRight, ShieldCheck } from 'lucide-react';
-import DisclaimerBanner from '../components/DisclaimerBanner';
-import logo from '../assets/logo.jpg';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
+import Icon from "../components/Icon.jsx";
+import logo from "../assets/logo.jpg";
 
 const Login = () => {
-  const [username, setUsername] = useState('admin');
-  const [password, setPassword] = useState('admin123');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("admin");
+  const [password, setPassword] = useState("admin123");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
     try {
       await login(username, password);
-      navigate('/');
+      navigate("/");
     } catch (err) {
-      setError(err.response?.data?.detail || 'Invalid credentials. Please try again.');
+      setError(
+        err.response?.data?.detail || "Invalid credentials. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -33,119 +34,162 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-between font-sans">
-      <DisclaimerBanner />
+    <div className="min-h-screen bg-background flex flex-col font-body-sm">
+      {/* Prototype Notice Banner */}
+      <div className="bg-[#7c4d00] border-b border-[#9a6300] px-4 py-2 text-xs text-[#ffe0b2] sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto flex items-center gap-2.5">
+          <Icon name="shield" size="16px" className="text-[#ffb74d] shrink-0" />
+          <span>
+            <strong className="font-semibold uppercase tracking-wider text-[10px] bg-[#9a6300]/50 border border-[#ffb74d]/50 px-1.5 py-0.5 rounded mr-2">
+              NON-JUDICIAL PROTOTYPE
+            </strong>
+            Administrative review triage only. Does{" "}
+            <strong>NOT</strong> predict judicial outcomes. All case records are{" "}
+            <strong>SYNTHETIC</strong>.
+          </span>
+        </div>
+      </div>
 
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="w-full max-w-md">
+      {/* Main Content */}
+      <div className="flex-1 flex items-center justify-center p-6">
+        <div className="w-full max-w-sm">
           {/* Card */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden">
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-violet-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-lg p-8 relative overflow-hidden">
+            {/* Subtle gradient accent */}
+            <div className="absolute -top-12 -right-12 w-32 h-32 bg-secondary/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
 
-            {/* Header */}
-            <div className="text-center mb-8">
-              <div className="w-14 h-14 rounded-2xl overflow-hidden mx-auto flex items-center justify-center shadow-lg shadow-indigo-500/30 mb-4">
-                <img src={logo} alt="Logo" className="w-full h-full object-cover" />
+            {/* Logo + Title */}
+            <div className="text-center mb-8 relative">
+              <div className="w-16 h-16 rounded-full overflow-hidden mx-auto flex items-center justify-center shadow-md mb-4 border border-outline-variant">
+                <img src={logo} alt="Nyaya-Drishti Logo" className="w-full h-full object-cover" />
               </div>
-              <h1 className="text-2xl font-black tracking-tight text-slate-100">
+              <h1 className="text-headline-sm font-headline-sm text-primary">
                 Nyaya-Drishti
               </h1>
-              <p className="text-xs text-slate-400 mt-1 font-medium">
-                AI-Based District Court Pendency Triage System
+              <p className="text-body-sm font-body-sm text-on-surface-variant mt-1">
+                District Court Pendency Triage System
               </p>
             </div>
 
+            {/* Error */}
             {error && (
-              <div className="mb-5 p-3 rounded-lg bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 shrink-0" />
+              <div className="mb-5 p-3 rounded bg-error/5 border border-error/20 text-error text-body-sm flex items-center gap-2">
+                <Icon name="error" size="16px" />
                 <span>{error}</span>
               </div>
             )}
 
+            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">
+                <label
+                  htmlFor="login-username"
+                  className="block text-label-md font-label-md text-on-surface-variant mb-2 uppercase tracking-wider"
+                >
                   Username
                 </label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+                  <Icon
+                    name="person"
+                    size="18px"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                  />
                   <input
+                    id="login-username"
                     type="text"
                     required
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Enter username"
-                    className="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-9 pr-3 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+                    className="w-full bg-surface border border-outline-variant rounded pl-10 pr-3 py-2.5 text-body-sm font-body-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">
+                <label
+                  htmlFor="login-password"
+                  className="block text-label-md font-label-md text-on-surface-variant mb-2 uppercase tracking-wider"
+                >
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+                  <Icon
+                    name="lock"
+                    size="18px"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                  />
                   <input
+                    id="login-password"
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter password"
-                    className="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-9 pr-3 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+                    className="w-full bg-surface border border-outline-variant rounded pl-10 pr-3 py-2.5 text-body-sm font-body-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition"
                   />
                 </div>
               </div>
 
               <button
+                id="login-submit"
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-50"
+                className="w-full bg-primary text-on-primary font-semibold py-3 rounded text-body-sm transition hover:opacity-90 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
               >
                 {loading ? (
-                  <span>Authenticating...</span>
+                  <>
+                    <div className="w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin" />
+                    <span>Authenticating...</span>
+                  </>
                 ) : (
                   <>
                     <span>Sign In to Dashboard</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <Icon name="arrow_forward" size="18px" />
                   </>
                 )}
               </button>
             </form>
 
-            {/* Demo Quick Fills */}
-            <div className="mt-6 pt-6 border-t border-slate-800">
-              <div className="flex items-center gap-1 text-[11px] font-semibold text-slate-400 mb-2.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+            {/* Demo Quick Credentials */}
+            <div className="mt-6 pt-6 border-t border-outline-variant">
+              <div className="flex items-center gap-1.5 text-label-md font-label-md text-on-surface-variant mb-3">
+                <Icon name="verified_user" size="14px" />
                 <span>Demo Quick Credentials:</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <button
+                  id="quick-fill-admin"
                   type="button"
-                  onClick={() => handleQuickFill('admin', 'admin123')}
-                  className="p-2 rounded-lg bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-left transition cursor-pointer"
+                  onClick={() => handleQuickFill("admin", "admin123")}
+                  className="p-2.5 rounded bg-surface border border-outline-variant hover:bg-surface-container-low text-left transition cursor-pointer"
                 >
-                  <div className="text-[11px] font-bold text-slate-200">Admin Staff</div>
-                  <div className="text-[10px] text-slate-400 font-mono">admin / admin123</div>
+                  <div className="text-body-sm font-body-sm font-semibold text-primary">Admin Staff</div>
+                  <div className="text-[10px] text-on-surface-variant font-mono mt-0.5">
+                    admin / admin123
+                  </div>
                 </button>
                 <button
+                  id="quick-fill-registry"
                   type="button"
-                  onClick={() => handleQuickFill('registry', 'registry123')}
-                  className="p-2 rounded-lg bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-left transition cursor-pointer"
+                  onClick={() => handleQuickFill("registry", "registry123")}
+                  className="p-2.5 rounded bg-surface border border-outline-variant hover:bg-surface-container-low text-left transition cursor-pointer"
                 >
-                  <div className="text-[11px] font-bold text-slate-200">Registry Staff</div>
-                  <div className="text-[10px] text-slate-400 font-mono">registry / registry123</div>
+                  <div className="text-body-sm font-body-sm font-semibold text-primary">Registry Staff</div>
+                  <div className="text-[10px] text-on-surface-variant font-mono mt-0.5">
+                    registry / registry123
+                  </div>
                 </button>
               </div>
             </div>
           </div>
+
+          <p className="text-center text-[11px] text-on-surface-variant mt-6">
+            Nyaya-Drishti Prototype &bull; Purely Administrative Triage Demonstration
+          </p>
         </div>
       </div>
-
-      <footer className="py-4 text-center text-xs text-slate-600">
-        Nyaya-Drishti Prototype &bull; Purely Administrative Triage Demonstration
-      </footer>
     </div>
   );
 };

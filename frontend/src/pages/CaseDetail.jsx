@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Icon from "../components/Icon.jsx";
-import ScoreBadge from "../components/ScoreBadge.jsx";
 import BottleneckTag from "../components/BottleneckTag.jsx";
 import ConfidenceBadge from "../components/ConfidenceBadge.jsx";
 import AiNotice from "../components/AiNotice.jsx";

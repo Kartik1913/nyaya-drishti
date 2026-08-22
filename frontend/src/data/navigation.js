@@ -1,8 +1,8 @@
 export const primaryNavItems = [
   { label: "Dashboard", icon: "dashboard", path: "/" },
   { label: "Priority Queue", icon: "list_alt", path: "/queue" },
-  { label: "Case Inspector (Spotlight)", icon: "find_in_page", path: "/cases/1" },
-  { label: "Lok Adalat Drafts", icon: "gavel", path: "/lok-adatat-drafts" },
+  { label: "Demo Comparison", icon: "compare_arrows", path: "/comparison" },
+  { label: "Lok Adalat Drafts", icon: "gavel", path: "/lok-adalat-drafts" },
 ];
 
 export const secondaryNavItems = [

@@ -11,19 +11,6 @@ import UserActions from "../components/UserActions.jsx";
 import AppFooter from "../components/AppFooter.jsx";
 import { getPriorityQueueApi } from "../api/endpoints.js";
 
-const stallSignatureStyles = {
-  SUMMONS_DELAY: "bg-secondary-container text-on-secondary-container",
-  REPEATED_ADJOURNMENT: "bg-error-container text-on-error-container",
-  JUDGE_CHANGE: "bg-tertiary-fixed text-on-tertiary-fixed",
-  WITNESS_DELAY: "bg-amber-100 text-amber-800",
-  PROCEDURAL_INACTIVITY: "bg-surface-variant text-on-surface-variant",
-  UNKNOWN: "bg-surface-variant text-on-surface-variant",
-};
-
-const confidenceStyles = {
-  HIGH: "bg-surface-container-high text-on-surface font-semibold",
-  LOW: "bg-surface-container text-on-surface-variant",
-};
 
 export default function PriorityQueue() {
   const [cases, setCases] = useState([]);
