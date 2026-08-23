@@ -32,7 +32,7 @@ export default function LandingNav() {
 
         <div className="flex items-center gap-4 text-primary">
           <Link
-            to="/dashboard"
+            to="/"
             className="bg-navy text-white px-6 py-2.5 rounded-four font-semibold font-label-md text-label-md transition-colors mr-2 hover:opacity-90"
           >
             Go to Dashboard

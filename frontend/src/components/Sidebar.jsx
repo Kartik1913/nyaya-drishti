@@ -70,7 +70,7 @@ export default function Sidebar() {
     <>
       <nav
         aria-label="Primary"
-        className="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant z-20"
+        className="hidden md:flex flex-col h-screen w-64 md:sticky top-0 bg-surface-container-low border-r border-outline-variant z-20 shrink-0"
       >
         {/* Brand */}
         <div className="px-6 py-5 border-b border-outline-variant shrink-0">
@@ -112,16 +112,27 @@ export default function Sidebar() {
 
         {/* Secondary Links */}
         <div className="border-t border-outline-variant py-2 flex flex-col gap-1">
-          {secondaryNavItems.map((item) => (
-            <a
-              key={item.path}
-              href={item.path}
-              className={`${linkBase} ${linkInactive}`}
-            >
-              <Icon name={item.icon} />
-              {item.label}
-            </a>
-          ))}
+          {secondaryNavItems.map((item) =>
+            item.path.startsWith("/") ? (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`${linkBase} ${linkInactive}`}
+              >
+                <Icon name={item.icon} />
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.path}
+                href={item.path}
+                className={`${linkBase} ${linkInactive}`}
+              >
+                <Icon name={item.icon} />
+                {item.label}
+              </a>
+            )
+          )}
         </div>
 
         {/* User footer */}

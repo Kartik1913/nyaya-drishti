@@ -197,6 +197,38 @@ export default function CaseDetail() {
                   </div>
                 )}
 
+                {/* Supporting Machine Learning Predictive Risk */}
+                {evidence.ml_stall_risk_level && evidence.ml_stall_risk_level !== "UNKNOWN" && (
+                  <div className={`border rounded-lg p-4 flex items-start gap-4 ${
+                    evidence.ml_stall_risk_level === "HIGH" 
+                      ? "bg-amber-50 border-amber-200 text-amber-900" 
+                      : "bg-slate-50 border-slate-200 text-slate-900"
+                  }`}>
+                    <Icon 
+                      name="psychology" 
+                      className={evidence.ml_stall_risk_level === "HIGH" ? "text-amber-700 mt-0.5" : "text-slate-500 mt-0.5"} 
+                    />
+                    <div>
+                      <h3 className="text-headline-sm font-headline-sm font-bold mb-1">
+                        Supporting ML Risk Signal
+                      </h3>
+                      <p className="text-body-sm font-body-sm leading-relaxed mb-2 opacity-90">
+                        {evidence.ml_stall_risk_level === "HIGH"
+                          ? `The predictive model estimates a high probability of structural stall (${(evidence.ml_stall_probability * 100).toFixed(1)}%) based on comparative historical cohort patterns.`
+                          : `The predictive model estimates a low probability of structural stall (${(evidence.ml_stall_probability * 100).toFixed(1)}%) based on comparative historical cohort patterns.`
+                        }
+                      </p>
+                      <span className={`inline-block text-[11px] font-bold px-2 py-0.5 rounded border uppercase ${
+                        evidence.ml_stall_risk_level === "HIGH"
+                          ? "bg-amber-200/50 border-amber-300 text-amber-950"
+                          : "bg-slate-200/50 border-slate-300 text-slate-950"
+                      }`}>
+                        Predictive Risk: {evidence.ml_stall_risk_level}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 {/* Progress bars for Evidence Breakdown */}
                 <div>
                   <h4 className="text-label-md font-label-md text-on-surface-variant uppercase mb-4 border-b border-outline-variant pb-2">

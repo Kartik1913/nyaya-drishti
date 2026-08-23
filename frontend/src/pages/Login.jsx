@@ -185,9 +185,18 @@ const Login = () => {
             </div>
           </div>
 
-          <p className="text-center text-[11px] text-on-surface-variant mt-6">
-            Nyaya-Drishti Prototype &bull; Purely Administrative Triage Demonstration
-          </p>
+          <div className="text-center mt-6 space-y-2">
+            <Link
+              to="/landing"
+              className="inline-flex items-center gap-1.5 text-body-sm font-medium text-secondary hover:underline"
+            >
+              <span>Explore Public Overview & Landing Page</span>
+              <Icon name="arrow_forward" size="14px" />
+            </Link>
+            <p className="text-[11px] text-on-surface-variant">
+              Nyaya-Drishti Prototype &bull; Purely Administrative Triage Demonstration
+            </p>
+          </div>
         </div>
       </div>
     </div>

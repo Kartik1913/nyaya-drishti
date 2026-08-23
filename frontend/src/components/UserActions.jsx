@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "./Icon.jsx";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { triggerReseedApi } from "../api/endpoints.js";
+import MethodologyModal from "./MethodologyModal.jsx";
 
 export default function UserActions() {
   const { user, logout } = useAuth();
@@ -10,6 +11,7 @@ export default function UserActions() {
   const [reseedLoading, setReseedLoading] = useState(false);
   const [reseedMsg, setReseedMsg] = useState(null);
   const [showReseedModal, setShowReseedModal] = useState(false);
+  const [showMethodologyModal, setShowMethodologyModal] = useState(false);
 
   const handleReseed = async () => {
     setReseedLoading(true);
@@ -42,6 +44,17 @@ export default function UserActions() {
 
   return (
     <div className="flex items-center gap-3 text-on-surface-variant">
+      {/* Methodology & Scoring Guide Modal Trigger */}
+      <button
+        type="button"
+        onClick={() => setShowMethodologyModal(true)}
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant text-label-md font-label-md transition-colors cursor-pointer text-primary font-semibold"
+        title="View 5-Signal Scoring Formula & Hybrid AI Architecture"
+      >
+        <Icon name="science" size="16px" className="text-secondary" />
+        <span>Scoring Methodology</span>
+      </button>
+
       {/* Reseed Button for Admin */}
       {user?.role === "admin" && (
         <button
@@ -118,6 +131,11 @@ export default function UserActions() {
           </div>
         </div>
       )}
+      {/* Methodology Modal */}
+      <MethodologyModal
+        isOpen={showMethodologyModal}
+        onClose={() => setShowMethodologyModal(false)}
+      />
     </div>
   );
 }

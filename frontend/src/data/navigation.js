@@ -6,6 +6,7 @@ export const primaryNavItems = [
 ];
 
 export const secondaryNavItems = [
+  { label: "Public Overview", icon: "public", path: "/landing" },
   { label: "Settings", icon: "settings", path: "#" },
   { label: "Support", icon: "help", path: "#" },
 ];

@@ -3,7 +3,7 @@ import Icon from "./Icon.jsx";
 
 const DisclaimerBanner = () => {
   return (
-    <div className="bg-[#7c4d00] border-b border-[#9a6300] px-4 py-2 text-xs text-[#ffe0b2] sticky top-0 z-50">
+    <div className="bg-[#7c4d00] border-b border-[#9a6300] px-4 py-2 text-xs text-[#ffe0b2] w-full shrink-0 z-30">
       <div className="max-w-full flex items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
           <Icon name="shield" size="16px" className="text-[#ffb74d] shrink-0" />

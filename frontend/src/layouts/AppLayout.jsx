@@ -6,9 +6,9 @@ export default function AppLayout() {
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <DisclaimerBanner />
-      <div className="flex-1 flex">
+      <div className="flex-1 flex w-full">
         <Sidebar />
-        <div className="md:ml-64 flex-1 flex flex-col min-h-screen">
+        <div className="flex-1 flex flex-col min-w-0">
           <Outlet />
         </div>
       </div>
