@@ -182,7 +182,10 @@ export const valueProps = [
 export const impactStats = [
   { value: "5.4 Crore+", label: "Nationwide pending cases" },
   { value: "149 Days vs 5 Years", label: "Mean filing-to-decision disparity" },
-  { value: "81 Million", label: "District court cases analyzed" },
+  {
+    value: "3,179 Real Records Audited",
+    label: "Real eCourts open-data records used to establish schema and distribution baselines.",
+  },
 ];
 
 export const engineLayers = [

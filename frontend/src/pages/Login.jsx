@@ -43,9 +43,10 @@ const Login = () => {
             <strong className="font-semibold uppercase tracking-wider text-[10px] bg-[#9a6300]/50 border border-[#ffb74d]/50 px-1.5 py-0.5 rounded mr-2">
               NON-JUDICIAL PROTOTYPE
             </strong>
-            Administrative review triage only. Does{" "}
-            <strong>NOT</strong> predict judicial outcomes. All case records are{" "}
-            <strong>SYNTHETIC</strong>.
+            Administrative review triage only. Does <strong>NOT</strong> predict
+            judicial outcomes. Individual case records and event histories are
+            synthetic prototypes structured using authentic eCourts metadata
+            schemas and official NJDG/Data.gov.in statistical baselines.
           </span>
         </div>
       </div>
