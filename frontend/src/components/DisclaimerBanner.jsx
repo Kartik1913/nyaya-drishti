@@ -15,8 +15,10 @@ const DisclaimerBanner = () => {
               This system provides{" "}
               <strong>administrative review triage only</strong>. It does{" "}
               <strong>NOT</strong> predict judicial outcomes, assign judge
-              liability, or evaluate judicial officers. All case-level records
-              are <strong>SYNTHETIC</strong>.
+              liability, or evaluate judicial officers. Individual case records
+              and event histories are synthetic prototypes structured using
+              authentic eCourts metadata schemas and official NJDG/Data.gov.in
+              statistical baselines.
             </span>
           </div>
         </div>

@@ -58,7 +58,7 @@ export default function MethodologyModal({ isOpen, onClose }) {
                   Tier 2: Predictive Machine Learning Signal
                 </span>
                 <p className="text-[12px] text-on-surface-variant leading-normal">
-                  XGBoost model trained on historical court disposal patterns. Validates non-linear systemic risk (AUC-ROC: 0.887) as a supporting audit signal without altering legal weights.
+                  XGBoost model trained on structural stall patterns. Validates non-linear systemic risk (AUC-ROC: 0.859 on synthetic 5-fold CV) as a supporting audit signal without altering legal weights.
                 </p>
               </div>
             </div>
@@ -128,26 +128,33 @@ export default function MethodologyModal({ isOpen, onClose }) {
 
           {/* Validation & Evaluation Metrics */}
           <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-4">
-            <h4 className="text-label-md font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-2">
+            <h4 className="text-label-md font-bold text-primary uppercase tracking-wider mb-2 flex items-center gap-2">
               <Icon name="verified" size="16px" className="text-emerald-600" />
-              <span>Measurable Pilot Validation Metrics</span>
+              <span>Synthetic Validation & Target Pilot Metrics</span>
             </h4>
+            <p className="text-[11px] text-on-surface-variant mb-3 bg-surface-bright p-2.5 rounded border border-outline-variant/60">
+              <strong className="text-primary font-semibold">Note on Data Provenance:</strong> Current model evaluation is based on synthetic data. Real-data validation metrics will be measured during the planned district-court pilot.
+            </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
               <div className="p-3 bg-surface-bright rounded border border-outline-variant">
-                <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Model AUC-ROC</span>
-                <span className="text-headline-sm font-bold text-primary font-mono">0.887</span>
+                <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Synthetic Model AUC-ROC</span>
+                <span className="text-headline-sm font-bold text-primary font-mono">0.859</span>
+                <span className="text-[9px] text-on-surface-variant block mt-0.5">5-Fold Case CV</span>
               </div>
               <div className="p-3 bg-surface-bright rounded border border-outline-variant">
-                <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Stall Precision</span>
-                <span className="text-headline-sm font-bold text-emerald-700 font-mono">91.2%</span>
+                <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Target Stall Precision</span>
+                <span className="text-headline-sm font-bold text-emerald-700 font-mono">&ge;80%</span>
+                <span className="text-[9px] text-on-surface-variant block mt-0.5">Planned Pilot Goal</span>
               </div>
               <div className="p-3 bg-surface-bright rounded border border-outline-variant">
-                <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Review Time Saved</span>
-                <span className="text-headline-sm font-bold text-secondary font-mono">~64%</span>
+                <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Target Review Time Saved</span>
+                <span className="text-headline-sm font-bold text-secondary font-mono">&ge;50%</span>
+                <span className="text-[9px] text-on-surface-variant block mt-0.5">Planned Pilot Goal</span>
               </div>
               <div className="p-3 bg-surface-bright rounded border border-outline-variant">
-                <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Rank Stability</span>
-                <span className="text-headline-sm font-bold text-primary font-mono">0.96 &rho;</span>
+                <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Target Rank Stability</span>
+                <span className="text-headline-sm font-bold text-primary font-mono">&ge;0.90 &rho;</span>
+                <span className="text-[9px] text-on-surface-variant block mt-0.5">Planned Pilot Goal</span>
               </div>
             </div>
           </div>
