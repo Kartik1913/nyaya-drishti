@@ -4,7 +4,7 @@ import Icon from "../components/Icon.jsx";
 import AiNotice from "../components/AiNotice.jsx";
 import UserActions from "../components/UserActions.jsx";
 import AppFooter from "../components/AppFooter.jsx";
-import { getAggregateStatsApi, getPriorityQueueApi } from "../api/endpoints.js";
+import { getAggregateStatsApi, getTriageStatsApi } from "../api/endpoints.js";
 
 const barTone = {
   error: "bg-error",
@@ -39,7 +39,7 @@ function KpiCard({ label, value, tone, icon }) {
 
 export default function Dashboard() {
   const [aggregateStats, setAggregateStats] = useState([]);
-  const [queueSummary, setQueueSummary] = useState(null);
+  const [triageStats, setTriageStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -47,12 +47,12 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [aggData, queueData] = await Promise.all([
+        const [aggData, triageData] = await Promise.all([
           getAggregateStatsApi(),
-          getPriorityQueueApi(1, 100),
+          getTriageStatsApi(),
         ]);
         setAggregateStats(aggData);
-        setQueueSummary(queueData);
+        setTriageStats(triageData);
       } catch (err) {
         console.error("Failed to load dashboard metrics:", err);
         setError("Failed to load dashboard data. Please verify the backend API server is running.");
@@ -83,19 +83,9 @@ export default function Dashboard() {
     );
   }
 
-  // Calculate bottleneck metrics from real priority queue
-  const bottleneckCounts = {};
-  let criticalCount = 0;
-
-  if (queueSummary?.cases) {
-    queueSummary.cases.forEach((c) => {
-      const type = c.bottleneck_type || "UNKNOWN";
-      bottleneckCounts[type] = (bottleneckCounts[type] || 0) + 1;
-
-      const score = c.triage_score || 0;
-      if (score >= 80) criticalCount++;
-    });
-  }
+  // Calculate bottleneck metrics from backend triage stats
+  const bottleneckCounts = triageStats?.bottlenecks || {};
+  const criticalCount = triageStats?.stalled_cases || 0;
 
   // Find DB aggregate stats matching label categories
   const pendingCasesObj = aggregateStats.find(item => item.metric_name.toLowerCase().includes("pending")) || { metric_value: "12,450" };
@@ -128,8 +118,8 @@ export default function Dashboard() {
     width: (d.count / maxCount) * 100,
   }));
 
-  const stalledPct = queueSummary?.cases?.length
-    ? Math.round((criticalCount / queueSummary.cases.length) * 100)
+  const stalledPct = triageStats
+    ? Math.round(triageStats.stalled_percentage)
     : 15;
   const normalPct = 100 - stalledPct;
 

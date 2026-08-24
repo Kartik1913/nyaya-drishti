@@ -36,6 +36,11 @@ export const getAggregateStatsApi = async () => {
   return response.data;
 };
 
+export const getTriageStatsApi = async () => {
+  const response = await client.get('/stats/triage');
+  return response.data;
+};
+
 export const getDemoComparisonApi = async () => {
   const response = await client.get('/demo/comparison');
   return response.data;

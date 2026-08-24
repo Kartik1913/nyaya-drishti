@@ -364,3 +364,24 @@ def test_demo_comparison_endpoint(client, admin_token):
     # Verify score gap exceeds 40 points
     gap = stalled["triage_score"] - progressing["triage_score"]
     assert gap > 40.0, f"Score gap {gap} is not > 40.0"
+
+
+# =====================================================================
+# 7. Triage Stats Endpoint Tests (/stats/triage)
+# =====================================================================
+
+def test_get_triage_stats(client, admin_token):
+    res = client.get("/stats/triage", headers={"Authorization": f"Bearer {admin_token}"})
+    assert res.status_code == 200
+    data = res.json()
+
+    assert "total_cases" in data
+    assert "stalled_cases" in data
+    assert "stalled_percentage" in data
+    assert "bottlenecks" in data
+
+    assert data["total_cases"] >= 2
+    assert data["stalled_cases"] >= 1
+    assert data["stalled_percentage"] >= 0.1
+    assert "SUMMONS_DELAY" in data["bottlenecks"]
+    assert data["bottlenecks"]["SUMMONS_DELAY"] >= 1
