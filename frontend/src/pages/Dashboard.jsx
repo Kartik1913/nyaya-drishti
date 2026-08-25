@@ -118,13 +118,14 @@ export default function Dashboard() {
     width: (d.count / maxCount) * 100,
   }));
 
-  const stalledPct = triageStats
-    ? Math.round(triageStats.stalled_percentage)
-    : 15;
-  const normalPct = 100 - stalledPct;
+  const stalledPctRaw = triageStats
+    ? triageStats.stalled_percentage
+    : 15.0;
+  const stalledPct = stalledPctRaw.toFixed(1);
+  const normalPct = (100 - stalledPctRaw).toFixed(1);
 
   const circumference = 2 * Math.PI * 40; // r=40
-  const dashoffset = circumference * (1 - stalledPct / 100);
+  const dashoffset = circumference * (1 - stalledPctRaw / 100);
 
   return (
     <>
