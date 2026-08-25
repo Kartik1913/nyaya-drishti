@@ -780,7 +780,7 @@ Example output for SUMMONS_DELAY:
 | **6** | **Live Demo: Alpha vs Beta** | Side-by-side comparison table with actual verified values. Score 91.4 vs 14.7. "Same age, opposite need." | S15, S16 | Screenshot of the Comparison page or Alpha/Beta split card |
 | **7** | **System Architecture & Tech Stack** | Vercel -> Render -> Supabase diagram. Key technologies table (React, FastAPI, PostgreSQL, JWT). | S8, S9 | Architecture diagram from S9 |
 | **8** | **Innovation & Differentiation** | 4-5 key differentiators vs traditional systems. Comparison table (Traditional vs Nyaya-Drishti). | S10, S11 | Comparison table |
-| **9** | **Feasibility & Impact** | "Currently implemented" evidence checklist. 18 tests passing. Live deployment URLs. Potential impact on registry workload. | S12, S13 | Checklist with green checkmarks |
+| **9** | **Feasibility & Impact** | "Currently implemented" evidence checklist. 26 backend tests passing. Live deployment URLs. Potential impact on registry workload. | S12, S13 | Checklist with green checkmarks |
 | **10** | **Roadmap & Next Steps** | Phase 1 (MVP - Done) -> Phase 2 (Pilot) -> Phase 3 (Scale) -> Phase 4 (Advanced) -> Phase 5 (Integration). Clear CURRENT vs FUTURE labels. | S14 | Phased roadmap timeline |
 
 ### Optional Additional Slides (if 12 slides allowed)
@@ -788,7 +788,7 @@ Example output for SUMMONS_DELAY:
 | Slide | Title | Content |
 | :--- | :--- | :--- |
 | **11** | **Ethical Safeguards** | What the system does NOT do: no outcome prediction, no judge evaluation, no autonomous decisions. Disclaimer banner. Data label enforcement. |
-| **12** | **Key Numbers** | Quick-reference stats card: 1,000 cases, 18 tests, 91.4 vs 14.7, 76.7-point gap, 6 layers, 15+ evidence fields, 3 deployment platforms. |
+| **12** | **Key Numbers** | Quick-reference stats card: 1,000 cases, 26 backend tests, 91.4 vs 14.7, 76.7-point gap, 6 layers, 15+ evidence fields, 3 deployment platforms. |
 
 ---
 
