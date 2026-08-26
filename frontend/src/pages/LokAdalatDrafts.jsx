@@ -149,8 +149,11 @@ export default function LokAdalatDrafts() {
             ))}
           </div>
 
-          {/* Review Queue */}
-          <Reveal variant="rise" delay={180}>
+          {/* Review Queue — not wrapped in Reveal: the scroll-triggered
+              reveal observer was unreliable on this specific section once it
+              holds up to 100 rows (large content whose observed element grows
+              well past the initial viewport), so it's rendered plainly. */}
+          <div>
             <div className="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT overflow-hidden">
               <div className="p-4 border-b border-surface-variant bg-surface-container-low flex flex-wrap justify-between items-center gap-3">
                 <h3 className="text-headline-sm font-headline-sm text-on-surface">
@@ -309,7 +312,7 @@ export default function LokAdalatDrafts() {
                 </p>
               )}
             </div>
-          </Reveal>
+          </div>
         </div>
       </main>
 
