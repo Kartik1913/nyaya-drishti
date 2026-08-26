@@ -241,12 +241,11 @@ export default function Dashboard() {
         item.metric_name.toLowerCase().includes("delay") ||
         item.metric_name.toLowerCase().includes("age")
     ) || { metric_value: "+312 Days" };
-  const lokAdalatObj =
-    aggregateStats.find(
-      (item) =>
-        item.metric_name.toLowerCase().includes("adalat") ||
-        item.metric_name.toLowerCase().includes("lok")
-    ) || { metric_value: "340" };
+  // Live count from the triage engine's real settlement scores — same
+  // eligibility signal Lok Adalat Drafts uses, so the two pages agree.
+  // (Previously read a static seed number from aggregate_context that had
+  // drifted out of sync with the live-computed figure.)
+  const lokAdalatEligibleCount = triageStats?.lok_adalat_eligible_count ?? 0;
 
   // `source` present => published macro figure (NJDG / Data.gov.in); absent
   // => derived from the synthetic case set. Drives the provenance badge.
@@ -277,11 +276,10 @@ export default function Dashboard() {
     },
     {
       label: "Lok Adalat Candidates",
-      value: lokAdalatObj.metric_value,
+      value: lokAdalatEligibleCount.toLocaleString("en-IN"),
       delta: "actionable",
       deltaTone: "down",
       hint: "eligible for alternate resolution",
-      source: lokAdalatObj.source,
     },
   ];
 
