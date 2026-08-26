@@ -9,7 +9,7 @@ function StalledCard({ c }) {
   const [flagged, setFlagged] = useState(false);
 
   return (
-    <article className="bg-surface-container-lowest border border-outline-variant rounded flex flex-col shadow-sm hover:shadow-md transition-shadow duration-300">
+    <article className="bg-surface-container-lowest border border-outline-variant rounded flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
       <div className="p-6 border-b border-outline-variant flex justify-between items-start bg-surface-bright rounded-t">
         <div>
           <h2 className="text-headline-md font-headline-md text-primary mb-1">
@@ -70,7 +70,7 @@ function StalledCard({ c }) {
           type="button"
           onClick={() => setFlagged(true)}
           disabled={flagged}
-          className="px-6 py-2 bg-[#ba1a1a] text-white text-body-sm font-body-sm font-medium rounded hover:bg-[#93000a] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ba1a1a] disabled:opacity-60 disabled:cursor-default"
+          className="px-6 py-2 bg-[#ba1a1a] text-white text-body-sm font-body-sm font-medium rounded hover:bg-[#93000a] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ba1a1a] disabled:opacity-60 disabled:cursor-default disabled:hover:translate-y-0"
         >
           {flagged ? "Flagged for Lok Adalat" : "Flag for Lok Adalat"}
         </button>
@@ -81,7 +81,7 @@ function StalledCard({ c }) {
 
 function NormalCard({ c }) {
   return (
-    <article className="bg-surface-container-lowest border border-outline-variant rounded flex flex-col shadow-sm hover:shadow-md transition-shadow duration-300">
+    <article className="bg-surface-container-lowest border border-outline-variant rounded flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
       <div className="p-6 border-b border-outline-variant flex justify-between items-start bg-surface-bright rounded-t">
         <div>
           <h2 className="text-headline-md font-headline-md text-primary mb-1">
@@ -161,7 +161,7 @@ export default function CaseInspector() {
 
       {/* Canvas */}
       <main className="flex-1 p-margin-desktop max-w-[1280px] mx-auto w-full">
-        <div className="mb-stack-lg border-b border-outline-variant pb-4">
+        <div className="mb-stack-lg border-b border-outline-variant pb-4 animate-hero-fade-1">
           <h1 className="text-headline-lg font-headline-lg text-primary mb-2">
             Case Inspector: Scoring Transparency
           </h1>
@@ -171,7 +171,10 @@ export default function CaseInspector() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-gutter">
+        <div
+          className="grid grid-cols-1 xl:grid-cols-2 gap-gutter opacity-0 animate-hero-fade-2"
+          style={{ animationDelay: "80ms" }}
+        >
           {caseInspectorCases.map((c) =>
             c.status === "stalled" ? (
               <StalledCard key={c.id} c={c} />

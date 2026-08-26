@@ -128,7 +128,7 @@ export default function Comparison() {
       {/* Canvas */}
       <main className="flex-1 p-margin-mobile md:p-margin-desktop max-w-[1280px] mx-auto w-full space-y-gutter">
         {/* Page header */}
-        <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4 border-b border-outline-variant pb-4">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4 border-b border-outline-variant pb-4 animate-hero-fade-1">
           <div>
             <h1 className="text-headline-lg font-headline-lg text-primary">
               Demo Contrast: CASE-ALPHA vs. CASE-BETA
@@ -146,7 +146,10 @@ export default function Comparison() {
         </div>
 
         {/* Narrative Box */}
-        <div className="bg-surface-container-lowest border border-outline-variant rounded p-6 shadow-sm space-y-2">
+        <div
+          className="bg-surface-container-lowest border border-outline-variant rounded p-6 shadow-sm space-y-2 opacity-0 animate-hero-fade-2"
+          style={{ animationDelay: "80ms" }}
+        >
           <h3 className="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
             <Icon name="balance" />
             <span>The 5-Year Case Dilemma</span>
@@ -157,9 +160,12 @@ export default function Comparison() {
         </div>
 
         {/* Contrast Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-gutter opacity-0 animate-hero-fade-3"
+          style={{ animationDelay: "160ms" }}
+        >
           {/* CASE-ALPHA */}
-          <div className="bg-surface-container-lowest border-2 border-error rounded p-6 shadow-md space-y-4">
+          <div className="bg-surface-container-lowest border-2 border-error rounded p-6 shadow-md space-y-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="text-headline-sm font-headline-sm text-error font-bold">CASE-ALPHA (Stalled)</h3>
@@ -191,14 +197,14 @@ export default function Comparison() {
 
             <Link
               to={`/cases/${alpha.id}`}
-              className="w-full py-2 bg-error hover:bg-[#93000a] text-white rounded text-center text-label-md font-label-md font-semibold transition-colors block"
+              className="w-full py-2 bg-error hover:bg-[#93000a] hover:-translate-y-0.5 active:translate-y-0 text-white rounded text-center text-label-md font-label-md font-semibold transition-all duration-150 block"
             >
               Inspect Case-Alpha Evidence
             </Link>
           </div>
 
           {/* CASE-BETA */}
-          <div className="bg-surface-container-lowest border-2 border-emerald-500/50 rounded p-6 shadow-md space-y-4">
+          <div className="bg-surface-container-lowest border-2 border-emerald-500/50 rounded p-6 shadow-md space-y-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="text-headline-sm font-headline-sm text-emerald-700 font-bold">CASE-BETA (Normal)</h3>
@@ -230,7 +236,7 @@ export default function Comparison() {
 
             <Link
               to={`/cases/${beta.id}`}
-              className="w-full py-2 bg-surface border border-outline-variant hover:bg-surface-container-low text-primary text-center text-label-md font-label-md font-semibold transition-colors block"
+              className="w-full py-2 bg-surface border border-outline-variant hover:bg-surface-container-low hover:-translate-y-0.5 active:translate-y-0 text-primary text-center text-label-md font-label-md font-semibold transition-all duration-150 block"
             >
               Inspect Case-Beta Evidence
             </Link>
@@ -238,7 +244,10 @@ export default function Comparison() {
         </div>
 
         {/* Recharts comparative bar chart */}
-        <div className="bg-surface-container-lowest border border-outline-variant rounded p-6 shadow-sm space-y-4">
+        <div
+          className="bg-surface-container-lowest border border-outline-variant rounded p-6 shadow-sm space-y-4 opacity-0 animate-hero-fade-3"
+          style={{ animationDelay: "260ms" }}
+        >
           <div>
             <h3 className="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
               <Icon name="leaderboard" />

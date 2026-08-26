@@ -102,7 +102,7 @@ export default function PriorityQueue() {
 
       {/* Page Content */}
       <main className="flex-1 p-margin-mobile md:p-margin-desktop">
-        <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4 mb-stack-lg">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4 mb-stack-lg animate-hero-fade-1">
           <div>
             <h2 className="text-headline-lg font-headline-lg text-on-surface">
               Triage Priority Queue
@@ -124,7 +124,10 @@ export default function PriorityQueue() {
         </div>
 
         {/* Filters bar */}
-        <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 mb-gutter flex flex-col md:flex-row items-center justify-between gap-4">
+        <div
+          className="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 mb-gutter flex flex-col md:flex-row items-center justify-between gap-4 opacity-0 animate-hero-fade-2"
+          style={{ animationDelay: "80ms" }}
+        >
           <div className="relative w-full md:w-80 sm:hidden">
             <input
               type="text"
@@ -194,7 +197,10 @@ export default function PriorityQueue() {
         )}
 
         {/* Priority Queue Table */}
-        <div className="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+        <div
+          className="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden opacity-0 animate-hero-fade-3"
+          style={{ animationDelay: "140ms" }}
+        >
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-outline-variant">
               <thead className="bg-surface-container-low">
@@ -223,8 +229,18 @@ export default function PriorityQueue() {
                   </tr>
                 ) : filteredCases.length === 0 ? (
                   <tr>
-                    <td colSpan={10} className="px-6 py-8 text-center text-on-surface-variant">
-                      No cases match the current search and filters.
+                    <td colSpan={10} className="px-6 py-16 text-center text-on-surface-variant">
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+                          <Icon name="search_off" size="24px" className="text-on-surface-variant/60" />
+                        </div>
+                        <p className="font-body-md font-semibold text-on-surface">
+                          No cases match the current filters
+                        </p>
+                        <p className="text-body-sm text-on-surface-variant/80 max-w-sm">
+                          Try clearing the bottleneck, confidence, or search filters above.
+                        </p>
+                      </div>
                     </td>
                   </tr>
                 ) : (
@@ -236,7 +252,7 @@ export default function PriorityQueue() {
                     return (
                       <tr
                         key={c.id}
-                        className={`hover:bg-surface transition-colors ${
+                        className={`hover:bg-surface hover:shadow-[inset_3px_0_0_0_var(--tw-shadow-color)] hover:shadow-gold/50 transition-all duration-150 ${
                           isAlpha ? "bg-rose-50 border-l-4 border-error" : ""
                         } ${isBeta ? "bg-emerald-50 border-l-4 border-emerald-500" : ""}`}
                       >
@@ -298,7 +314,7 @@ export default function PriorityQueue() {
                         <td className="px-6 py-4 whitespace-nowrap text-center">
                           <Link
                             to={`/cases/${c.id}`}
-                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-surface hover:bg-primary hover:text-on-primary border border-outline-variant text-label-md font-label-md transition-all"
+                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-surface hover:bg-primary hover:text-on-primary hover:-translate-y-0.5 active:translate-y-0 border border-outline-variant text-label-md font-label-md transition-all duration-150"
                           >
                             <span>Review</span>
                             <Icon name="arrow_outward" size="14px" />

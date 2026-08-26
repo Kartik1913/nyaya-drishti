@@ -110,7 +110,7 @@ export default function CaseDetail() {
       {/* Canvas */}
       <main className="flex-grow p-margin-mobile md:p-margin-desktop max-w-[1280px] mx-auto w-full space-y-gutter">
         {/* Back navigation & Header */}
-        <div className="border-b border-outline-variant pb-4 flex flex-col md:flex-row justify-between md:items-start gap-4">
+        <div className="border-b border-outline-variant pb-4 flex flex-col md:flex-row justify-between md:items-start gap-4 animate-hero-fade-1">
           <div>
             <Link to="/queue" className="inline-flex items-center gap-1 text-secondary hover:underline text-body-sm font-medium mb-2">
               <Icon name="arrow_back" size="16px" />
@@ -148,7 +148,10 @@ export default function CaseDetail() {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-gutter">
           {/* Left / Center: Detailed Analysis (Col Span 2) */}
           <div className="xl:col-span-2 space-y-gutter">
-            <article className="bg-surface-container-lowest border border-outline-variant rounded flex flex-col shadow-sm">
+            <article
+              className="bg-surface-container-lowest border border-outline-variant rounded flex flex-col shadow-sm opacity-0 animate-hero-fade-2 transition-shadow duration-300 hover:shadow-md"
+              style={{ animationDelay: "80ms" }}
+            >
               <div className="p-6 border-b border-outline-variant flex justify-between items-start bg-surface-bright rounded-t">
                 <div>
                   <h2 className="text-headline-sm font-headline-sm text-primary mb-1">
@@ -309,7 +312,7 @@ export default function CaseDetail() {
                     type="button"
                     onClick={() => setFlagged(true)}
                     disabled={flagged}
-                    className="px-6 py-2 bg-error text-white text-body-sm font-body-sm font-medium rounded hover:bg-[#93000a] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-error disabled:opacity-60 disabled:cursor-default"
+                    className="px-6 py-2 bg-error text-white text-body-sm font-body-sm font-medium rounded hover:bg-[#93000a] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-error disabled:opacity-60 disabled:cursor-default disabled:hover:translate-y-0"
                   >
                     {flagged ? "Flagged for Lok Adalat" : "Flag for Lok Adalat"}
                   </button>
@@ -318,7 +321,10 @@ export default function CaseDetail() {
             </article>
 
             {/* Event Timeline */}
-            <div className="bg-surface-container-lowest border border-outline-variant rounded p-6 shadow-sm">
+            <div
+              className="bg-surface-container-lowest border border-outline-variant rounded p-6 shadow-sm opacity-0 animate-hero-fade-3"
+              style={{ animationDelay: "160ms" }}
+            >
               <h3 className="text-headline-sm font-headline-sm text-primary mb-6 border-b border-outline-variant pb-3 flex items-center gap-2">
                 <Icon name="history" />
                 <span>Event Timeline Provenance</span>
@@ -343,7 +349,7 @@ export default function CaseDetail() {
                       </div>
 
                       {/* Content block */}
-                      <div className="flex-1 bg-surface-bright border border-outline-variant rounded p-4">
+                      <div className="flex-1 bg-surface-bright border border-outline-variant rounded p-4 transition-all duration-150 hover:border-gold/40 hover:shadow-sm">
                         <div className="flex items-center justify-between gap-4 mb-1">
                           <span className="text-body-sm font-body-sm text-primary font-bold">
                             {event.event_type.replace(/_/g, " ")}
@@ -367,7 +373,10 @@ export default function CaseDetail() {
 
           {/* Right Sidebar: Cohort Context & Metadata (Col Span 1) */}
           <div className="xl:col-span-1 space-y-gutter">
-            <div className="bg-surface-container-lowest border border-outline-variant rounded p-6 shadow-sm space-y-6">
+            <div
+              className="bg-surface-container-lowest border border-outline-variant rounded p-6 shadow-sm space-y-6 opacity-0 animate-hero-fade-2 transition-shadow duration-300 hover:shadow-md"
+              style={{ animationDelay: "120ms" }}
+            >
               <h3 className="text-headline-sm font-headline-sm text-primary border-b border-outline-variant pb-3 flex items-center gap-2">
                 <Icon name="groups" />
                 <span>Cohort Benchmark</span>

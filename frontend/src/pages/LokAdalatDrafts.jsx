@@ -31,7 +31,7 @@ export default function LokAdalatDrafts() {
       <main className="flex-1 p-margin-mobile md:p-margin-desktop">
         <div className="max-w-[1280px] mx-auto space-y-stack-lg">
           {/* Page Header */}
-          <div>
+          <div className="animate-hero-fade-1">
             <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface mb-stack-md">
               Lok Adalat Referral Candidates
             </h2>
@@ -45,11 +45,15 @@ export default function LokAdalatDrafts() {
           </div>
 
           {/* Summary Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {lokAdalatSummary.map((m) => (
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 opacity-0 animate-hero-fade-2"
+            style={{ animationDelay: "80ms" }}
+          >
+            {lokAdalatSummary.map((m, i) => (
               <div
                 key={m.label}
-                className="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT p-6 flex flex-col justify-between"
+                style={{ animationDelay: `${80 + i * 100}ms` }}
+                className="bg-surface-container-lowest border border-surface-variant border-t-2 border-t-gold/60 rounded-DEFAULT p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
                 <span className="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-2">
                   {m.label}
@@ -68,7 +72,10 @@ export default function LokAdalatDrafts() {
           </div>
 
           {/* Review Queue */}
-          <div className="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT overflow-hidden">
+          <div
+            className="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT overflow-hidden opacity-0 animate-hero-fade-3"
+            style={{ animationDelay: "180ms" }}
+          >
             <div className="p-4 border-b border-surface-variant bg-surface-container-low flex justify-between items-center">
               <h3 className="text-headline-sm font-headline-sm text-on-surface">
                 Review Queue
@@ -109,7 +116,7 @@ export default function LokAdalatDrafts() {
                     return (
                       <tr
                         key={c.cnr}
-                        className={`hover:bg-surface-container-lowest transition-colors ${
+                        className={`hover:bg-gold/5 transition-colors duration-150 ${
                           i % 2 === 1 ? "bg-surface-container-low" : ""
                         }`}
                       >
@@ -143,14 +150,14 @@ export default function LokAdalatDrafts() {
                               <button
                                 type="button"
                                 onClick={() => decide(c.cnr, "rejected")}
-                                className="px-3 py-1.5 border border-outline-variant text-primary bg-surface-container-lowest hover:bg-surface-container-highest rounded-DEFAULT text-label-md font-label-md transition-colors"
+                                className="px-3 py-1.5 border border-outline-variant text-primary bg-surface-container-lowest hover:bg-surface-container-highest active:scale-[0.97] rounded-DEFAULT text-label-md font-label-md transition-all duration-150"
                               >
                                 Reject
                               </button>
                               <button
                                 type="button"
                                 onClick={() => decide(c.cnr, "approved")}
-                                className="px-3 py-1.5 bg-primary text-on-primary border border-primary hover:bg-tertiary rounded-DEFAULT text-label-md font-label-md transition-colors"
+                                className="px-3 py-1.5 bg-primary text-on-primary border border-primary hover:bg-tertiary hover:-translate-y-0.5 active:translate-y-0 rounded-DEFAULT text-label-md font-label-md transition-all duration-150"
                               >
                                 Approve Notice
                               </button>

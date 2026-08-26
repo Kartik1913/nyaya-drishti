@@ -12,7 +12,7 @@ import {
   CheckCircle2, 
   AlertCircle 
 } from 'lucide-react';
-import logo from '../assets/logo.jpg';
+import Logo from './Logo.jsx';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -63,8 +63,8 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-                <img src={logo} alt="Logo" className="w-full h-full object-cover" />
+              <div className="w-9 h-9 rounded-lg bg-slate-800 overflow-hidden flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+                <Logo className="w-7 h-7" />
               </div>
               <div>
                 <span className="text-lg font-bold tracking-tight text-slate-100 flex items-center gap-1.5">
