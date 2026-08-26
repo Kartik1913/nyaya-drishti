@@ -78,6 +78,15 @@ function KpiCard({ label, value, tone, delta, deltaTone, hint, source, delay = 0
     : "before:bg-gradient-to-r before:from-gold before:to-gold/40";
   const valueTone = isAlert ? "text-error" : "text-navy";
 
+  // Card width is a fraction of the viewport, not equal to it, so a
+  // vw-based clamp() barely shrinks at normal desktop widths — a long
+  // value (e.g. "4,43,00,000+") stays pinned near the max size and still
+  // gets clipped by the card's overflow-hidden. Size deterministically off
+  // the actual digit count instead, so it's correct at any viewport width.
+  const valueLength = String(value).length;
+  const valueFontSize =
+    valueLength <= 6 ? 38 : valueLength <= 9 ? 30 : valueLength <= 12 ? 24 : 19;
+
   return (
     <div
       style={{ animationDelay: `${delay}ms` }}
@@ -97,10 +106,15 @@ function KpiCard({ label, value, tone, delta, deltaTone, hint, source, delay = 0
         )}
       </div>
       <div className="flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
-        <AnimatedNumber
-          value={value}
-          className={`font-evidence text-[clamp(20px,5vw,38px)] leading-none font-semibold tabular-nums min-w-0 flex-1 basis-auto ${valueTone}`}
-        />
+        <span
+          style={{ fontSize: `${valueFontSize}px` }}
+          className="min-w-0 flex-1 basis-auto"
+        >
+          <AnimatedNumber
+            value={value}
+            className={`font-evidence leading-none font-semibold tabular-nums ${valueTone}`}
+          />
+        </span>
         {delta && (
           <div
             className={`font-evidence flex items-center gap-1 text-[11px] font-semibold tabular-nums shrink-0 pb-1 ${
@@ -459,7 +473,7 @@ export default function Dashboard() {
                   cy="50"
                   r="44"
                   fill="transparent"
-                  stroke="#5FA8A2"
+                  stroke="#0E3E3B"
                   strokeWidth="10"
                 />
                 <circle

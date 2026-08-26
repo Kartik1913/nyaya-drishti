@@ -7,6 +7,7 @@ import AiNotice from "../components/AiNotice.jsx";
 import Reveal from "../components/Reveal.jsx";
 import { likelihoodStyles } from "../data/mockData.js";
 import { getCasesApi } from "../api/endpoints.js";
+import { loadStoredDecisions, persistDecisions } from "../data/lokAdalatDecisions.js";
 
 /**
  * Lok Adalat Referral Candidates.
@@ -24,17 +25,6 @@ function daysAgo(isoDate) {
   if (!isoDate) return null;
   const diff = Date.now() - new Date(isoDate).getTime();
   return Math.max(0, Math.floor(diff / 86400000));
-}
-
-const DECISIONS_STORAGE_KEY = "lokAdalatDecisions";
-
-function loadStoredDecisions() {
-  try {
-    const raw = localStorage.getItem(DECISIONS_STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch {
-    return {};
-  }
 }
 
 export default function LokAdalatDrafts() {
@@ -63,25 +53,8 @@ export default function LokAdalatDrafts() {
     fetchCases();
   }, []);
 
-  const persistDecisions = (next) => {
-    try {
-      localStorage.setItem(DECISIONS_STORAGE_KEY, JSON.stringify(next));
-    } catch {
-      // Storage unavailable (private browsing, quota) — decision still
-      // applies for this session, just won't survive a refresh.
-    }
-    return next;
-  };
-
   const decide = (cnr, status) =>
     setDecisions((prev) => persistDecisions({ ...prev, [cnr]: status }));
-
-  const revertDecision = (cnr) =>
-    setDecisions((prev) => {
-      const next = { ...prev };
-      delete next[cnr];
-      return persistDecisions(next);
-    });
 
   // Rank by settlement_score — highest-likelihood candidates first.
   const ranked = useMemo(
@@ -100,14 +73,6 @@ export default function LokAdalatDrafts() {
   const pagedCandidates = visibleCandidates.slice(
     (page - 1) * PAGE_SIZE,
     page * PAGE_SIZE
-  );
-
-  const decidedCases = useMemo(
-    () =>
-      ranked
-        .filter((c) => decisions[c.synthetic_cnr])
-        .map((c) => ({ ...c, decision: decisions[c.synthetic_cnr] })),
-    [ranked, decisions]
   );
 
   // Real, live summary metrics — no hand-typed numbers.
@@ -396,99 +361,6 @@ export default function LokAdalatDrafts() {
                       <Icon name="chevron_right" size="18px" />
                     </button>
                   </nav>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Decision History — every case already Approved or Rejected,
-              read from the same locally-persisted decisions as the actions
-              above. */}
-          <div>
-            <div className="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT overflow-hidden">
-              <div className="p-4 border-b border-surface-variant bg-surface-container-low">
-                <h3 className="text-headline-sm font-headline-sm text-on-surface">
-                  Decision History
-                  <span className="ml-2 font-evidence text-body-sm text-on-surface-variant tabular-nums">
-                    ({decidedCases.length})
-                  </span>
-                </h3>
-              </div>
-
-              {decidedCases.length === 0 ? (
-                <div className="px-6 py-10 text-center">
-                  <p className="font-body-md text-on-surface-variant">
-                    No decisions recorded yet — approved or rejected notices
-                    will appear here.
-                  </p>
-                </div>
-              ) : (
-                <div className="overflow-x-auto w-full">
-                  <table className="w-full text-left border-collapse min-w-[720px]">
-                    <thead>
-                      <tr className="bg-surface-container-low text-label-md font-label-md text-on-surface-variant uppercase tracking-wider border-b border-surface-variant">
-                        <th className="px-6 py-4 font-semibold whitespace-nowrap">
-                          CNR Number
-                        </th>
-                        <th className="px-6 py-4 font-semibold whitespace-nowrap">
-                          Current Stage
-                        </th>
-                        <th className="px-6 py-4 font-semibold whitespace-nowrap">
-                          Settlement Likelihood
-                        </th>
-                        <th className="px-6 py-4 font-semibold whitespace-nowrap">
-                          Decision
-                        </th>
-                        <th className="px-6 py-4 font-semibold text-right whitespace-nowrap">
-                          Action
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-body-md font-body-md divide-y divide-surface-variant">
-                      {decidedCases.map((c, i) => (
-                        <tr
-                          key={c.id}
-                          className={`hover:bg-gold/5 transition-colors duration-150 ${
-                            i % 2 === 1 ? "bg-surface-container-low" : ""
-                          }`}
-                        >
-                          <td className="px-6 py-4 font-evidence font-medium text-primary">
-                            <Link to={`/cases/${c.id}`} className="hover:underline">
-                              {c.synthetic_cnr}
-                            </Link>
-                          </td>
-                          <td className="px-6 py-4">{c.current_stage}</td>
-                          <td className="px-6 py-4">
-                            <Badge className={likelihoodStyles[c.settlement_likelihood]}>
-                              <span className="font-evidence">
-                                {c.settlement_likelihood} - {c.settlement_score?.toFixed(0)}%
-                              </span>
-                            </Badge>
-                          </td>
-                          <td className="px-6 py-4">
-                            <span
-                              className={`text-label-md font-label-md ${
-                                c.decision === "approved"
-                                  ? "text-teal-dark"
-                                  : "text-on-surface-variant"
-                              }`}
-                            >
-                              {c.decision === "approved" ? "Notice Approved" : "Rejected"}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 text-right">
-                            <button
-                              type="button"
-                              onClick={() => revertDecision(c.synthetic_cnr)}
-                              className="px-3 py-1.5 border border-outline-variant text-primary bg-surface-container-lowest hover:bg-surface-container-highest active:scale-[0.97] rounded-DEFAULT text-label-md font-label-md transition-all duration-150"
-                            >
-                              Move Back to Review
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
                 </div>
               )}
             </div>

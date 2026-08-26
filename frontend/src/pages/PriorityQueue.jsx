@@ -62,6 +62,7 @@ export default function PriorityQueue() {
       const filters = {};
       if (bottleneckFilter) filters.bottleneck_filter = bottleneckFilter;
       if (confidenceFilter) filters.confidence_filter = confidenceFilter;
+      if (lokAdalatOnly) filters.lok_adalat_only = true;
 
       const data = await getPriorityQueueApi(page, limit, filters);
       setCases(data.cases || []);
@@ -77,7 +78,7 @@ export default function PriorityQueue() {
   useEffect(() => {
     fetchQueue();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit, bottleneckFilter, confidenceFilter]);
+  }, [page, limit, bottleneckFilter, confidenceFilter, lokAdalatOnly]);
 
   const totalPages = Math.ceil(total / limit) || 1;
 
@@ -93,16 +94,11 @@ export default function PriorityQueue() {
           c.case_type?.toLowerCase().includes(query);
         if (!matchesSearch) return false;
       }
-      // Lok Adalat (Compoundable Acts) — eligibility is the same computed
-      // settlement_likelihood used on the Lok Adalat Drafts page, not a
-      // case_type guess (every case in this dataset shares one case_type,
-      // so a case_type-based filter can never match anything).
-      if (lokAdalatOnly && c.settlement_likelihood === "LOW") {
-        return false;
-      }
+      // Lok Adalat eligibility is now filtered server-side (see fetchQueue)
+      // so `total`/pagination stay accurate — no client-side re-filter here.
       return true;
     });
-  }, [cases, searchQuery, lokAdalatOnly]);
+  }, [cases, searchQuery]);
 
   return (
     <>
@@ -155,7 +151,10 @@ export default function PriorityQueue() {
             </span>
             <Switch
               checked={lokAdalatOnly}
-              onChange={setLokAdalatOnly}
+              onChange={(v) => {
+                setLokAdalatOnly(v);
+                setPage(1);
+              }}
               label="Filter to Lok Adalat eligible cases"
             />
           </div>
