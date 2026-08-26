@@ -2,9 +2,15 @@ export const primaryNavItems = [
   { label: "Dashboard", icon: "dashboard", path: "/" },
   { label: "Priority Queue", icon: "list_alt", path: "/queue" },
   { label: "Demo Comparison", icon: "compare_arrows", path: "/comparison" },
-  { label: "Lok Adalat Drafts", icon: "gavel", path: "/lok-adalat-drafts" },
-  { label: "Approved", icon: "check_circle", path: "/lok-adalat-approved" },
-  { label: "Rejected", icon: "cancel", path: "/lok-adalat-rejected" },
+  {
+    label: "Lok Adalat Drafts",
+    icon: "gavel",
+    path: "/lok-adalat-drafts",
+    children: [
+      { label: "Approved", icon: "check_circle", path: "/lok-adalat-approved" },
+      { label: "Rejected", icon: "cancel", path: "/lok-adalat-rejected" },
+    ],
+  },
 ];
 
 // "Settings" was removed rather than stubbed: it pointed at "#", did nothing,

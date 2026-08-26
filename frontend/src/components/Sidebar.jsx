@@ -1,4 +1,4 @@
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import Icon from "./Icon.jsx";
 import Logo from "./Logo.jsx";
 import SupportModal from "./SupportModal.jsx";
@@ -15,20 +15,94 @@ const linkActive =
   "text-navy font-bold bg-gold/10 border-l-4 border-gold translate-x-0";
 
 function NavItem({ item }) {
+  const location = useLocation();
+  const childActive = item.children?.some((c) => location.pathname === c.path);
+  const [expanded, setExpanded] = useState(!!childActive);
+
+  // Keep the group open if the user lands directly on a child route (e.g.
+  // a refresh or a bookmark), even if they'd previously collapsed it.
+  if (childActive && !expanded) setExpanded(true);
+
+  if (!item.children) {
+    return (
+      <NavLink
+        to={item.path}
+        className={({ isActive }) =>
+          `${linkBase} ${isActive ? linkActive : linkInactive}`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            <Icon name={item.icon} filled={isActive} />
+            <span>{item.label}</span>
+          </>
+        )}
+      </NavLink>
+    );
+  }
+
   return (
-    <NavLink
-      to={item.path}
-      className={({ isActive }) =>
-        `${linkBase} ${isActive ? linkActive : linkInactive}`
-      }
-    >
-      {({ isActive }) => (
-        <>
-          <Icon name={item.icon} filled={isActive} />
-          <span>{item.label}</span>
-        </>
-      )}
-    </NavLink>
+    <div>
+      <div
+        className={`${linkBase} ${
+          childActive ? linkInactive : ""
+        } pr-2 justify-between`}
+      >
+        <NavLink
+          to={item.path}
+          className={({ isActive }) =>
+            `flex items-center gap-3 min-w-0 flex-1 ${
+              isActive ? "text-navy font-bold" : linkInactive
+            }`
+          }
+        >
+          {({ isActive }) => (
+            <>
+              <Icon name={item.icon} filled={isActive} />
+              <span className="truncate">{item.label}</span>
+            </>
+          )}
+        </NavLink>
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-label={expanded ? `Collapse ${item.label}` : `Expand ${item.label}`}
+          aria-expanded={expanded}
+          className="shrink-0 w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-highest transition-colors cursor-pointer"
+        >
+          <Icon
+            name="chevron_right"
+            size="18px"
+            className={`transition-transform duration-200 ${expanded ? "rotate-90" : ""}`}
+          />
+        </button>
+      </div>
+
+      <div
+        className={`overflow-hidden transition-[max-height,opacity] duration-200 ease-out ${
+          expanded ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="flex flex-col gap-1 pt-1 pl-4">
+          {item.children.map((child) => (
+            <NavLink
+              key={child.path}
+              to={child.path}
+              className={({ isActive }) =>
+                `${linkBase} text-body-sm ${isActive ? linkActive : linkInactive}`
+              }
+            >
+              {({ isActive }) => (
+                <>
+                  <Icon name={child.icon} filled={isActive} size="18px" />
+                  <span>{child.label}</span>
+                </>
+              )}
+            </NavLink>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
