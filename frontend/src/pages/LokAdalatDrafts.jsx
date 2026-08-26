@@ -1,30 +1,97 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 import Icon from "../components/Icon.jsx";
 import Badge from "../components/Badge.jsx";
 import AppFooter from "../components/AppFooter.jsx";
 import AiNotice from "../components/AiNotice.jsx";
 import Reveal from "../components/Reveal.jsx";
-import {
-  lokAdalatSummary,
-  lokAdalatCandidates,
-  likelihoodStyles,
-} from "../data/mockData.js";
+import { likelihoodStyles } from "../data/mockData.js";
+import { getCasesApi } from "../api/endpoints.js";
 
-const valueSizeClass = {
-  display: "font-evidence text-display-lg text-primary tabular-nums",
-  headline: "font-evidence text-headline-md text-primary mt-auto tabular-nums",
-};
+/**
+ * Lok Adalat Referral Candidates.
+ *
+ * Previously rendered five hardcoded demo rows with hand-typed settlement
+ * percentages — no computation behind them at all. Now reads every one of
+ * your 1,000 real (synthetic) cases from the backend and ranks by
+ * `settlement_score`, which is computed deterministically in
+ * backend/triage/settlement.py from case stage, age, and adjournment
+ * responsiveness — the same "no black box" philosophy as the main triage
+ * score, not an ML model.
+ */
+
+function daysAgo(isoDate) {
+  if (!isoDate) return null;
+  const diff = Date.now() - new Date(isoDate).getTime();
+  return Math.max(0, Math.floor(diff / 86400000));
+}
 
 export default function LokAdalatDrafts() {
+  const [cases, setCases] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [decisions, setDecisions] = useState({});
   const [likelihoodFilter, setLikelihoodFilter] = useState("");
+
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getCasesApi(1000);
+        setCases(data || []);
+      } catch (err) {
+        console.error("Failed to load Lok Adalat candidates:", err);
+        setError("Unable to load candidates. Please check connection to the backend.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCases();
+  }, []);
 
   const decide = (cnr, status) =>
     setDecisions((prev) => ({ ...prev, [cnr]: status }));
 
+  // Rank by settlement_score — highest-likelihood candidates first.
+  const ranked = useMemo(
+    () =>
+      [...cases]
+        .filter((c) => c.settlement_score != null)
+        .sort((a, b) => (b.settlement_score ?? 0) - (a.settlement_score ?? 0)),
+    [cases]
+  );
+
   const visibleCandidates = likelihoodFilter
-    ? lokAdalatCandidates.filter((c) => c.likelihood === likelihoodFilter)
-    : lokAdalatCandidates;
+    ? ranked.filter((c) => c.settlement_likelihood === likelihoodFilter)
+    : ranked;
+
+  // Real, live summary metrics — no hand-typed numbers.
+  const highCount = ranked.filter((c) => c.settlement_likelihood === "HIGH").length;
+  const candidateCount = ranked.filter((c) => c.settlement_likelihood !== "LOW").length;
+  const avgScore =
+    ranked.length > 0
+      ? (ranked.reduce((s, c) => s + (c.settlement_score ?? 0), 0) / ranked.length).toFixed(1)
+      : "0.0";
+
+  const summaryMetrics = [
+    { label: "Eligible Candidates", value: candidateCount, hint: "High or moderate settlement likelihood" },
+    { label: "High-Likelihood Cases", value: highCount, hint: "settlement_score ≥ 65" },
+    { label: "Avg Settlement Score", value: `${avgScore}%`, hint: "across all scored cases" },
+  ];
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20 text-on-surface-variant">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm font-medium animate-pulse">
+            Scoring settlement candidates…
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -56,22 +123,26 @@ export default function LokAdalatDrafts() {
             </div>
           </Reveal>
 
-          {/* Summary Metrics */}
+          {error && (
+            <div className="p-4 bg-error/5 border border-error/20 rounded text-error text-body-sm flex items-center gap-3">
+              <Icon name="error" />
+              <span>{error}</span>
+            </div>
+          )}
+
+          {/* Summary Metrics — computed live from the same data as the table below */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {lokAdalatSummary.map((m, i) => (
+            {summaryMetrics.map((m, i) => (
               <Reveal key={m.label} variant="rise" delay={80 + i * 100}>
                 <div className="bg-surface-container-lowest border border-surface-variant border-t-2 border-t-gold/60 rounded-DEFAULT p-6 flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                   <span className="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-2">
                     {m.label}
                   </span>
-                  <span
-                    className={
-                      m.tone === "secondary"
-                        ? "font-evidence text-headline-md text-secondary mt-auto tabular-nums"
-                        : valueSizeClass[m.size]
-                    }
-                  >
+                  <span className="font-evidence text-display-lg text-primary tabular-nums mt-auto">
                     {m.value}
+                  </span>
+                  <span className="text-[11px] text-on-surface-variant/70 mt-2">
+                    {m.hint}
                   </span>
                 </div>
               </Reveal>
@@ -88,8 +159,6 @@ export default function LokAdalatDrafts() {
                     ({visibleCandidates.length})
                   </span>
                 </h3>
-                {/* Real settlement-likelihood filter. This control previously
-                    rendered as a "Filter" button with no handler at all. */}
                 <div className="flex items-center gap-2">
                   <Icon
                     name="filter_list"
@@ -110,9 +179,9 @@ export default function LokAdalatDrafts() {
                       className="appearance-none bg-surface-container-lowest border border-outline-variant rounded-four pl-3 pr-8 py-1.5 text-body-sm font-body-sm outline-none focus:border-gold focus:ring-1 focus:ring-gold/40 transition-colors cursor-pointer hover:border-gold/40"
                     >
                       <option value="">All candidates</option>
-                      <option value="High">High</option>
-                      <option value="Moderate">Moderate</option>
-                      <option value="Low">Low</option>
+                      <option value="HIGH">High</option>
+                      <option value="MODERATE">Moderate</option>
+                      <option value="LOW">Low</option>
                     </select>
                     <Icon
                       name="expand_more"
@@ -124,17 +193,17 @@ export default function LokAdalatDrafts() {
               </div>
 
               <div className="overflow-x-auto w-full">
-                <table className="w-full text-left border-collapse min-w-[800px]">
+                <table className="w-full text-left border-collapse min-w-[820px]">
                   <thead>
                     <tr className="bg-surface-container-low text-label-md font-label-md text-on-surface-variant uppercase tracking-wider border-b border-surface-variant">
                       <th className="px-6 py-4 font-semibold whitespace-nowrap">
                         CNR Number
                       </th>
                       <th className="px-6 py-4 font-semibold whitespace-nowrap">
-                        Case Category
+                        Current Stage
                       </th>
                       <th className="px-6 py-4 font-semibold whitespace-nowrap">
-                        Age
+                        Case Age
                       </th>
                       <th className="px-6 py-4 font-semibold whitespace-nowrap">
                         Settlement Likelihood
@@ -170,26 +239,29 @@ export default function LokAdalatDrafts() {
                         </td>
                       </tr>
                     )}
-                    {visibleCandidates.map((c, i) => {
-                      const decision = decisions[c.cnr];
+                    {visibleCandidates.slice(0, 100).map((c, i) => {
+                      const decision = decisions[c.synthetic_cnr];
+                      const age = daysAgo(c.filing_date);
                       return (
                         <tr
-                          key={c.cnr}
+                          key={c.id}
                           className={`hover:bg-gold/5 transition-colors duration-150 ${
                             i % 2 === 1 ? "bg-surface-container-low" : ""
                           }`}
                         >
                           <td className="px-6 py-4 font-evidence font-medium text-primary">
-                            {c.cnr}
+                            <Link to={`/cases/${c.id}`} className="hover:underline">
+                              {c.synthetic_cnr}
+                            </Link>
                           </td>
-                          <td className="px-6 py-4">{c.category}</td>
+                          <td className="px-6 py-4">{c.current_stage}</td>
                           <td className="px-6 py-4 font-evidence text-on-surface-variant tabular-nums">
-                            {c.age}
+                            {age != null ? `${age.toLocaleString("en-IN")} days` : "—"}
                           </td>
                           <td className="px-6 py-4">
-                            <Badge className={likelihoodStyles[c.likelihood]}>
+                            <Badge className={likelihoodStyles[c.settlement_likelihood]}>
                               <span className="font-evidence">
-                                {c.likelihood} - {c.likelihoodPct}%
+                                {c.settlement_likelihood} - {c.settlement_score?.toFixed(0)}%
                               </span>
                             </Badge>
                           </td>
@@ -210,14 +282,14 @@ export default function LokAdalatDrafts() {
                               <div className="flex justify-end gap-2">
                                 <button
                                   type="button"
-                                  onClick={() => decide(c.cnr, "rejected")}
+                                  onClick={() => decide(c.synthetic_cnr, "rejected")}
                                   className="px-3 py-1.5 border border-outline-variant text-primary bg-surface-container-lowest hover:bg-surface-container-highest active:scale-[0.97] rounded-DEFAULT text-label-md font-label-md transition-all duration-150"
                                 >
                                   Reject
                                 </button>
                                 <button
                                   type="button"
-                                  onClick={() => decide(c.cnr, "approved")}
+                                  onClick={() => decide(c.synthetic_cnr, "approved")}
                                   className="px-3 py-1.5 bg-gradient-to-r from-gold to-gold-dark text-white border border-gold-dark hover:-translate-y-0.5 active:translate-y-0 rounded-DEFAULT text-label-md font-label-md transition-all duration-150"
                                 >
                                   Approve Notice
@@ -231,6 +303,11 @@ export default function LokAdalatDrafts() {
                   </tbody>
                 </table>
               </div>
+              {visibleCandidates.length > 100 && (
+                <p className="px-6 py-3 text-[11px] text-on-surface-variant border-t border-surface-variant">
+                  Showing the top 100 of {visibleCandidates.length} ranked candidates.
+                </p>
+              )}
             </div>
           </Reveal>
         </div>

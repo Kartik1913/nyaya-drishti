@@ -85,3 +85,53 @@ def generate_explanation(evidence: Dict[str, Any]) -> str:
 
     return base_text
 
+
+def generate_case_summary(case, evidence: Dict[str, Any]) -> str:
+    """
+    A standalone narrative case summary — distinct from explanation_text, which
+    justifies the arithmetic behind the score. This answers a different
+    question: "what is this case, in plain terms, without reading a table."
+
+    Built from the same evidence bundle already produced for Layer 5/6, so it
+    costs nothing extra to compute and stays consistent with the numbers shown
+    everywhere else for the same case.
+    """
+    filing_year = case.filing_date.year
+    stage = evidence["current_stage"]
+    days_in_stage = evidence["days_in_current_stage"]
+    ratio = evidence.get("stage_deviation_ratio")
+    bottleneck = evidence["bottleneck_type"]
+    confidence = evidence["triage_confidence"]
+
+    filed_clause = f"Filed in {filing_year}, this case is currently in the '{stage}' stage"
+
+    if ratio is not None:
+        if ratio >= 1.5:
+            pace_clause = f", {days_in_stage} days in - {ratio:.1f}x longer than similar cases typically spend at this point"
+        elif ratio <= 0.7:
+            pace_clause = f", {days_in_stage} days in - moving faster than similar cases typically do"
+        else:
+            pace_clause = f", {days_in_stage} days in - in line with how long similar cases typically take"
+    else:
+        pace_clause = f", {days_in_stage} days in"
+
+    if bottleneck == "UNKNOWN":
+        outcome_clause = "No procedural bottleneck has been detected; the case is progressing normally"
+    else:
+        bottleneck_label = {
+            "SUMMONS_DELAY": "an unresolved summons",
+            "WITNESS_DELAY": "a stalled witness examination",
+            "REPEATED_ADJOURNMENT": "a pattern of repeated adjournments",
+            "JUDGE_CHANGE": "a recent bench change",
+            "PROCEDURAL_INACTIVITY": "extended procedural inactivity",
+        }.get(bottleneck, "a procedural bottleneck")
+        outcome_clause = f"The registry engine has flagged {bottleneck_label} as the likely cause of delay"
+
+    confidence_clause = (
+        " (based on a small comparison group, so this read should be treated as indicative rather than definitive)"
+        if confidence == "LOW"
+        else ""
+    )
+
+    return f"{filed_clause}{pace_clause}. {outcome_clause}{confidence_clause}."
+

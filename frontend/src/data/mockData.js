@@ -1,70 +1,20 @@
-// Static content for the public landing page and the Lok Adalat referral
-// screen. Everything else in the app — dashboard metrics, the priority queue,
-// case detail, and the demo comparison — reads from the live backend API.
-//
-// Dead fixtures for those API-backed screens (dashboardKpis, priorityQueueCases,
-// bottleneckSignatures, districtHealth, stallSignatureStyles, confidenceStyles)
-// and for the removed CaseInspector page (caseInspectorCases) were deleted:
-// they were stale duplicates of real data and a source of drift.
-export const lokAdalatSummary = [
-  { label: "Total Eligible Candidates", value: "340", size: "display" },
-  { label: "Top Category", value: "Sec 138 NI Act", size: "headline" },
-  {
-    label: "Est. Bench Time Saved",
-    value: "~1,200 Hours",
-    size: "headline",
-    tone: "secondary",
-  },
-];
+// Static content for the public landing page. Every data-bearing screen
+// (dashboard, priority queue, case detail, comparison, and Lok Adalat
+// referral) reads live from the backend API — nothing case-specific is
+// hardcoded here.
 
-// Settlement likelihood, on the brand's three-tier scale. Note the polarity is
-// inverted vs. triage severity: here a HIGH value is the good outcome (this
-// case can likely be settled out of court), so high = teal. Low likelihood is
-// simply "not a candidate" — muted neutral, not an error, since there is
-// nothing wrong with a case that isn't Lok Adalat material.
+// Settlement likelihood styling, keyed to the exact enum the backend returns
+// (Case.settlement_likelihood: 'HIGH' | 'MODERATE' | 'LOW' — see
+// backend/triage/settlement.py). Polarity is inverted vs. triage severity:
+// here HIGH is the good outcome (this case can likely be settled out of
+// court), so HIGH = teal. LOW simply means "not a strong candidate" — muted
+// neutral, not an error, since there's nothing wrong with a case that isn't
+// Lok Adalat material.
 export const likelihoodStyles = {
-  High: "bg-teal/10 text-teal-dark border border-teal/25",
-  Moderate: "bg-gold/15 text-gold-dark border border-gold/35",
-  Low: "bg-surface-container-high text-on-surface-variant border border-outline-variant",
+  HIGH: "bg-teal/10 text-teal-dark border border-teal/25",
+  MODERATE: "bg-gold/15 text-gold-dark border border-gold/35",
+  LOW: "bg-surface-container-high text-on-surface-variant border border-outline-variant",
 };
-
-export const lokAdalatCandidates = [
-  {
-    cnr: "MHNG01-008234-2021",
-    category: "Sec 138 NI Act",
-    age: "420 days",
-    likelihood: "High",
-    likelihoodPct: 88,
-  },
-  {
-    cnr: "DLND02-011456-2022",
-    category: "MACT",
-    age: "285 days",
-    likelihood: "Moderate",
-    likelihoodPct: 62,
-  },
-  {
-    cnr: "UPKJ05-004321-2023",
-    category: "Sec 138 NI Act",
-    age: "115 days",
-    likelihood: "High",
-    likelihoodPct: 91,
-  },
-  {
-    cnr: "RJJP01-009876-2020",
-    category: "MACT",
-    age: "850 days",
-    likelihood: "Low",
-    likelihoodPct: 25,
-  },
-  {
-    cnr: "KAJP01-001234-2023",
-    category: "Sec 138 NI Act",
-    age: "80 days",
-    likelihood: "High",
-    likelihoodPct: 85,
-  },
-];
 
 // --- Landing page content ---
 

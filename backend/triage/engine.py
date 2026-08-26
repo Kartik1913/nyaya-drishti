@@ -24,7 +24,8 @@ from triage.stall_detector import detect_stall_metrics
 from triage.bottleneck import classify_bottleneck
 from triage.scorer import compute_triage_score
 from triage.evidence import build_evidence_bundle
-from triage.templates import generate_explanation
+from triage.templates import generate_explanation, generate_case_summary
+from triage.settlement import compute_settlement_score
 from ml.service import predict_stall_risk
 
 
@@ -67,6 +68,17 @@ def run_triage_for_case(
 
     # Layer 6: Template Explanation
     explanation = generate_explanation(evidence_bundle)
+    case_summary = generate_case_summary(case, evidence_bundle)
+
+    # Settlement Score — independent signal, not part of the 6-layer priority
+    # pipeline's weights, computed alongside it since it shares the same
+    # stall_metrics input.
+    settlement_score, settlement_likelihood, settlement_components = compute_settlement_score(
+        case, stall_metrics
+    )
+    evidence_bundle["settlement_score"] = settlement_score
+    evidence_bundle["settlement_likelihood"] = settlement_likelihood
+    evidence_bundle["settlement_components"] = settlement_components
 
     # Update Case fields
     case.triage_score = triage_score
@@ -89,6 +101,9 @@ def run_triage_for_case(
     case.cohort_percentile = round(age_percentile, 1) if age_percentile is not None else None
     case.evidence_json = json.dumps(evidence_bundle, ensure_ascii=False)
     case.explanation_text = explanation
+    case.case_summary = case_summary
+    case.settlement_score = settlement_score
+    case.settlement_likelihood = settlement_likelihood
 
     return evidence_bundle
 

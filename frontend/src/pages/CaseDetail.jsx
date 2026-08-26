@@ -194,6 +194,26 @@ export default function CaseDetail() {
           </div>
         </Reveal>
 
+        {/* Case Summary — plain-language read of this case, distinct from the
+            arithmetic-justification explanation_text shown further down. */}
+        {caseData.case_summary && (
+          <Reveal variant="up" delay={40}>
+            <div className="relative bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm overflow-hidden">
+              <span
+                aria-hidden="true"
+                className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/50 to-transparent"
+              />
+              <h2 className="font-label-md text-label-md uppercase tracking-[0.2em] text-gold-dark mb-2.5 flex items-center gap-2">
+                <Icon name="summarize" size="16px" />
+                Case Summary
+              </h2>
+              <p className="font-body-lg text-body-lg text-on-surface leading-relaxed">
+                {caseData.case_summary}
+              </p>
+            </div>
+          </Reveal>
+        )}
+
         {/* Dynamic Stalled / Normal Inspector Card */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-gutter">
           {/* Left / Center: Detailed Analysis (Col Span 2) */}
@@ -411,6 +431,62 @@ export default function CaseDetail() {
 
           {/* Right Sidebar: Cohort Context & Metadata (Col Span 1) */}
           <div className="xl:col-span-1 space-y-gutter">
+            {/* Settlement Score — a separate signal from Triage Score. Triage
+                asks "how urgent"; this asks "how settle-able." See
+                backend/triage/settlement.py for the deterministic formula
+                (case stage + age + adjournment responsiveness — no ML). */}
+            {caseData.settlement_score != null && (
+              <Reveal variant="right" delay={100}>
+                <div className="relative bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm overflow-hidden transition-shadow duration-300 hover:shadow-md">
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal to-teal-light"
+                  />
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
+                      <Icon name="handshake" className="text-teal-dark" />
+                      <span>Settlement Score</span>
+                    </h3>
+                    <span
+                      className={`font-evidence text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${
+                        caseData.settlement_likelihood === "HIGH"
+                          ? "bg-teal/10 text-teal-dark border-teal/25"
+                          : caseData.settlement_likelihood === "MODERATE"
+                          ? "bg-gold/15 text-gold-dark border-gold/35"
+                          : "bg-surface-container-high text-on-surface-variant border-outline-variant"
+                      }`}
+                    >
+                      {caseData.settlement_likelihood}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-on-surface-variant mb-4 leading-relaxed">
+                    Likelihood this case could be resolved via Lok Adalat instead
+                    of continuing to trial — a separate question from urgency.
+                  </p>
+                  <div className="flex items-end gap-3">
+                    <span className="font-evidence text-[36px] leading-none font-semibold text-teal-dark tabular-nums">
+                      {caseData.settlement_score.toFixed(1)}
+                    </span>
+                    <div className="flex-1 h-2 bg-surface-variant rounded-full overflow-hidden mb-1.5">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-teal to-teal-light transition-all duration-700 ease-out"
+                        style={{ width: `${Math.min(100, caseData.settlement_score)}%` }}
+                      />
+                    </div>
+                  </div>
+                  {caseData.settlement_likelihood !== "HIGH" && (
+                    <Link
+                      to="/lok-adalat-drafts"
+                      className="mt-4 inline-flex items-center gap-1 text-[11px] font-semibold text-secondary hover:underline"
+                    >
+                      View all referral candidates
+                      <Icon name="arrow_forward" size="12px" />
+                    </Link>
+                  )}
+                </div>
+              </Reveal>
+            )}
+
             <Reveal variant="right" delay={120}>
               <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm space-y-6 transition-shadow duration-300 hover:shadow-md">
                 <h3 className="text-headline-sm font-headline-sm text-primary border-b border-outline-variant pb-3 flex items-center gap-2">

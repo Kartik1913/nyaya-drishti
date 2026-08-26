@@ -21,6 +21,11 @@ export const getPriorityQueueApi = async (page = 1, limit = 20, filters = {}) =>
   return response.data;
 };
 
+export const getCasesApi = async (limit = 1000) => {
+  const response = await client.get('/cases', { params: { limit } });
+  return response.data;
+};
+
 export const getCaseDetailApi = async (caseId) => {
   const response = await client.get(`/cases/${caseId}`);
   return response.data;
