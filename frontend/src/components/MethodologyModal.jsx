@@ -53,8 +53,8 @@ export default function MethodologyModal({ isOpen, onClose }) {
                 </p>
               </div>
               <div className="p-3.5 bg-surface-bright rounded border border-outline-variant space-y-1">
-                <span className="text-xs font-bold text-amber-800 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber-600"></span>
+                <span className="text-xs font-bold text-gold-dark flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-gold"></span>
                   Tier 2: Predictive Machine Learning Signal
                 </span>
                 <p className="text-[12px] text-on-surface-variant leading-normal">
@@ -95,7 +95,7 @@ export default function MethodologyModal({ isOpen, onClose }) {
                     <td className="p-3 font-mono text-[11px] text-on-surface-variant">
                       days_without_order / 300d (0.5x bench grace)
                     </td>
-                    <td className="p-3 text-amber-700 font-medium">Dormancy / No Hearings</td>
+                    <td className="p-3 text-gold-dark font-medium">Dormancy / No Hearings</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-semibold text-primary">3. Cohort Age Percentile</td>
@@ -119,7 +119,7 @@ export default function MethodologyModal({ isOpen, onClose }) {
                     <td className="p-3 font-mono text-[11px] text-on-surface-variant">
                       Discrete remedy: HIGH=100%, MED=50%, LOW=0%
                     </td>
-                    <td className="p-3 text-emerald-700 font-medium">Lok Adalat / Process Server Follow-up</td>
+                    <td className="p-3 text-teal-dark font-medium">Lok Adalat / Process Server Follow-up</td>
                   </tr>
                 </tbody>
               </table>
@@ -129,7 +129,7 @@ export default function MethodologyModal({ isOpen, onClose }) {
           {/* Validation & Evaluation Metrics */}
           <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-4">
             <h4 className="text-label-md font-bold text-primary uppercase tracking-wider mb-2 flex items-center gap-2">
-              <Icon name="verified" size="16px" className="text-emerald-600" />
+              <Icon name="verified" size="16px" className="text-teal-dark" />
               <span>Synthetic Validation & Target Pilot Metrics</span>
             </h4>
             <p className="text-[11px] text-on-surface-variant mb-3 bg-surface-bright p-2.5 rounded border border-outline-variant/60">
@@ -143,7 +143,7 @@ export default function MethodologyModal({ isOpen, onClose }) {
               </div>
               <div className="p-3 bg-surface-bright rounded border border-outline-variant">
                 <span className="text-[10px] text-on-surface-variant uppercase font-semibold block">Target Stall Precision</span>
-                <span className="text-headline-sm font-bold text-emerald-700 font-mono">&ge;80%</span>
+                <span className="text-headline-sm font-bold text-teal-dark font-evidence">&ge;80%</span>
                 <span className="text-[9px] text-on-surface-variant block mt-0.5">Planned Pilot Goal</span>
               </div>
               <div className="p-3 bg-surface-bright rounded border border-outline-variant">

@@ -5,6 +5,7 @@ import AiNotice from "../components/AiNotice.jsx";
 import UserActions from "../components/UserActions.jsx";
 import AppFooter from "../components/AppFooter.jsx";
 import DashboardGround from "../components/DashboardGround.jsx";
+import DataLabelBadge from "../components/DataLabelBadge.jsx";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { getAggregateStatsApi, getTriageStatsApi } from "../api/endpoints.js";
 
@@ -35,7 +36,7 @@ function AnimatedNumber({ value, duration = 1400, className = "" }) {
 
   useEffect(() => {
     const raw = String(value);
-    const match = raw.match(/([^\d.\-+]*)([\-+]?[\d,\.]+)(.*)/);
+    const match = raw.match(/([^\d.+-]*)([+-]?[\d,.]+)(.*)/);
     if (!match) {
       setDisplay(raw);
       return;
@@ -70,7 +71,7 @@ function AnimatedNumber({ value, duration = 1400, className = "" }) {
   return <span className={className}>{display}</span>;
 }
 
-function KpiCard({ label, value, tone, delta, deltaTone, hint, delay = 0 }) {
+function KpiCard({ label, value, tone, delta, deltaTone, hint, source, delay = 0 }) {
   const isAlert = tone === "error";
   const accentClass = isAlert
     ? "before:bg-gradient-to-r before:from-error before:to-error/50"
@@ -98,11 +99,11 @@ function KpiCard({ label, value, tone, delta, deltaTone, hint, delay = 0 }) {
       <div className="flex items-end justify-between gap-3">
         <AnimatedNumber
           value={value}
-          className={`font-headline-lg text-[42px] leading-none font-semibold tabular-nums ${valueTone}`}
+          className={`font-evidence text-[38px] leading-none font-semibold tabular-nums ${valueTone}`}
         />
         {delta && (
           <div
-            className={`flex items-center gap-1 text-[11px] font-semibold tabular-nums shrink-0 pb-1 ${
+            className={`font-evidence flex items-center gap-1 text-[11px] font-semibold tabular-nums shrink-0 pb-1 ${
               deltaTone === "up"
                 ? "text-error"
                 : deltaTone === "down"
@@ -129,6 +130,15 @@ function KpiCard({ label, value, tone, delta, deltaTone, hint, delay = 0 }) {
           {hint}
         </p>
       )}
+      {/* Provenance tag — states plainly whether this figure is published
+          macro data or derived from the synthetic case set. */}
+      <div className="mt-2.5">
+        {source ? (
+          <DataLabelBadge type="REAL_AGGREGATE" source={source} />
+        ) : (
+          <DataLabelBadge type="SYNTHETIC" />
+        )}
+      </div>
     </div>
   );
 }
@@ -156,7 +166,7 @@ function SignatureBar({ label, count, pct, tone, delay = 0 }) {
         />
       </div>
       <div
-        className={`text-body-sm font-body-sm tabular-nums text-right ${
+        className={`font-evidence text-body-sm tabular-nums text-right ${
           tone === "error" ? "text-error font-bold" : "text-navy font-semibold"
         }`}
       >
@@ -238,6 +248,8 @@ export default function Dashboard() {
         item.metric_name.toLowerCase().includes("lok")
     ) || { metric_value: "340" };
 
+  // `source` present => published macro figure (NJDG / Data.gov.in); absent
+  // => derived from the synthetic case set. Drives the provenance badge.
   const dashboardKpis = [
     {
       label: "Total Pending Cases",
@@ -245,6 +257,7 @@ export default function Dashboard() {
       delta: "+2.1%",
       deltaTone: "up",
       hint: "vs. 30-day cohort baseline",
+      source: pendingCasesObj.source,
     },
     {
       label: "Structurally Stalled",
@@ -260,6 +273,7 @@ export default function Dashboard() {
       delta: "+18d",
       deltaTone: "up",
       hint: "district cohort comparison",
+      source: avgDelayObj.source,
     },
     {
       label: "Lok Adalat Candidates",
@@ -267,6 +281,7 @@ export default function Dashboard() {
       delta: "actionable",
       deltaTone: "down",
       hint: "eligible for alternate resolution",
+      source: lokAdalatObj.source,
     },
   ];
 
@@ -345,7 +360,7 @@ export default function Dashboard() {
             <p className="font-headline-md text-white text-xl md:text-2xl leading-snug">
               <AnimatedNumber
                 value={criticalCount.toString()}
-                className="text-gold-light font-bold"
+                className="font-evidence text-gold-light font-bold"
               />{" "}
               cases flagged as structurally stalled — targeted intervention
               recommended before the next hearing block.
@@ -387,7 +402,7 @@ export default function Dashboard() {
                 <p className="text-[10px] font-bold tracking-[0.16em] uppercase text-on-surface-variant">
                   Total Flags
                 </p>
-                <p className="font-headline-sm text-navy font-semibold tabular-nums">
+                <p className="font-evidence text-headline-sm text-navy font-semibold tabular-nums">
                   <AnimatedNumber value={String(totalFlags)} />
                 </p>
               </div>
@@ -463,9 +478,9 @@ export default function Dashboard() {
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="font-display-lg text-[44px] leading-none font-semibold text-error tabular-nums">
+                <span className="font-evidence text-[42px] leading-none font-semibold text-error tabular-nums">
                   <AnimatedNumber value={stalledPct} duration={1400} />
-                  <span className="text-[24px] font-normal align-top">%</span>
+                  <span className="text-[22px] font-normal align-top">%</span>
                 </span>
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-on-surface-variant mt-2">
                   Stalled
@@ -479,7 +494,7 @@ export default function Dashboard() {
                   <p className="text-[10px] font-bold tracking-wider uppercase text-on-surface-variant">
                     Stalled
                   </p>
-                  <p className="text-body-sm font-semibold text-error tabular-nums">
+                  <p className="font-evidence text-body-sm font-semibold text-error tabular-nums">
                     {stalledPct}%
                   </p>
                 </div>
@@ -490,7 +505,7 @@ export default function Dashboard() {
                   <p className="text-[10px] font-bold tracking-wider uppercase text-on-surface-variant">
                     Within baseline
                   </p>
-                  <p className="text-body-sm font-semibold text-teal-dark tabular-nums">
+                  <p className="font-evidence text-body-sm font-semibold text-teal-dark tabular-nums">
                     {normalPct}%
                   </p>
                 </div>

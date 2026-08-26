@@ -109,6 +109,12 @@ export default {
         "headline-lg": ['"EB Garamond"', "serif"],
         "body-sm": ["Lato", "sans-serif"],
         "body-md": ["Lato", "sans-serif"],
+        // Evidence font — every score, date, CNR number, and count on the
+        // site is set in this instead of the browser's generic monospace
+        // default, so figures read as instrumented fact ("the arithmetic"),
+        // visually distinct from the serif/sans used for narrative text.
+        mono: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
+        evidence: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
       },
       fontSize: {
         "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],

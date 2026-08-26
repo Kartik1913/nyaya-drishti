@@ -52,12 +52,14 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-body-sm">
-      {/* Prototype Notice Banner */}
-      <div className="bg-[#7c4d00] border-b border-[#9a6300] px-4 py-2 text-xs text-[#ffe0b2] sticky top-0 z-50">
+      {/* Prototype Notice Banner — navy + brand gold, matching the persistent
+          DisclaimerBanner shown on every workspace page (was a raw muddy
+          amber unrelated to the palette). */}
+      <div className="bg-navy border-b border-gold/30 px-4 py-2 text-xs text-slate-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center gap-2.5">
-          <Icon name="shield" size="16px" className="text-[#ffb74d] shrink-0" />
+          <Icon name="shield" size="16px" className="text-gold-light shrink-0" />
           <span>
-            <strong className="font-semibold uppercase tracking-wider text-[10px] bg-[#9a6300]/50 border border-[#ffb74d]/50 px-1.5 py-0.5 rounded mr-2">
+            <strong className="font-semibold uppercase tracking-wider text-[10px] bg-gold/20 text-gold-light border border-gold/40 px-1.5 py-0.5 rounded mr-2">
               NON-JUDICIAL PROTOTYPE
             </strong>
             Administrative review triage only. Does <strong>NOT</strong> predict
@@ -86,23 +88,58 @@ const Login = () => {
                 "linear-gradient(160deg, rgba(11,22,40,0.55) 0%, rgba(11,22,40,0.88) 55%, #0B1628 100%)",
             }}
           />
-          {/* Angled gold accent line, on-brand diagonal motif */}
+          {/* Angled gold accent line — sits low in the panel so it reads as a
+              diagonal motif behind the copy rather than slashing through the
+              brand lockup, which is what made the wordmark unreadable. */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 h-1/2"
+            style={{
+              background:
+                "linear-gradient(115deg, transparent 44%, rgba(184,155,94,0.18) 49%, rgba(214,192,140,0.32) 50%, rgba(184,155,94,0.18) 51%, transparent 56%)",
+            }}
+          />
+          {/* Readability scrim directly behind the lockup — guarantees the
+              wordmark clears the statue's highlights at any crop. */}
           <div
             aria-hidden="true"
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(115deg, transparent 46%, rgba(184,155,94,0.35) 49%, rgba(214,192,140,0.55) 50%, rgba(184,155,94,0.35) 51%, transparent 54%)",
+                "radial-gradient(ellipse 70% 50% at 50% 52%, rgba(11,22,40,0.85) 0%, rgba(11,22,40,0.55) 45%, transparent 75%)",
             }}
           />
 
-          <div className="relative z-10 max-w-md px-10 py-16 text-center flex flex-col items-center gap-6 opacity-0 animate-hero-fade-1">
-            <Logo variant="full" className="[&_span]:text-2xl [&_span]:text-white" />
-            <h2 className="font-headline-lg text-headline-lg text-white">
-              Intelligent Triage for Faster Justice.
+          <div className="relative z-10 max-w-md px-10 py-16 flex flex-col items-center text-center gap-6 opacity-0 animate-hero-fade-1">
+            {/* Vertical brand lockup: mark above, wordmark below. The previous
+                inline `variant="full"` lockup put a 2xl wordmark beside the
+                mark inside a narrow centered column, so the text wrapped and
+                collided with the mark. */}
+            <div className="flex flex-col items-center gap-4">
+              <Logo
+                variant="mark"
+                className="w-16 h-16 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]"
+              />
+              <div>
+                <div className="font-headline-lg text-[32px] leading-none font-bold tracking-tight text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
+                  Nyaya<span className="text-gold-light">-</span>Drishti
+                </div>
+                <div className="mt-2.5 font-label-md text-[10px] uppercase tracking-[0.28em] text-gold-light/90">
+                  District Court Triage
+                </div>
+              </div>
+            </div>
+
+            <span
+              aria-hidden="true"
+              className="h-px w-16 bg-gradient-to-r from-transparent via-gold/70 to-transparent"
+            />
+
+            <h2 className="font-headline-lg text-headline-lg text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+              Intelligent triage for faster justice.
             </h2>
             <p className="font-body-md text-body-md text-slate-300">
-              Deterministic, fully-auditable case triage for district court
+              Deterministic, fully auditable case triage for district court
               registries &mdash; no black-box predictions, no outcome
               forecasting.
             </p>

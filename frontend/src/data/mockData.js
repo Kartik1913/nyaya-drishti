@@ -1,109 +1,11 @@
-// Demo/mock data standing in for the eventual eCourts / NJDG data feed.
-// Swap these out for real API responses once the backend triage engine is wired up.
-
-export const dashboardKpis = [
-  { label: "Total Pending Cases", value: "12,450" },
-  {
-    label: "Structurally Stalled Flags",
-    value: "1,840",
-    tone: "error",
-    icon: "warning",
-  },
-  { label: "Avg Delay vs Cohort Baseline", value: "+312 Days" },
-  { label: "Lok Adalat Candidates", value: "340" },
-];
-
-export const bottleneckSignatures = [
-  { label: "Dormant", count: 600, width: 100, tone: "error" },
-  { label: "Churning", count: 450, width: 75, tone: "neutral" },
-  { label: "Disrupted", count: 350, width: 58, tone: "neutral" },
-  { label: "Slow-Start", count: 240, width: 40, tone: "neutral" },
-  { label: "Cohort Outlier", count: 200, width: 33, tone: "neutral" },
-];
-
-export const districtHealth = { stalledPct: 15, normalPct: 85 };
-
-export const stallSignatureStyles = {
-  Dormant: "bg-secondary-container text-on-secondary-container",
-  Churning: "bg-tertiary-fixed text-on-tertiary-fixed",
-  Disrupted: "bg-error-container text-on-error-container",
-  None: "bg-surface-variant text-on-surface-variant",
-};
-
-export const confidenceStyles = {
-  High: "bg-surface-container-high text-on-surface",
-  Low: "bg-surface-container text-on-surface-variant",
-};
-
-export const priorityQueueCases = [
-  {
-    cnr: "MHNG01-004521-2019",
-    type: "Sec 138 NI Act",
-    ageDays: 800,
-    stallSignature: "Dormant",
-    confidence: "High",
-    score: 94,
-  },
-  {
-    cnr: "DLCT02-011832-2017",
-    type: "Civil Suit",
-    ageDays: 1200,
-    stallSignature: "Churning",
-    confidence: "High",
-    score: 88,
-  },
-  {
-    cnr: "KABB03-009214-2020",
-    type: "Motor Vehicle Claim",
-    ageDays: 450,
-    stallSignature: "Disrupted",
-    confidence: "Low",
-    score: 76,
-  },
-  {
-    cnr: "GJSU01-005678-2021",
-    type: "Rent Control",
-    ageDays: 310,
-    stallSignature: "Dormant",
-    confidence: "High",
-    score: 62,
-  },
-  {
-    cnr: "MHPU04-002345-2022",
-    type: "Labor Dispute",
-    ageDays: 180,
-    stallSignature: "None",
-    confidence: "High",
-    score: 42,
-  },
-];
-
-export const caseInspectorCases = [
-  {
-    id: "CASE-ALPHA",
-    ageLabel: "5 years old",
-    cohort: "NI Act Magistrate Court",
-    score: 91.4,
-    status: "stalled",
-    statusLabel: "Structurally Stalled",
-    evidence: [
-      { label: "Unserved Summons for 420 days", points: "+35 pts", width: 85 },
-      { label: "14 consecutive adjournments", points: "+28 pts", width: 65 },
-      { label: "3 judge transfers in 18 months", points: "+18 pts", width: 45 },
-    ],
-  },
-  {
-    id: "CASE-BETA",
-    ageLabel: "5 years old",
-    cohort: "NI Act Magistrate Court",
-    score: 14.7,
-    status: "normal",
-    statusLabel: "Progressing Normally",
-    summary:
-      "Progressing normally through trial stages. No structural administrative bottlenecks detected by the AI triage system.",
-  },
-];
-
+// Static content for the public landing page and the Lok Adalat referral
+// screen. Everything else in the app — dashboard metrics, the priority queue,
+// case detail, and the demo comparison — reads from the live backend API.
+//
+// Dead fixtures for those API-backed screens (dashboardKpis, priorityQueueCases,
+// bottleneckSignatures, districtHealth, stallSignatureStyles, confidenceStyles)
+// and for the removed CaseInspector page (caseInspectorCases) were deleted:
+// they were stale duplicates of real data and a source of drift.
 export const lokAdalatSummary = [
   { label: "Total Eligible Candidates", value: "340", size: "display" },
   { label: "Top Category", value: "Sec 138 NI Act", size: "headline" },
@@ -115,10 +17,15 @@ export const lokAdalatSummary = [
   },
 ];
 
+// Settlement likelihood, on the brand's three-tier scale. Note the polarity is
+// inverted vs. triage severity: here a HIGH value is the good outcome (this
+// case can likely be settled out of court), so high = teal. Low likelihood is
+// simply "not a candidate" — muted neutral, not an error, since there is
+// nothing wrong with a case that isn't Lok Adalat material.
 export const likelihoodStyles = {
-  High: "bg-secondary-fixed text-on-secondary-fixed",
-  Moderate: "bg-tertiary-fixed text-on-tertiary-fixed",
-  Low: "bg-error-container text-on-error-container",
+  High: "bg-teal/10 text-teal-dark border border-teal/25",
+  Moderate: "bg-gold/15 text-gold-dark border border-gold/35",
+  Low: "bg-surface-container-high text-on-surface-variant border border-outline-variant",
 };
 
 export const lokAdalatCandidates = [

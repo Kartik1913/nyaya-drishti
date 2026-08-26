@@ -1,6 +1,7 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import Icon from "./Icon.jsx";
 import Logo from "./Logo.jsx";
+import SupportModal from "./SupportModal.jsx";
 import { primaryNavItems, secondaryNavItems } from "../data/navigation.js";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { triggerReseedApi } from "../api/endpoints.js";
@@ -37,6 +38,7 @@ export default function Sidebar() {
   const [reseedLoading, setReseedLoading] = useState(false);
   const [reseedMsg, setReseedMsg] = useState(null);
   const [showReseedModal, setShowReseedModal] = useState(false);
+  const [showSupport, setShowSupport] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -104,27 +106,25 @@ export default function Sidebar() {
 
         {/* Secondary Links */}
         <div className="border-t border-outline-variant py-2 flex flex-col gap-1">
-          {secondaryNavItems.map((item) =>
-            item.path.startsWith("/") ? (
-              <Link
-                key={item.label}
-                to={item.path}
-                className={`${linkBase} ${linkInactive}`}
-              >
-                <Icon name={item.icon} />
-                {item.label}
-              </Link>
-            ) : (
-              <a
-                key={item.label}
-                href={item.path}
-                className={`${linkBase} ${linkInactive}`}
-              >
-                <Icon name={item.icon} />
-                {item.label}
-              </a>
-            )
-          )}
+          {secondaryNavItems.map((item) => (
+            <Link
+              key={item.label}
+              to={item.path}
+              className={`${linkBase} ${linkInactive}`}
+            >
+              <Icon name={item.icon} />
+              {item.label}
+            </Link>
+          ))}
+          {/* Support opens a real help surface rather than navigating nowhere */}
+          <button
+            type="button"
+            onClick={() => setShowSupport(true)}
+            className={`${linkBase} ${linkInactive} w-[calc(100%-1rem)] text-left cursor-pointer`}
+          >
+            <Icon name="help" />
+            Support
+          </button>
         </div>
 
         {/* User footer */}
@@ -189,7 +189,7 @@ export default function Sidebar() {
               <div
                 className={`p-3 rounded text-body-sm font-body-sm flex items-center gap-2 ${
                   reseedMsg.type === "success"
-                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                    ? "bg-teal/10 text-teal-dark border border-teal/25"
                     : "bg-error/5 text-error border border-error/20"
                 }`}
               >
@@ -226,6 +226,8 @@ export default function Sidebar() {
           </div>
         </div>
       )}
+
+      <SupportModal isOpen={showSupport} onClose={() => setShowSupport(false)} />
     </>
   );
 }
