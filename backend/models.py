@@ -67,6 +67,20 @@ class Case(Base):
     evidence_json = Column(Text, nullable=True)  # JSON payload of all score factors
     explanation_text = Column(Text, nullable=True)
 
+    # Settlement Score (Lok Adalat referral signal) — separate from triage_score.
+    # triage_score answers "how urgently does this case need administrative
+    # attention"; settlement_score answers "how likely could this case be
+    # resolved by mutual agreement instead of trial." Computed deterministically
+    # in triage/settlement.py from current_stage, case age, and adjournment
+    # streak — no ML, same philosophy as the main triage formula.
+    settlement_score = Column(Float, nullable=True)          # 0.0 - 100.0
+    settlement_likelihood = Column(String, nullable=True, default="LOW")  # 'HIGH' | 'MODERATE' | 'LOW'
+
+    # Plain-language case summary generated from the same evidence bundle used
+    # for explanation_text, but written as a standalone narrative rather than
+    # an arithmetic justification.
+    case_summary = Column(Text, nullable=True)
+
     is_demo_stalled = Column(Boolean, default=False)
     is_demo_progressing = Column(Boolean, default=False)
     data_label = Column(String, nullable=False, default="SYNTHETIC")

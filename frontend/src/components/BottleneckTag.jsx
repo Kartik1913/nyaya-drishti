@@ -1,48 +1,63 @@
-import React from 'react';
+import React from "react";
 
-const BOTTLENECK_MAP = {
-  SUMMONS_DELAY: {
-    label: 'Summons Delay',
-    classes: 'bg-purple-950/70 text-purple-300 border-purple-500/40',
-    dot: 'bg-purple-400',
+/**
+ * Bottleneck type badge, colored by ACTIONABILITY TIER rather than by an
+ * arbitrary per-category hue.
+ *
+ * The previous version assigned six unrelated, highly-saturated colors
+ * (purple, orange, rose, cyan, amber, slate) with no connection to the
+ * brand palette or to what the colors actually meant — a registrar scanning
+ * the queue had six hues to memorize with no shared logic between them.
+ *
+ * The 6-layer engine (see README, Layer 3: Bottleneck Classifier) already
+ * assigns each bottleneck type a real actionability tier — that tier is the
+ * thing a registrar actually needs at a glance ("do I act on this now, or
+ * can it wait?"), so the badge now encodes THAT instead:
+ *   - High actionability   → error red    (SUMMONS_DELAY, REPEATED_ADJOURNMENT)
+ *   - Medium actionability → gold         (WITNESS_DELAY, JUDGE_CHANGE, PROCEDURAL_INACTIVITY)
+ *   - Low / normal         → teal         (UNKNOWN)
+ * Three meaningful, brand-token colors instead of six decorative ones —
+ * fewer hues to learn, and the ones that remain actually tell you something.
+ */
+
+const TIER_STYLE = {
+  high: {
+    classes: "bg-error/10 text-error border-error/25",
+    dot: "bg-error",
   },
-  WITNESS_DELAY: {
-    label: 'Witness Delay',
-    classes: 'bg-orange-950/70 text-orange-300 border-orange-500/40',
-    dot: 'bg-orange-400',
+  medium: {
+    classes: "bg-gold/10 text-gold-dark border-gold/30",
+    dot: "bg-gold",
   },
-  REPEATED_ADJOURNMENT: {
-    label: 'Repeated Adjournment',
-    classes: 'bg-rose-950/70 text-rose-300 border-rose-500/40',
-    dot: 'bg-rose-400',
-  },
-  JUDGE_CHANGE: {
-    label: 'Bench Change',
-    classes: 'bg-cyan-950/70 text-cyan-300 border-cyan-500/40',
-    dot: 'bg-cyan-400',
-  },
-  PROCEDURAL_INACTIVITY: {
-    label: 'Procedural Inactivity',
-    classes: 'bg-amber-950/70 text-amber-300 border-amber-500/40',
-    dot: 'bg-amber-400',
-  },
-  UNKNOWN: {
-    label: 'Normal Progression',
-    classes: 'bg-slate-800/80 text-slate-300 border-slate-700',
-    dot: 'bg-emerald-400',
+  low: {
+    classes: "bg-teal/10 text-teal-dark border-teal/25",
+    dot: "bg-teal",
   },
 };
 
-const BottleneckTag = ({ type, size = 'sm', className = '' }) => {
+const BOTTLENECK_MAP = {
+  SUMMONS_DELAY: { label: "Summons Delay", tier: "high" },
+  REPEATED_ADJOURNMENT: { label: "Repeated Adjournment", tier: "high" },
+  WITNESS_DELAY: { label: "Witness Delay", tier: "medium" },
+  JUDGE_CHANGE: { label: "Bench Change", tier: "medium" },
+  PROCEDURAL_INACTIVITY: { label: "Procedural Inactivity", tier: "medium" },
+  UNKNOWN: { label: "Normal Progression", tier: "low" },
+};
+
+const BottleneckTag = ({ type, size = "sm", className = "" }) => {
   const meta = BOTTLENECK_MAP[type] || BOTTLENECK_MAP.UNKNOWN;
-  
-  const sizeClass = size === 'lg' 
-    ? 'text-sm px-3 py-1.5 font-semibold' 
-    : 'text-xs px-2.5 py-0.5 font-medium';
+  const style = TIER_STYLE[meta.tier];
+
+  const sizeClass =
+    size === "lg"
+      ? "text-sm px-3 py-1.5 font-semibold"
+      : "text-xs px-2.5 py-0.5 font-medium";
 
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full border ${meta.classes} ${sizeClass} ${className}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${meta.dot}`}></span>
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full border ${style.classes} ${sizeClass} ${className}`}
+    >
+      <span className={`w-1.5 h-1.5 rounded-full ${style.dot}`} />
       {meta.label}
     </span>
   );

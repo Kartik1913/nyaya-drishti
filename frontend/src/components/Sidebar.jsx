@@ -1,16 +1,18 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import Icon from "./Icon.jsx";
+import Logo from "./Logo.jsx";
+import SupportModal from "./SupportModal.jsx";
 import { primaryNavItems, secondaryNavItems } from "../data/navigation.js";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { triggerReseedApi } from "../api/endpoints.js";
 import { useState } from "react";
 
 const linkBase =
-  "flex items-center gap-3 px-4 py-2.5 text-body-sm font-body-sm transition-colors rounded mx-2";
+  "flex items-center gap-3 px-4 py-2.5 text-body-sm font-body-sm transition-all duration-150 rounded mx-2 active:scale-[0.98]";
 const linkInactive =
-  "text-on-surface-variant hover:bg-surface-container-highest";
+  "text-on-surface-variant hover:bg-surface-container-highest hover:translate-x-0.5";
 const linkActive =
-  "text-secondary font-bold bg-surface-container-high border-l-4 border-secondary";
+  "text-navy font-bold bg-gold/10 border-l-4 border-gold translate-x-0";
 
 function NavItem({ item }) {
   return (
@@ -36,6 +38,7 @@ export default function Sidebar() {
   const [reseedLoading, setReseedLoading] = useState(false);
   const [reseedMsg, setReseedMsg] = useState(null);
   const [showReseedModal, setShowReseedModal] = useState(false);
+  const [showSupport, setShowSupport] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -72,30 +75,21 @@ export default function Sidebar() {
         aria-label="Primary"
         className="hidden md:flex flex-col h-screen w-64 md:sticky top-0 bg-surface-container-low border-r border-outline-variant z-20 shrink-0"
       >
-        {/* Brand */}
-        <div className="px-6 py-5 border-b border-outline-variant shrink-0">
+        {/* Brand — navy band, matches the landing hero's anchor tone */}
+        <div className="px-6 py-5 bg-navy border-b-2 border-gold/40 shrink-0">
           <Link
             to="/"
-            className="block cursor-pointer hover:opacity-80 transition-opacity"
+            className="block cursor-pointer hover:opacity-90 transition-opacity"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded overflow-hidden border border-outline-variant shrink-0">
-                <img
-                  src="/logo.jpg"
-                  alt="Nyaya-Drishti"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.parentElement.innerHTML =
-                      '<span class="w-full h-full flex items-center justify-center text-primary font-bold text-lg">N</span>';
-                  }}
-                />
+              <div className="w-10 h-10 rounded overflow-hidden border border-gold/30 shrink-0 bg-navy-light flex items-center justify-center">
+                <Logo className="w-7 h-7" />
               </div>
               <div>
-                <h1 className="text-headline-sm font-headline-sm font-bold text-primary leading-tight">
+                <h1 className="text-headline-sm font-headline-sm font-bold text-white leading-tight">
                   Nyaya-Drishti
                 </h1>
-                <p className="text-[10px] text-on-surface-variant mt-0.5">
+                <p className="text-[10px] text-gold-light/80 mt-0.5 tracking-wide uppercase">
                   District Court Triage
                 </p>
               </div>
@@ -112,27 +106,25 @@ export default function Sidebar() {
 
         {/* Secondary Links */}
         <div className="border-t border-outline-variant py-2 flex flex-col gap-1">
-          {secondaryNavItems.map((item) =>
-            item.path.startsWith("/") ? (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`${linkBase} ${linkInactive}`}
-              >
-                <Icon name={item.icon} />
-                {item.label}
-              </Link>
-            ) : (
-              <a
-                key={item.path}
-                href={item.path}
-                className={`${linkBase} ${linkInactive}`}
-              >
-                <Icon name={item.icon} />
-                {item.label}
-              </a>
-            )
-          )}
+          {secondaryNavItems.map((item) => (
+            <Link
+              key={item.label}
+              to={item.path}
+              className={`${linkBase} ${linkInactive}`}
+            >
+              <Icon name={item.icon} />
+              {item.label}
+            </Link>
+          ))}
+          {/* Support opens a real help surface rather than navigating nowhere */}
+          <button
+            type="button"
+            onClick={() => setShowSupport(true)}
+            className={`${linkBase} ${linkInactive} w-[calc(100%-1rem)] text-left cursor-pointer`}
+          >
+            <Icon name="help" />
+            Support
+          </button>
         </div>
 
         {/* User footer */}
@@ -157,7 +149,7 @@ export default function Sidebar() {
             {user?.role === "admin" && (
               <button
                 onClick={() => setShowReseedModal(true)}
-                className="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded border border-outline-variant bg-surface hover:bg-surface-container-high text-label-md font-label-md text-on-surface-variant transition-colors cursor-pointer"
+                className="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded border border-outline-variant bg-surface hover:bg-surface-container-high hover:border-gold/40 active:scale-[0.97] text-label-md font-label-md text-on-surface-variant transition-all duration-150 cursor-pointer"
                 title="Reset demo database"
               >
                 <Icon name="refresh" size="14px" />
@@ -166,7 +158,7 @@ export default function Sidebar() {
             )}
             <button
               onClick={handleLogout}
-              className="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded border border-outline-variant bg-surface hover:bg-error/5 hover:border-error/20 hover:text-error text-label-md font-label-md text-on-surface-variant transition-colors cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded border border-outline-variant bg-surface hover:bg-error/5 hover:border-error/20 hover:text-error active:scale-[0.97] text-label-md font-label-md text-on-surface-variant transition-all duration-150 cursor-pointer"
               title="Sign out"
             >
               <Icon name="logout" size="14px" />
@@ -178,8 +170,11 @@ export default function Sidebar() {
 
       {/* Reseed Modal */}
       {showReseedModal && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 max-w-md w-full shadow-2xl space-y-4">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-hero-fade-1">
+          <div
+            className="bg-surface-container-lowest border border-outline-variant border-t-2 border-t-gold rounded-lg p-6 max-w-md w-full shadow-2xl space-y-4 animate-hero-fade-2"
+            style={{ animationDelay: "60ms" }}
+          >
             <h3 className="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
               <Icon name="refresh" />
               Reset Demo Database
@@ -194,7 +189,7 @@ export default function Sidebar() {
               <div
                 className={`p-3 rounded text-body-sm font-body-sm flex items-center gap-2 ${
                   reseedMsg.type === "success"
-                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                    ? "bg-teal/10 text-teal-dark border border-teal/25"
                     : "bg-error/5 text-error border border-error/20"
                 }`}
               >
@@ -231,6 +226,8 @@ export default function Sidebar() {
           </div>
         </div>
       )}
+
+      <SupportModal isOpen={showSupport} onClose={() => setShowSupport(false)} />
     </>
   );
 }

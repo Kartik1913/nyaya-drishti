@@ -10,6 +10,23 @@
   body {
     @apply bg-background text-on-background antialiased;
   }
+
+  /* Global honouring of the OS reduced-motion preference. Individual
+     components still branch in JS for scroll-scrubbed work, but this catches
+     every CSS transition/animation on the page as a safety net. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer components {
@@ -29,7 +46,30 @@
     -webkit-font-feature-settings: "liga";
     -webkit-font-smoothing: antialiased;
   }
+
+  /* Gold gradient text — used sparingly on section headline accents. */
+  .text-gradient-gold {
+    background-image: linear-gradient(100deg, #8a7240, #d6c08c 45%, #b89b5e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Thin angled gold rule used as a section separator. */
+  .rule-gold {
+    height: 1px;
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      rgba(184, 155, 94, 0.7),
+      transparent
+    );
+  }
 }
+
+/* ---------------------------------------------------------------- */
+/* Keyframes                                                         */
+/* ---------------------------------------------------------------- */
 
 @keyframes heroFadeUp {
   from {
@@ -39,6 +79,136 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Dot travelling down the mouse-shaped scroll cue in the hero. */
+@keyframes scrollCue {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  35% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+    transform: translate(-50%, 14px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-scrollCue {
+  animation: scrollCue 1.9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Slow sheen sweeping across a surface — used on the CTA band. */
+@keyframes sheen {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+.animate-sheen {
+  animation: sheen 5.5s ease-in-out infinite;
+}
+
+/* Slow ambient drift for the gold-dust texture on the navy section bands —
+   the same material language as the hero's foreground dust, at rest-pace
+   since these sections aren't scroll-scrubbed like the hero. */
+@keyframes driftDust {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(16px, -12px, 0);
+  }
+}
+
+.animate-driftDust {
+  animation: driftDust 16s ease-in-out infinite;
+}
+
+/* Film-grain flicker — jitters a fine noise tile so flat navy surfaces gain a
+   subtle cinematic texture instead of reading as dead CSS fill. */
+@keyframes grain {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  10% {
+    background-position: -8% -6%;
+  }
+  30% {
+    background-position: 6% -10%;
+  }
+  50% {
+    background-position: -6% 8%;
+  }
+  70% {
+    background-position: 8% 4%;
+  }
+  90% {
+    background-position: -4% -8%;
+  }
+}
+.animate-grain {
+  animation: grain 0.62s steps(5) infinite;
+}
+
+/* Route fade-in: new workspace pages rise+fade so navigation feels continuous
+   rather than a hard cut. */
+@keyframes routeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-routeIn {
+  animation: routeIn 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Radar sweep for the dashboard health donut — a slow gold rotation that ties
+   the visual to what the product does (scanning/triaging cases). */
+@keyframes radarSweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-radarSweep {
+  animation: radarSweep 4.5s linear infinite;
+}
+
+/* Intro ring draw-on — the gold ring encircling the logo on first load. */
+@keyframes ringDraw {
+  from {
+    stroke-dashoffset: 408;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* SplitText word rise — each word cascades up into place. */
+@keyframes wordRise {
+  from {
+    opacity: 0;
+    transform: translateY(0.5em) rotate(1.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
   }
 }
 

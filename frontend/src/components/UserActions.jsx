@@ -104,7 +104,7 @@ export default function UserActions() {
               <div
                 className={`p-3 rounded text-label-md font-label-md flex items-center gap-2 ${
                   reseedMsg.type === "success"
-                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                    ? "bg-teal/10 text-teal-dark border border-teal/25"
                     : "bg-error/5 text-error border border-error/20"
                 }`}
               >

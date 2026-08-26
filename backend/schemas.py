@@ -78,6 +78,10 @@ class CaseOut(BaseModel):
     evidence_json: Optional[str] = None
     explanation_text: Optional[str] = None
 
+    settlement_score: Optional[float] = None
+    settlement_likelihood: Optional[str] = "LOW"
+    case_summary: Optional[str] = None
+
     is_demo_stalled: bool = False
     is_demo_progressing: bool = False
     data_label: str = "SYNTHETIC"
