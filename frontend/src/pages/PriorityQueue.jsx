@@ -93,15 +93,12 @@ export default function PriorityQueue() {
           c.case_type?.toLowerCase().includes(query);
         if (!matchesSearch) return false;
       }
-      // Lok Adalat (Compoundable Acts)
-      if (lokAdalatOnly) {
-        const type = c.case_type || "";
-        const isEligible =
-          type.includes("138") ||
-          type.includes("Negotiable") ||
-          type.includes("Motor") ||
-          type.includes("NI Act");
-        if (!isEligible) return false;
+      // Lok Adalat (Compoundable Acts) — eligibility is the same computed
+      // settlement_likelihood used on the Lok Adalat Drafts page, not a
+      // case_type guess (every case in this dataset shares one case_type,
+      // so a case_type-based filter can never match anything).
+      if (lokAdalatOnly && c.settlement_likelihood === "LOW") {
+        return false;
       }
       return true;
     });

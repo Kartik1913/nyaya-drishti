@@ -43,6 +43,8 @@ export default function LokAdalatDrafts() {
   const [error, setError] = useState(null);
   const [decisions, setDecisions] = useState(loadStoredDecisions);
   const [likelihoodFilter, setLikelihoodFilter] = useState("");
+  const [page, setPage] = useState(1);
+  const PAGE_SIZE = 100;
 
   useEffect(() => {
     const fetchCases = async () => {
@@ -61,16 +63,24 @@ export default function LokAdalatDrafts() {
     fetchCases();
   }, []);
 
+  const persistDecisions = (next) => {
+    try {
+      localStorage.setItem(DECISIONS_STORAGE_KEY, JSON.stringify(next));
+    } catch {
+      // Storage unavailable (private browsing, quota) — decision still
+      // applies for this session, just won't survive a refresh.
+    }
+    return next;
+  };
+
   const decide = (cnr, status) =>
+    setDecisions((prev) => persistDecisions({ ...prev, [cnr]: status }));
+
+  const revertDecision = (cnr) =>
     setDecisions((prev) => {
-      const next = { ...prev, [cnr]: status };
-      try {
-        localStorage.setItem(DECISIONS_STORAGE_KEY, JSON.stringify(next));
-      } catch {
-        // Storage unavailable (private browsing, quota) — decision still
-        // applies for this session, just won't survive a refresh.
-      }
-      return next;
+      const next = { ...prev };
+      delete next[cnr];
+      return persistDecisions(next);
     });
 
   // Rank by settlement_score — highest-likelihood candidates first.
@@ -85,6 +95,20 @@ export default function LokAdalatDrafts() {
   const visibleCandidates = likelihoodFilter
     ? ranked.filter((c) => c.settlement_likelihood === likelihoodFilter)
     : ranked;
+
+  const totalPages = Math.max(1, Math.ceil(visibleCandidates.length / PAGE_SIZE));
+  const pagedCandidates = visibleCandidates.slice(
+    (page - 1) * PAGE_SIZE,
+    page * PAGE_SIZE
+  );
+
+  const decidedCases = useMemo(
+    () =>
+      ranked
+        .filter((c) => decisions[c.synthetic_cnr])
+        .map((c) => ({ ...c, decision: decisions[c.synthetic_cnr] })),
+    [ranked, decisions]
+  );
 
   // Real, live summary metrics — no hand-typed numbers.
   const highCount = ranked.filter((c) => c.settlement_likelihood === "HIGH").length;
@@ -198,7 +222,10 @@ export default function LokAdalatDrafts() {
                     <select
                       id="likelihood-filter"
                       value={likelihoodFilter}
-                      onChange={(e) => setLikelihoodFilter(e.target.value)}
+                      onChange={(e) => {
+                        setLikelihoodFilter(e.target.value);
+                        setPage(1);
+                      }}
                       className="appearance-none bg-surface-container-lowest border border-outline-variant rounded-four pl-3 pr-8 py-1.5 text-body-sm font-body-sm outline-none focus:border-gold focus:ring-1 focus:ring-gold/40 transition-colors cursor-pointer hover:border-gold/40"
                     >
                       <option value="">All candidates</option>
@@ -262,7 +289,7 @@ export default function LokAdalatDrafts() {
                         </td>
                       </tr>
                     )}
-                    {visibleCandidates.slice(0, 100).map((c, i) => {
+                    {pagedCandidates.map((c, i) => {
                       const decision = decisions[c.synthetic_cnr];
                       const age = daysAgo(c.filing_date);
                       return (
@@ -326,10 +353,143 @@ export default function LokAdalatDrafts() {
                   </tbody>
                 </table>
               </div>
-              {visibleCandidates.length > 100 && (
-                <p className="px-6 py-3 text-[11px] text-on-surface-variant border-t border-surface-variant">
-                  Showing the top 100 of {visibleCandidates.length} ranked candidates.
-                </p>
+              {visibleCandidates.length > 0 && (
+                <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-3 border-t border-surface-variant text-body-sm font-body-sm text-on-surface-variant">
+                  <p>
+                    Showing{" "}
+                    <span className="font-evidence font-medium text-on-surface">
+                      {(page - 1) * PAGE_SIZE + 1}
+                    </span>{" "}
+                    to{" "}
+                    <span className="font-evidence font-medium text-on-surface">
+                      {Math.min(page * PAGE_SIZE, visibleCandidates.length)}
+                    </span>{" "}
+                    of{" "}
+                    <span className="font-evidence font-medium text-on-surface">
+                      {visibleCandidates.length}
+                    </span>{" "}
+                    ranked candidates
+                  </p>
+                  <nav
+                    aria-label="Pagination"
+                    className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+                  >
+                    <button
+                      type="button"
+                      disabled={page <= 1}
+                      onClick={() => setPage((p) => p - 1)}
+                      className="relative inline-flex items-center rounded-l-md px-2 py-2 text-on-surface-variant ring-1 ring-inset ring-outline-variant hover:bg-surface hover:text-gold-dark disabled:opacity-40 transition-colors"
+                    >
+                      <span className="sr-only">Previous</span>
+                      <Icon name="chevron_left" size="18px" />
+                    </button>
+                    <span className="relative inline-flex items-center px-4 py-2 text-on-surface font-evidence font-semibold tabular-nums">
+                      {page} / {totalPages}
+                    </span>
+                    <button
+                      type="button"
+                      disabled={page >= totalPages}
+                      onClick={() => setPage((p) => p + 1)}
+                      className="relative inline-flex items-center rounded-r-md px-2 py-2 text-on-surface-variant ring-1 ring-inset ring-outline-variant hover:bg-surface hover:text-gold-dark disabled:opacity-40 transition-colors"
+                    >
+                      <span className="sr-only">Next</span>
+                      <Icon name="chevron_right" size="18px" />
+                    </button>
+                  </nav>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Decision History — every case already Approved or Rejected,
+              read from the same locally-persisted decisions as the actions
+              above. */}
+          <div>
+            <div className="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT overflow-hidden">
+              <div className="p-4 border-b border-surface-variant bg-surface-container-low">
+                <h3 className="text-headline-sm font-headline-sm text-on-surface">
+                  Decision History
+                  <span className="ml-2 font-evidence text-body-sm text-on-surface-variant tabular-nums">
+                    ({decidedCases.length})
+                  </span>
+                </h3>
+              </div>
+
+              {decidedCases.length === 0 ? (
+                <div className="px-6 py-10 text-center">
+                  <p className="font-body-md text-on-surface-variant">
+                    No decisions recorded yet — approved or rejected notices
+                    will appear here.
+                  </p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto w-full">
+                  <table className="w-full text-left border-collapse min-w-[720px]">
+                    <thead>
+                      <tr className="bg-surface-container-low text-label-md font-label-md text-on-surface-variant uppercase tracking-wider border-b border-surface-variant">
+                        <th className="px-6 py-4 font-semibold whitespace-nowrap">
+                          CNR Number
+                        </th>
+                        <th className="px-6 py-4 font-semibold whitespace-nowrap">
+                          Current Stage
+                        </th>
+                        <th className="px-6 py-4 font-semibold whitespace-nowrap">
+                          Settlement Likelihood
+                        </th>
+                        <th className="px-6 py-4 font-semibold whitespace-nowrap">
+                          Decision
+                        </th>
+                        <th className="px-6 py-4 font-semibold text-right whitespace-nowrap">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-body-md font-body-md divide-y divide-surface-variant">
+                      {decidedCases.map((c, i) => (
+                        <tr
+                          key={c.id}
+                          className={`hover:bg-gold/5 transition-colors duration-150 ${
+                            i % 2 === 1 ? "bg-surface-container-low" : ""
+                          }`}
+                        >
+                          <td className="px-6 py-4 font-evidence font-medium text-primary">
+                            <Link to={`/cases/${c.id}`} className="hover:underline">
+                              {c.synthetic_cnr}
+                            </Link>
+                          </td>
+                          <td className="px-6 py-4">{c.current_stage}</td>
+                          <td className="px-6 py-4">
+                            <Badge className={likelihoodStyles[c.settlement_likelihood]}>
+                              <span className="font-evidence">
+                                {c.settlement_likelihood} - {c.settlement_score?.toFixed(0)}%
+                              </span>
+                            </Badge>
+                          </td>
+                          <td className="px-6 py-4">
+                            <span
+                              className={`text-label-md font-label-md ${
+                                c.decision === "approved"
+                                  ? "text-teal-dark"
+                                  : "text-on-surface-variant"
+                              }`}
+                            >
+                              {c.decision === "approved" ? "Notice Approved" : "Rejected"}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 text-right">
+                            <button
+                              type="button"
+                              onClick={() => revertDecision(c.synthetic_cnr)}
+                              className="px-3 py-1.5 border border-outline-variant text-primary bg-surface-container-lowest hover:bg-surface-container-highest active:scale-[0.97] rounded-DEFAULT text-label-md font-label-md transition-all duration-150"
+                            >
+                              Move Back to Review
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               )}
             </div>
           </div>

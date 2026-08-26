@@ -96,10 +96,10 @@ function KpiCard({ label, value, tone, delta, deltaTone, hint, source, delay = 0
           />
         )}
       </div>
-      <div className="flex items-end justify-between gap-3">
+      <div className="flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
         <AnimatedNumber
           value={value}
-          className={`font-evidence text-[clamp(22px,5vw,38px)] leading-none font-semibold tabular-nums min-w-0 ${valueTone}`}
+          className={`font-evidence text-[clamp(20px,5vw,38px)] leading-none font-semibold tabular-nums min-w-0 flex-1 basis-auto ${valueTone}`}
         />
         {delta && (
           <div
@@ -461,7 +461,7 @@ export default function Dashboard() {
                   cy="50"
                   r="44"
                   fill="transparent"
-                  stroke="#E7E1D3"
+                  stroke="#5FA8A2"
                   strokeWidth="10"
                 />
                 <circle
