@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "./Icon.jsx";
 import Logo from "./Logo.jsx";
 import { armEntrance } from "../entrance/entrance.js";
+import { useAuth } from "../auth/AuthContext.jsx";
 
 const links = [
   { label: "Problem", href: "#problem" },
@@ -23,6 +24,7 @@ const links = [
  * vanished below `md`).
  */
 export default function LandingNav() {
+  const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -94,16 +96,18 @@ export default function LandingNav() {
         </div>
 
         <div className="flex items-center gap-3 shrink-0">
-          <Link
-            to="/login"
-            className={`hidden sm:inline-flex font-label-md text-label-md font-semibold px-4 py-2.5 rounded-four transition-colors ${
-              solid
-                ? "text-primary hover:bg-surface-container-high"
-                : "text-slate-200 hover:text-white"
-            }`}
-          >
-            Sign in
-          </Link>
+          {!user && (
+            <Link
+              to="/login"
+              className={`hidden sm:inline-flex font-label-md text-label-md font-semibold px-4 py-2.5 rounded-four transition-colors ${
+                solid
+                  ? "text-primary hover:bg-surface-container-high"
+                  : "text-slate-200 hover:text-white"
+              }`}
+            >
+              Sign in
+            </Link>
+          )}
           <Link
             to="/"
             onClick={() => armEntrance()}
@@ -144,13 +148,15 @@ export default function LandingNav() {
               {l.label}
             </a>
           ))}
-          <Link
-            to="/login"
-            onClick={() => setMenuOpen(false)}
-            className="font-body-md text-body-md text-primary font-semibold py-3 mt-1"
-          >
-            Sign in
-          </Link>
+          {!user && (
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+              className="font-body-md text-body-md text-primary font-semibold py-3 mt-1"
+            >
+              Sign in
+            </Link>
+          )}
         </div>
       </div>
     </nav>

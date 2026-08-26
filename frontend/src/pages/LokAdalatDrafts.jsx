@@ -26,11 +26,22 @@ function daysAgo(isoDate) {
   return Math.max(0, Math.floor(diff / 86400000));
 }
 
+const DECISIONS_STORAGE_KEY = "lokAdalatDecisions";
+
+function loadStoredDecisions() {
+  try {
+    const raw = localStorage.getItem(DECISIONS_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
 export default function LokAdalatDrafts() {
   const [cases, setCases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [decisions, setDecisions] = useState({});
+  const [decisions, setDecisions] = useState(loadStoredDecisions);
   const [likelihoodFilter, setLikelihoodFilter] = useState("");
 
   useEffect(() => {
@@ -51,7 +62,16 @@ export default function LokAdalatDrafts() {
   }, []);
 
   const decide = (cnr, status) =>
-    setDecisions((prev) => ({ ...prev, [cnr]: status }));
+    setDecisions((prev) => {
+      const next = { ...prev, [cnr]: status };
+      try {
+        localStorage.setItem(DECISIONS_STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        // Storage unavailable (private browsing, quota) — decision still
+        // applies for this session, just won't survive a refresh.
+      }
+      return next;
+    });
 
   // Rank by settlement_score — highest-likelihood candidates first.
   const ranked = useMemo(
