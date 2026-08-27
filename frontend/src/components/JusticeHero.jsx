@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import Icon from "./Icon.jsx";
 import CountUp from "./CountUp.jsx";
-import StatueScene3D from "./StatueScene3D.jsx";
 import FilmGrain from "./FilmGrain.jsx";
 import { armEntrance } from "../entrance/entrance.js";
 import {
   useReducedMotion,
   useTrackProgress,
-  usePointerTilt,
   mapRange,
   stageOpacity,
 } from "../hooks/useScroll.js";
@@ -36,12 +34,11 @@ const STAGES = [
 ];
 const FADE = 0.09;
 
-export default function JusticeHero({ src = "/lady-justice.avif" }) {
+export default function JusticeHero({ poster = "/justice-hero-poster.jpg" }) {
   const reduced = useReducedMotion();
   const [trackRef, progress] = useTrackProgress(reduced);
-  const tilt = usePointerTilt(reduced);
 
-  if (reduced) return <StaticHero src={src} />;
+  if (reduced) return <StaticHero poster={poster} />;
 
   const panelStyle = (i) => {
     const { start, end } = STAGES[i];
@@ -70,17 +67,27 @@ export default function JusticeHero({ src = "/lady-justice.avif" }) {
       aria-label="Nyaya-Drishti introduction"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* ---- Statue, rendered in real WebGL: the camera arcs around it
-            (an actual orbit, not a flat CSS rotate) while a warm light
-            sweeps across the surface — see StatueScene3D.jsx for why this
-            replaced the previous CSS-transformed <img>. ---- */}
+        {/* ---- Footage: a courtroom-desk shot (gavel, scales, a case being
+            worked) sits center-right by its own composition, which is why
+            it needs no pointer-tilt or orbit treatment the old 3D statue
+            used — it's already framed correctly. Looped seamlessly (see
+            scripts/make-hero-video.md) so the 11s source plays without a
+            visible seam. Muted + playsInline so autoplay is allowed on
+            mobile Safari and Chrome alike. ---- */}
         <div aria-hidden="true" className="absolute inset-0 md:left-[30%]">
-          <StatueScene3D
-            src={src}
-            progress={progress}
-            tilt={tilt}
-            className="w-full h-full"
-          />
+          <video
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "62% 48%" }}
+            poster={poster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
+            <source src="/justice-hero.webm" type="video/webm" />
+            <source src="/justice-hero.mp4" type="video/mp4" />
+          </video>
         </div>
 
         {/* ---- Scrims. Horizontal on desktop, vertical on mobile. ---- */}
@@ -290,18 +297,18 @@ function HeroStat({ value, suffix = "", label }) {
  * content is present at once in normal document flow, which is the honest
  * static equivalent of the scrollytelling sequence.
  */
-function StaticHero({ src }) {
+function StaticHero({ poster }) {
   return (
     <section className="relative w-full bg-navy overflow-hidden py-20 md:py-28">
       <div
         aria-hidden="true"
-        className="absolute inset-0 md:left-[38%]"
+        className="absolute inset-0 md:left-[30%]"
       >
         <img
-          src={src}
+          src={poster}
           alt=""
           className="w-full h-full object-cover"
-          style={{ objectPosition: "58% 40%" }}
+          style={{ objectPosition: "62% 48%" }}
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
