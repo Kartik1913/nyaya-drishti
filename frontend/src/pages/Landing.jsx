@@ -458,7 +458,7 @@ export default function Landing() {
             <Reveal variant="up" delay={300}>
               <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
                 <Link
-                  to="/"
+                  to="/dashboard"
                   onClick={() => armEntrance()}
                   className="group inline-flex items-center gap-2 bg-gradient-to-r from-gold-light to-gold text-navy font-bold px-8 py-4 rounded-md shadow-lg shadow-black/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-gold/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
                 >

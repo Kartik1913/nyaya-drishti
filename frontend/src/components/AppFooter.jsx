@@ -22,7 +22,7 @@ export default function AppFooter() {
             Synthetic case data
           </span>
           <Link
-            to="/landing"
+            to="/"
             className="hover:text-primary transition-colors underline-offset-2 hover:underline"
           >
             Public Overview

@@ -29,7 +29,7 @@ const Login = () => {
     try {
       await login(username, password);
       armEntrance();
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       if (!err.response) {
         setError(
@@ -298,10 +298,10 @@ const Login = () => {
 
             <div className="text-center mt-6 space-y-2">
               <Link
-                to="/landing"
+                to="/"
                 className="inline-flex items-center gap-1.5 text-body-sm font-medium text-secondary hover:underline"
               >
-                <span>Explore Public Overview & Landing Page</span>
+                <span>Explore the Landing Page</span>
                 <Icon name="arrow_forward" size="14px" />
               </Link>
               <p className="text-[11px] text-on-surface-variant">

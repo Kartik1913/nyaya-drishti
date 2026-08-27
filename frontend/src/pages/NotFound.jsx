@@ -28,7 +28,7 @@ export default function NotFound() {
         </p>
 
         <Link
-          to="/"
+          to="/dashboard"
           className="mt-4 group bg-gradient-to-r from-gold to-gold-dark text-white px-6 py-3 rounded-md font-semibold font-label-md text-label-md transition-all duration-200 inline-flex items-center gap-2 hover:shadow-lg hover:shadow-gold/25 hover:-translate-y-0.5 active:translate-y-0"
         >
           <Icon name="arrow_back" size="18px" />

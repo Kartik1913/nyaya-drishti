@@ -21,9 +21,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          
-          {/* Public marketing landing page */}
-          <Route path="/landing" element={<Landing />} />
+
+          {/* Public marketing landing page — the site's root */}
+          <Route path="/" element={<Landing />} />
 
           {/* Protected workspace routes */}
           <Route
@@ -33,7 +33,7 @@ function App() {
               </RequireAuth>
             }
           >
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/queue" element={<PriorityQueue />} />
             <Route path="/cases/:id" element={<CaseDetail />} />
             <Route path="/comparison" element={<Comparison />} />

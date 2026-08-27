@@ -65,7 +65,7 @@ export default function LandingNav() {
     >
       <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-[1600px] mx-auto">
         <Link
-          to="/landing"
+          to="/"
           className="flex items-center gap-2.5 group shrink-0"
           onClick={() => setMenuOpen(false)}
         >
@@ -109,7 +109,7 @@ export default function LandingNav() {
             </Link>
           )}
           <Link
-            to="/"
+            to="/dashboard"
             onClick={() => armEntrance()}
             className="inline-flex items-center gap-1.5 bg-gradient-to-r from-gold-light to-gold text-navy px-5 py-2.5 rounded-four font-semibold font-label-md text-label-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/30"
           >
